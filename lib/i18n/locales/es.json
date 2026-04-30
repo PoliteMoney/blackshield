@@ -1,0 +1,198 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Quiénes Somos",
+    "services": "Servicios",
+    "sectors": "Sectores",
+    "methodology": "Metodología",
+    "blog": "Blog",
+    "faq": "Preguntas Frecuentes",
+    "contact": "Contacto",
+    "book": "Agendar Cita",
+    "admin": "Administrador"
+  },
+  "hero": {
+    "badge": "Consultoría de Alto Nivel",
+    "title": "Estrategia Legal. Impulsada por Inteligencia.",
+    "tagline_line1": "Estrategia Legal.",
+    "tagline_line2": "Impulsada por Inteligencia.",
+    "sub_tagline": "Antes de entrar · Mientras opera · Cuando necesita resolver",
+    "subtitle": "Soluciones estratégicas, seguridad corporativa y gestión de riesgos para empresas, ejecutivos e instituciones que exigen excelencia.",
+    "cta_primary": "Agendar Consulta",
+    "cta_secondary": "Conocer Servicios",
+    "scroll": "Explorar",
+    "trust_1": "Confidencialidad Total",
+    "trust_2": "Alcance Global",
+    "trust_3": "Excelencia Comprobada",
+    "radar_card1_label": "Inteligencia",
+    "radar_card1_desc": "Análisis estratégico en tiempo real",
+    "radar_card2_label": "Protección",
+    "radar_card2_desc": "Seguridad corporativa integral"
+  },
+  "about": {
+    "badge": "Quiénes Somos",
+    "title": "Una firma de consultoría de élite",
+    "subtitle": "Blackshield Global Consulting es una firma especializada en soluciones estratégicas para organizaciones que operan en entornos complejos y de alta exigencia.",
+    "mission_title": "Misión",
+    "mission_body": "Brindar soluciones de consultoría de élite que impulsen el éxito sostenible de nuestros clientes en entornos complejos.",
+    "vision_title": "Visión",
+    "vision_body": "Ser la firma de consultoría de referencia para organizaciones líderes que enfrentan los desafíos más exigentes.",
+    "values_title": "Valores",
+    "values": [
+      "Confidencialidad y discreción absoluta",
+      "Integridad y ética profesional",
+      "Excelencia en cada entregable",
+      "Orientación a resultados medibles",
+      "Innovación y adaptabilidad",
+      "Compromiso con el cliente"
+    ],
+    "years_label": "Años de experiencia",
+    "clients_label": "Clientes atendidos"
+  },
+  "services": {
+    "badge": "Nuestros Servicios",
+    "title": "Soluciones Especializadas",
+    "subtitle": "Ofrecemos un portafolio integral de servicios diseñados para los desafíos más complejos del entorno corporativo moderno.",
+    "learn_more": "Conocer más",
+    "all_services": "Ver todos los servicios"
+  },
+  "sectors": {
+    "badge": "Sectores",
+    "title": "Sectores que Atendemos",
+    "subtitle": "Nuestra experiencia abarca múltiples industrias con soluciones adaptadas a las particularidades de cada sector."
+  },
+  "methodology": {
+    "badge": "Metodología",
+    "title": "Nuestro Enfoque",
+    "subtitle": "Un proceso probado que garantiza resultados medibles y sostenibles para su organización.",
+    "steps": [
+      { "title": "Diagnóstico", "desc": "Análisis profundo de su situación actual, identificando fortalezas, vulnerabilidades y oportunidades." },
+      { "title": "Estrategia", "desc": "Diseño de un plan de acción personalizado alineado con sus objetivos y recursos disponibles." },
+      { "title": "Implementación", "desc": "Ejecución coordinada de las acciones definidas con supervisión y ajuste continuo." },
+      { "title": "Evaluación", "desc": "Medición de resultados, lecciones aprendidas y ajustes para la mejora continua." }
+    ]
+  },
+  "stats": {
+    "years": "Años de Experiencia",
+    "clients": "Clientes Atendidos",
+    "countries": "Países de Operación",
+    "satisfaction": "Satisfacción"
+  },
+  "testimonials": {
+    "badge": "Testimonios",
+    "title": "Lo que Dicen Nuestros Clientes"
+  },
+  "cta": {
+    "title": "¿Listo para transformar su organización?",
+    "subtitle": "Agende una consulta confidencial y descubra cómo podemos impulsar su éxito.",
+    "button": "Agendar Consulta Ahora",
+    "contact": "Contáctenos"
+  },
+  "blog": {
+    "badge": "Blog",
+    "title": "Análisis e Insights",
+    "subtitle": "Artículos, análisis y perspectivas sobre consultoría estratégica, seguridad corporativa y gestión de riesgos.",
+    "read_more": "Leer artículo",
+    "published": "Publicado",
+    "all_articles": "Ver todos los artículos",
+    "no_posts": "No hay artículos publicados aún."
+  },
+  "faq": {
+    "badge": "FAQ",
+    "title": "Preguntas Frecuentes",
+    "subtitle": "Respuestas a las preguntas más comunes sobre nuestros servicios."
+  },
+  "contact": {
+    "badge": "Contacto",
+    "title": "Hablemos",
+    "subtitle": "Estamos disponibles para atender sus necesidades. Contáctenos por el canal de su preferencia.",
+    "form_title": "Envíenos un mensaje",
+    "name": "Nombre completo",
+    "email": "Correo electrónico",
+    "phone": "Teléfono",
+    "company": "Empresa",
+    "subject": "Asunto",
+    "message": "Mensaje",
+    "send": "Enviar Mensaje",
+    "sending": "Enviando...",
+    "success": "Mensaje enviado. Nos pondremos en contacto pronto.",
+    "error": "Error al enviar. Por favor intente de nuevo.",
+    "whatsapp": "Contactar por WhatsApp",
+    "whatsapp_instant": "Respuesta inmediata",
+    "contact_info_title": "Información de Contacto",
+    "email_label": "Correo Electrónico",
+    "phone_label": "Teléfono / WhatsApp",
+    "address_label": "Dirección"
+  },
+  "appointments": {
+    "badge": "Citas",
+    "title": "Agendar una Cita",
+    "subtitle": "Reserve su consulta con nuestro equipo de expertos.",
+    "name": "Nombre completo",
+    "email": "Correo electrónico",
+    "phone": "Teléfono",
+    "company": "Empresa",
+    "type": "Tipo de cita",
+    "virtual": "Virtual (videollamada)",
+    "presencial": "Presencial",
+    "duration": "Duración",
+    "duration_30": "30 minutos",
+    "duration_60": "1 hora",
+    "service": "Servicio de interés",
+    "date": "Fecha",
+    "time": "Hora disponible",
+    "notes": "Notas adicionales",
+    "book": "Confirmar Cita",
+    "booking": "Reservando...",
+    "success": "¡Cita agendada! Recibirá confirmación por correo.",
+    "error": "Error al agendar. Por favor intente de nuevo.",
+    "no_slots": "No hay horarios disponibles para esta fecha.",
+    "select_date": "Seleccione una fecha",
+    "select_time": "Seleccione un horario",
+    "select_service": "Seleccione un servicio"
+  },
+  "footer": {
+    "description": "Firma de consultoría especializada en estrategia, seguridad corporativa y gestión de riesgos.",
+    "quick_links": "Enlaces Rápidos",
+    "services": "Servicios",
+    "legal": "Legal",
+    "terms": "Términos y Condiciones",
+    "privacy": "Aviso de Privacidad",
+    "cookies": "Política de Cookies",
+    "rights": "Todos los derechos reservados.",
+    "made_with": "Hecho con"
+  },
+  "cookies": {
+    "message": "Utilizamos cookies para mejorar su experiencia. Al continuar navegando, acepta nuestra",
+    "policy": "política de cookies",
+    "accept": "Aceptar",
+    "decline": "Rechazar"
+  },
+  "admin": {
+    "dashboard": "Panel de Control",
+    "settings": "Configuración",
+    "content": "Contenido",
+    "services": "Servicios",
+    "blog": "Blog",
+    "appointments": "Citas",
+    "users": "Usuarios",
+    "messages": "Mensajes",
+    "save": "Guardar cambios",
+    "saving": "Guardando...",
+    "saved": "Guardado correctamente",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "add": "Agregar",
+    "publish": "Publicar",
+    "draft": "Borrador",
+    "logout": "Cerrar sesión"
+  },
+  "errors": {
+    "required": "Este campo es requerido",
+    "email_invalid": "Correo electrónico inválido",
+    "min_length": "Mínimo {min} caracteres",
+    "not_found": "Página no encontrada",
+    "server_error": "Error del servidor"
+  }
+}

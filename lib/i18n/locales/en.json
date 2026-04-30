@@ -1,0 +1,198 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "services": "Services",
+    "sectors": "Sectors",
+    "methodology": "Methodology",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "book": "Book Appointment",
+    "admin": "Admin"
+  },
+  "hero": {
+    "badge": "Elite Level Consulting",
+    "title": "Legal Strategy. Powered by Intelligence.",
+    "tagline_line1": "Legal Strategy.",
+    "tagline_line2": "Powered by Intelligence.",
+    "sub_tagline": "Before you enter · While you operate · When you need to resolve",
+    "subtitle": "Strategic solutions, corporate security and risk management for companies, executives and institutions that demand excellence.",
+    "cta_primary": "Schedule Consultation",
+    "cta_secondary": "Our Services",
+    "scroll": "Explore",
+    "trust_1": "Total Confidentiality",
+    "trust_2": "Global Reach",
+    "trust_3": "Proven Excellence",
+    "radar_card1_label": "Intelligence",
+    "radar_card1_desc": "Strategic analysis in real time",
+    "radar_card2_label": "Protection",
+    "radar_card2_desc": "Comprehensive corporate security"
+  },
+  "about": {
+    "badge": "About Us",
+    "title": "An elite consulting firm",
+    "subtitle": "Blackshield Global Consulting is a firm specialized in strategic solutions for organizations operating in complex, high-demand environments.",
+    "mission_title": "Mission",
+    "mission_body": "Provide elite consulting solutions that drive the sustainable success of our clients in complex environments.",
+    "vision_title": "Vision",
+    "vision_body": "To be the reference consulting firm for leading organizations facing the most demanding challenges.",
+    "values_title": "Values",
+    "values": [
+      "Absolute confidentiality and discretion",
+      "Integrity and professional ethics",
+      "Excellence in every deliverable",
+      "Results-oriented approach",
+      "Innovation and adaptability",
+      "Commitment to the client"
+    ],
+    "years_label": "Years of experience",
+    "clients_label": "Clients served"
+  },
+  "services": {
+    "badge": "Our Services",
+    "title": "Specialized Solutions",
+    "subtitle": "We offer a comprehensive portfolio of services designed for the most complex challenges of the modern corporate environment.",
+    "learn_more": "Learn more",
+    "all_services": "View all services"
+  },
+  "sectors": {
+    "badge": "Sectors",
+    "title": "Sectors We Serve",
+    "subtitle": "Our expertise spans multiple industries with solutions tailored to the particularities of each sector."
+  },
+  "methodology": {
+    "badge": "Methodology",
+    "title": "Our Approach",
+    "subtitle": "A proven process that guarantees measurable and sustainable results for your organization.",
+    "steps": [
+      { "title": "Diagnosis", "desc": "Deep analysis of your current situation, identifying strengths, vulnerabilities and opportunities." },
+      { "title": "Strategy", "desc": "Design of a personalized action plan aligned with your objectives and available resources." },
+      { "title": "Implementation", "desc": "Coordinated execution of defined actions with continuous supervision and adjustment." },
+      { "title": "Evaluation", "desc": "Measurement of results, lessons learned and adjustments for continuous improvement." }
+    ]
+  },
+  "stats": {
+    "years": "Years of Experience",
+    "clients": "Clients Served",
+    "countries": "Operating Countries",
+    "satisfaction": "Satisfaction"
+  },
+  "testimonials": {
+    "badge": "Testimonials",
+    "title": "What Our Clients Say"
+  },
+  "cta": {
+    "title": "Ready to transform your organization?",
+    "subtitle": "Schedule a confidential consultation and discover how we can drive your success.",
+    "button": "Schedule Consultation Now",
+    "contact": "Contact Us"
+  },
+  "blog": {
+    "badge": "Blog",
+    "title": "Analysis & Insights",
+    "subtitle": "Articles, analysis and perspectives on strategic consulting, corporate security and risk management.",
+    "read_more": "Read article",
+    "published": "Published",
+    "all_articles": "View all articles",
+    "no_posts": "No articles published yet."
+  },
+  "faq": {
+    "badge": "FAQ",
+    "title": "Frequently Asked Questions",
+    "subtitle": "Answers to the most common questions about our services."
+  },
+  "contact": {
+    "badge": "Contact",
+    "title": "Let's Talk",
+    "subtitle": "We are available to meet your needs. Contact us through your preferred channel.",
+    "form_title": "Send us a message",
+    "name": "Full name",
+    "email": "Email address",
+    "phone": "Phone",
+    "company": "Company",
+    "subject": "Subject",
+    "message": "Message",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "success": "Message sent. We will be in touch soon.",
+    "error": "Error sending. Please try again.",
+    "whatsapp": "Contact via WhatsApp",
+    "whatsapp_instant": "Immediate response",
+    "contact_info_title": "Contact Information",
+    "email_label": "Email Address",
+    "phone_label": "Phone / WhatsApp",
+    "address_label": "Address"
+  },
+  "appointments": {
+    "badge": "Appointments",
+    "title": "Schedule an Appointment",
+    "subtitle": "Book your consultation with our team of experts.",
+    "name": "Full name",
+    "email": "Email address",
+    "phone": "Phone",
+    "company": "Company",
+    "type": "Appointment type",
+    "virtual": "Virtual (video call)",
+    "presencial": "In-person",
+    "duration": "Duration",
+    "duration_30": "30 minutes",
+    "duration_60": "1 hour",
+    "service": "Service of interest",
+    "date": "Date",
+    "time": "Available time",
+    "notes": "Additional notes",
+    "book": "Confirm Appointment",
+    "booking": "Booking...",
+    "success": "Appointment booked! You will receive confirmation by email.",
+    "error": "Booking error. Please try again.",
+    "no_slots": "No time slots available for this date.",
+    "select_date": "Select a date",
+    "select_time": "Select a time",
+    "select_service": "Select a service"
+  },
+  "footer": {
+    "description": "Consulting firm specializing in strategy, corporate security and risk management.",
+    "quick_links": "Quick Links",
+    "services": "Services",
+    "legal": "Legal",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "cookies": "Cookie Policy",
+    "rights": "All rights reserved.",
+    "made_with": "Made with"
+  },
+  "cookies": {
+    "message": "We use cookies to improve your experience. By continuing to browse, you accept our",
+    "policy": "cookie policy",
+    "accept": "Accept",
+    "decline": "Decline"
+  },
+  "admin": {
+    "dashboard": "Dashboard",
+    "settings": "Settings",
+    "content": "Content",
+    "services": "Services",
+    "blog": "Blog",
+    "appointments": "Appointments",
+    "users": "Users",
+    "messages": "Messages",
+    "save": "Save changes",
+    "saving": "Saving...",
+    "saved": "Saved successfully",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "publish": "Publish",
+    "draft": "Draft",
+    "logout": "Sign out"
+  },
+  "errors": {
+    "required": "This field is required",
+    "email_invalid": "Invalid email address",
+    "min_length": "Minimum {min} characters",
+    "not_found": "Page not found",
+    "server_error": "Server error"
+  }
+}
