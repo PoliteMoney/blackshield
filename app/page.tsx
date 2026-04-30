@@ -1,6 +1,7 @@
 import { cookies, headers } from 'next/headers'
 import { createClient } from '@/lib/supabase/server'
 import { getLocaleFromHeader, getDictionary, type Locale } from '@/lib/i18n/dictionaries'
+import { getHomeContent } from '@/lib/page-content'
 import { Navbar } from '@/components/layout/navbar'
 import { Footer } from '@/components/layout/footer'
 import { CookieBanner } from '@/components/layout/cookie-banner'
@@ -33,10 +34,10 @@ async function getPageData(locale: Locale) {
     `).eq('is_active', true).order('order_index'),
   ])
 
-  function filterByLocale(items: any[], localeKey = 'locale') {
+  function filterByLocale(items: any[]) {
     return (items || []).map(item => ({
       ...item,
-      translations: (item.translations || []).filter((t: any) => t[localeKey] === locale)
+      translations: (item.translations || []).filter((t: any) => t.locale === locale)
     }))
   }
 
@@ -47,36 +48,59 @@ async function getPageData(locale: Locale) {
   }
 }
 
+// Merge DB content over JSON fallback — DB values always win
+function merge<T extends object>(base: T, override?: Record<string, any>): T {
+  if (!override || Object.keys(override).length === 0) return base
+  return { ...base, ...override }
+}
+
 export default async function HomePage() {
   const cookieStore = cookies()
   const cookieLocale = cookieStore.get('NEXT_LOCALE')?.value as Locale | undefined
   const headersList = headers()
   const locale: Locale = cookieLocale || getLocaleFromHeader(headersList.get('accept-language'))
 
-  const [dict, { services, sectors, faqs }, config] = await Promise.all([
+  const [dict, { services, sectors, faqs }, config, db] = await Promise.all([
     getDictionary(locale),
     getPageData(locale),
     getSiteConfig(),
+    getHomeContent(locale),
   ])
+
+  // Each section: DB content overrides JSON defaults field-by-field
+  const c = {
+    nav:         merge(dict.nav,         db.nav),
+    hero:        merge(dict.hero,        db.hero),
+    about:       merge(dict.about,       db.about),
+    stats:       merge(dict.stats,       db.stats),
+    services:    merge(dict.services,    db.services),
+    sectors:     merge(dict.sectors,     db.sectors),
+    methodology: merge(dict.methodology, db.methodology),
+    cta:         merge(dict.cta,         db.cta),
+    faq:         merge(dict.faq,         db.faq),
+    contact:     merge(dict.contact,     db.contact),
+    footer:      merge(dict.footer,      db.footer),
+    cookies:     merge(dict.cookies,     db.cookies),
+  }
 
   return (
     <>
-      <Navbar dict={dict.nav} />
+      <Navbar dict={c.nav} />
 
       <main>
-        <Hero dict={dict.hero} contactDict={dict.contact} />
-        <Stats dict={dict.stats} />
-        <AboutSection dict={dict.about} />
-        <ServicesSection dict={dict.services} services={services} locale={locale} />
-        <SectorsSection dict={dict.sectors} sectors={sectors} />
-        <MethodologySection dict={dict.methodology} />
-        <CTASection dict={dict.cta} />
-        <FAQSection dict={dict.faq} faqs={faqs} />
-        <ContactSection dict={dict.contact} />
+        <Hero dict={c.hero} contactDict={c.contact} />
+        <Stats dict={c.stats} />
+        <AboutSection dict={c.about} />
+        <ServicesSection dict={c.services} services={services} locale={locale} />
+        <SectorsSection dict={c.sectors} sectors={sectors} />
+        <MethodologySection dict={c.methodology} />
+        <CTASection dict={c.cta} />
+        <FAQSection dict={c.faq} faqs={faqs} />
+        <ContactSection dict={c.contact} />
       </main>
 
-      <Footer dict={dict.footer} navDict={dict.nav} />
-      {config.cookie_policy_enabled === 'true' && <CookieBanner dict={dict.cookies} />}
+      <Footer dict={c.footer} navDict={c.nav} />
+      {config.cookie_policy_enabled === 'true' && <CookieBanner dict={c.cookies} />}
     </>
   )
 }

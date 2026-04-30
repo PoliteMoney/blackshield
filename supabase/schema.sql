@@ -535,3 +535,108 @@ BEGIN
   WHERE a.date = p_date AND a.status NOT IN ('cancelled');
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- ============================================================
+-- PAGE CONTENT SEED (all sections, ES + EN)
+-- ON CONFLICT DO UPDATE makes this safe to re-run.
+-- ============================================================
+
+-- ── ESPAÑOL ──────────────────────────────────────────────────
+
+INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
+('home', 'nav', 'es', true, '{"home":"Inicio","about":"Quiénes Somos","services":"Servicios","sectors":"Sectores","methodology":"Metodología","blog":"Blog","faq":"Preguntas Frecuentes","contact":"Contacto","book":"Agendar Cita"}')
+ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
+
+INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
+('home', 'hero', 'es', true, '{"badge":"Consultoría de Alto Nivel","tagline_line1":"Estrategia Legal.","tagline_line2":"Impulsada por Inteligencia.","sub_tagline":"Antes de entrar · Mientras opera · Cuando necesita resolver","subtitle":"Soluciones estratégicas, seguridad corporativa y gestión de riesgos para empresas, ejecutivos e instituciones que exigen excelencia.","cta_primary":"Agendar Consulta","cta_secondary":"Conocer Servicios","scroll":"Explorar","trust_1":"Confidencialidad Total","trust_2":"Alcance Global","trust_3":"Excelencia Comprobada","radar_card1_label":"Inteligencia","radar_card1_desc":"Análisis estratégico en tiempo real","radar_card2_label":"Protección","radar_card2_desc":"Seguridad corporativa integral"}')
+ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
+
+INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
+('home', 'about', 'es', true, '{"badge":"Quiénes Somos","title":"Una firma de consultoría de élite","subtitle":"Blackshield Global Consulting es una firma especializada en soluciones estratégicas para organizaciones que operan en entornos complejos y de alta exigencia.","mission_title":"Misión","mission_body":"Brindar soluciones de consultoría de élite que impulsen el éxito sostenible de nuestros clientes en entornos complejos.","vision_title":"Visión","vision_body":"Ser la firma de consultoría de referencia para organizaciones líderes que enfrentan los desafíos más exigentes.","values_title":"Valores","values":["Confidencialidad y discreción absoluta","Integridad y ética profesional","Excelencia en cada entregable","Orientación a resultados medibles","Innovación y adaptabilidad","Compromiso con el cliente"],"years_label":"Años de experiencia","clients_label":"Clientes atendidos"}')
+ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
+
+INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
+('home', 'stats', 'es', true, '{"years":"Años de Experiencia","clients":"Clientes Atendidos","countries":"Países de Operación","satisfaction":"Satisfacción"}')
+ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
+
+INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
+('home', 'services', 'es', true, '{"badge":"Nuestros Servicios","title":"Soluciones Especializadas","subtitle":"Ofrecemos un portafolio integral de servicios diseñados para los desafíos más complejos del entorno corporativo moderno.","learn_more":"Conocer más","all_services":"Ver todos los servicios"}')
+ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
+
+INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
+('home', 'sectors', 'es', true, '{"badge":"Sectores","title":"Sectores que Atendemos","subtitle":"Nuestra experiencia abarca múltiples industrias con soluciones adaptadas a las particularidades de cada sector."}')
+ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
+
+INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
+('home', 'methodology', 'es', true, '{"badge":"Metodología","title":"Nuestro Enfoque","subtitle":"Un proceso probado que garantiza resultados medibles y sostenibles para su organización.","steps":[{"title":"Diagnóstico","desc":"Análisis profundo de su situación actual, identificando fortalezas, vulnerabilidades y oportunidades."},{"title":"Estrategia","desc":"Diseño de un plan de acción personalizado alineado con sus objetivos y recursos disponibles."},{"title":"Implementación","desc":"Ejecución coordinada de las acciones definidas con supervisión y ajuste continuo."},{"title":"Evaluación","desc":"Medición de resultados, lecciones aprendidas y ajustes para la mejora continua."}]}')
+ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
+
+INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
+('home', 'cta', 'es', true, '{"title":"¿Listo para transformar su organización?","subtitle":"Agende una consulta confidencial y descubra cómo podemos impulsar su éxito.","button":"Agendar Consulta Ahora","contact":"Contáctenos"}')
+ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
+
+INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
+('home', 'faq', 'es', true, '{"badge":"FAQ","title":"Preguntas Frecuentes","subtitle":"Respuestas a las preguntas más comunes sobre nuestros servicios."}')
+ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
+
+INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
+('home', 'contact', 'es', true, '{"badge":"Contacto","title":"Hablemos","subtitle":"Estamos disponibles para atender sus necesidades. Contáctenos por el canal de su preferencia.","form_title":"Envíenos un mensaje","name":"Nombre completo","email":"Correo electrónico","phone":"Teléfono","company":"Empresa","subject":"Asunto","message":"Mensaje","send":"Enviar Mensaje","sending":"Enviando...","success":"Mensaje enviado. Nos pondremos en contacto pronto.","error":"Error al enviar. Por favor intente de nuevo.","whatsapp":"Contactar por WhatsApp","whatsapp_instant":"Respuesta inmediata","contact_info_title":"Información de Contacto","email_label":"Correo Electrónico","phone_label":"Teléfono / WhatsApp","address_label":"Dirección"}')
+ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
+
+INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
+('home', 'footer', 'es', true, '{"description":"Firma de consultoría especializada en estrategia, seguridad corporativa y gestión de riesgos.","quick_links":"Enlaces Rápidos","services":"Servicios","legal":"Legal","terms":"Términos y Condiciones","privacy":"Aviso de Privacidad","cookies":"Política de Cookies","rights":"Todos los derechos reservados.","made_with":"Hecho con"}')
+ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
+
+INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
+('home', 'cookies', 'es', true, '{"message":"Utilizamos cookies para mejorar su experiencia. Al continuar navegando, acepta nuestra","policy":"política de cookies","accept":"Aceptar","decline":"Rechazar"}')
+ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
+
+-- ── ENGLISH ──────────────────────────────────────────────────
+
+INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
+('home', 'nav', 'en', true, '{"home":"Home","about":"About Us","services":"Services","sectors":"Sectors","methodology":"Methodology","blog":"Blog","faq":"FAQ","contact":"Contact","book":"Book Appointment"}')
+ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
+
+INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
+('home', 'hero', 'en', true, '{"badge":"Elite Level Consulting","tagline_line1":"Legal Strategy.","tagline_line2":"Powered by Intelligence.","sub_tagline":"Before you enter · While you operate · When you need to resolve","subtitle":"Strategic solutions, corporate security and risk management for companies, executives and institutions that demand excellence.","cta_primary":"Schedule Consultation","cta_secondary":"Our Services","scroll":"Explore","trust_1":"Total Confidentiality","trust_2":"Global Reach","trust_3":"Proven Excellence","radar_card1_label":"Intelligence","radar_card1_desc":"Strategic analysis in real time","radar_card2_label":"Protection","radar_card2_desc":"Comprehensive corporate security"}')
+ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
+
+INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
+('home', 'about', 'en', true, '{"badge":"About Us","title":"An elite consulting firm","subtitle":"Blackshield Global Consulting is a firm specialized in strategic solutions for organizations operating in complex, high-demand environments.","mission_title":"Mission","mission_body":"Provide elite consulting solutions that drive the sustainable success of our clients in complex environments.","vision_title":"Vision","vision_body":"To be the reference consulting firm for leading organizations facing the most demanding challenges.","values_title":"Values","values":["Absolute confidentiality and discretion","Integrity and professional ethics","Excellence in every deliverable","Results-oriented approach","Innovation and adaptability","Commitment to the client"],"years_label":"Years of experience","clients_label":"Clients served"}')
+ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
+
+INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
+('home', 'stats', 'en', true, '{"years":"Years of Experience","clients":"Clients Served","countries":"Operating Countries","satisfaction":"Satisfaction"}')
+ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
+
+INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
+('home', 'services', 'en', true, '{"badge":"Our Services","title":"Specialized Solutions","subtitle":"We offer a comprehensive portfolio of services designed for the most complex challenges of the modern corporate environment.","learn_more":"Learn more","all_services":"View all services"}')
+ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
+
+INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
+('home', 'sectors', 'en', true, '{"badge":"Sectors","title":"Sectors We Serve","subtitle":"Our expertise spans multiple industries with solutions tailored to the particularities of each sector."}')
+ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
+
+INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
+('home', 'methodology', 'en', true, '{"badge":"Methodology","title":"Our Approach","subtitle":"A proven process that guarantees measurable and sustainable results for your organization.","steps":[{"title":"Diagnosis","desc":"Deep analysis of your current situation, identifying strengths, vulnerabilities and opportunities."},{"title":"Strategy","desc":"Design of a personalized action plan aligned with your objectives and available resources."},{"title":"Implementation","desc":"Coordinated execution of defined actions with continuous supervision and adjustment."},{"title":"Evaluation","desc":"Measurement of results, lessons learned and adjustments for continuous improvement."}]}')
+ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
+
+INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
+('home', 'cta', 'en', true, '{"title":"Ready to transform your organization?","subtitle":"Schedule a confidential consultation and discover how we can drive your success.","button":"Schedule Consultation Now","contact":"Contact Us"}')
+ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
+
+INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
+('home', 'faq', 'en', true, '{"badge":"FAQ","title":"Frequently Asked Questions","subtitle":"Answers to the most common questions about our services."}')
+ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
+
+INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
+('home', 'contact', 'en', true, '{"badge":"Contact","title":"Let''s Talk","subtitle":"We are available to meet your needs. Contact us through your preferred channel.","form_title":"Send us a message","name":"Full name","email":"Email address","phone":"Phone","company":"Company","subject":"Subject","message":"Message","send":"Send Message","sending":"Sending...","success":"Message sent. We will be in touch soon.","error":"Error sending. Please try again.","whatsapp":"Contact via WhatsApp","whatsapp_instant":"Immediate response","contact_info_title":"Contact Information","email_label":"Email Address","phone_label":"Phone / WhatsApp","address_label":"Address"}')
+ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
+
+INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
+('home', 'footer', 'en', true, '{"description":"Consulting firm specializing in strategy, corporate security and risk management.","quick_links":"Quick Links","services":"Services","legal":"Legal","terms":"Terms & Conditions","privacy":"Privacy Policy","cookies":"Cookie Policy","rights":"All rights reserved.","made_with":"Made with"}')
+ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
+
+INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
+('home', 'cookies', 'en', true, '{"message":"We use cookies to improve your experience. By continuing to browse, you accept our","policy":"cookie policy","accept":"Accept","decline":"Decline"}')
+ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
