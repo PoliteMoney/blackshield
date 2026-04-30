@@ -16,95 +16,164 @@ interface HeroProps {
   contactDict: { whatsapp: string }
 }
 
-function RadarSVG() {
+function WorldRadarSVG() {
+  // Equirectangular projection: x=(lon+180)*2.5, y=(90-lat)*2.667 → viewBox 900×480, center (450,240)
+  const cx = 450, cy = 240
+
+  const ticks = Array.from({ length: 24 }).map((_, i) => {
+    const a = (i * 15 * Math.PI) / 180
+    const r1 = 215, r2 = i % 6 === 0 ? 200 : 208
+    return { x1: cx + r1 * Math.sin(a), y1: cy - r1 * Math.cos(a), x2: cx + r2 * Math.sin(a), y2: cy - r2 * Math.cos(a), major: i % 6 === 0 }
+  })
+
   return (
-    <svg viewBox="0 0 520 520" className="w-full max-w-[480px]" aria-hidden="true">
+    <svg viewBox="0 0 900 480" className="w-full" aria-hidden="true">
       <defs>
-        <radialGradient id="radarGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#003E4A" stopOpacity="0.12" />
-          <stop offset="100%" stopColor="#003E4A" stopOpacity="0" />
-        </radialGradient>
-        <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#AD8855" stopOpacity="0.6" />
+        <pattern id="mapDots" x="0" y="0" width="5" height="5" patternUnits="userSpaceOnUse">
+          <circle cx="1" cy="1" r="0.9" fill="#383B3E" />
+        </pattern>
+        <radialGradient id="radarGlowW" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#AD8855" stopOpacity="0.10" />
           <stop offset="100%" stopColor="#AD8855" stopOpacity="0" />
         </radialGradient>
+        <radialGradient id="centerGlowW" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#AD8855" stopOpacity="0.9" />
+          <stop offset="100%" stopColor="#AD8855" stopOpacity="0" />
+        </radialGradient>
+        <filter id="glowMX">
+          <feGaussianBlur stdDeviation="4" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
       </defs>
 
-      {/* Outer glow */}
-      <circle cx="260" cy="260" r="240" fill="url(#radarGlow)" />
+      {/* ── WORLD MAP ── */}
 
-      {/* Concentric rings */}
-      <circle cx="260" cy="260" r="60"  fill="none" stroke="#003E4A" strokeWidth="1" opacity="0.25" />
-      <circle cx="260" cy="260" r="120" fill="none" stroke="#003E4A" strokeWidth="1" opacity="0.20" />
-      <circle cx="260" cy="260" r="180" fill="none" stroke="#003E4A" strokeWidth="1" opacity="0.16" />
-      <circle cx="260" cy="260" r="240" fill="none" stroke="#003E4A" strokeWidth="1" opacity="0.12" />
+      {/* Greenland */}
+      <path d="M 252,38 L 280,30 L 310,33 L 325,48 L 322,66 L 306,76 L 282,78 L 260,66 L 250,52 Z"
+        fill="url(#mapDots)" opacity="0.45" />
 
-      {/* Cardinal crosshairs */}
-      <line x1="260" y1="20"  x2="260" y2="500" stroke="#003E4A" strokeWidth="1" opacity="0.18" />
-      <line x1="20"  y1="260" x2="500" y2="260" stroke="#003E4A" strokeWidth="1" opacity="0.18" />
+      {/* North America */}
+      <path d="M 42,88 L 68,58 L 105,48 L 150,50 L 192,60 L 230,76 L 262,95 L 280,122 L 285,148 L 274,170 L 255,185 L 235,202 L 220,220 L 208,242 L 192,254 L 176,242 L 165,226 L 157,210 L 144,194 L 130,176 L 118,158 L 104,140 L 88,120 L 68,108 L 48,112 Z"
+        fill="url(#mapDots)" opacity="0.45" />
 
-      {/* Diagonal grid */}
-      <line x1="90"  y1="90"  x2="430" y2="430" stroke="#003E4A" strokeWidth="0.5" opacity="0.10" />
-      <line x1="430" y1="90"  x2="90"  y2="430" stroke="#003E4A" strokeWidth="0.5" opacity="0.10" />
+      {/* USA — highlighted */}
+      <path d="M 143,152 L 170,142 L 208,143 L 248,148 L 276,156 L 280,172 L 268,186 L 246,193 L 212,196 L 180,196 L 156,190 L 140,178 Z"
+        fill="#003E4A" opacity="0.20" />
+      <path d="M 143,152 L 170,142 L 208,143 L 248,148 L 276,156 L 280,172 L 268,186 L 246,193 L 212,196 L 180,196 L 156,190 L 140,178 Z"
+        fill="none" stroke="#003E4A" strokeWidth="1" opacity="0.45" />
 
-      {/* Degree tick marks */}
-      {Array.from({ length: 24 }).map((_, i) => {
-        const angle = (i * 15 * Math.PI) / 180
-        const r1 = 234, r2 = i % 6 === 0 ? 218 : 226
-        return (
-          <line
-            key={i}
-            x1={260 + r1 * Math.sin(angle)}
-            y1={260 - r1 * Math.cos(angle)}
-            x2={260 + r2 * Math.sin(angle)}
-            y2={260 - r2 * Math.cos(angle)}
-            stroke="#003E4A"
-            strokeWidth={i % 6 === 0 ? 1.5 : 0.75}
-            opacity={i % 6 === 0 ? 0.3 : 0.18}
-          />
-        )
-      })}
+      {/* Mexico — highlighted */}
+      <path d="M 158,190 L 180,186 L 210,188 L 228,198 L 232,210 L 225,224 L 214,238 L 198,246 L 182,240 L 170,228 L 160,214 L 156,202 Z"
+        fill="#003E4A" opacity="0.20" />
+      <path d="M 158,190 L 180,186 L 210,188 L 228,198 L 232,210 L 225,224 L 214,238 L 198,246 L 182,240 L 170,228 L 160,214 L 156,202 Z"
+        fill="none" stroke="#003E4A" strokeWidth="1" opacity="0.45" />
+
+      {/* South America */}
+      <path d="M 220,210 L 240,198 L 266,193 L 294,204 L 312,224 L 322,254 L 320,292 L 308,330 L 285,370 L 262,386 L 248,373 L 234,346 L 220,314 L 210,280 L 207,250 L 212,226 Z"
+        fill="url(#mapDots)" opacity="0.45" />
+
+      {/* Europe */}
+      <path d="M 416,62 L 444,52 L 474,50 L 505,53 L 533,62 L 543,78 L 545,94 L 537,110 L 518,122 L 496,130 L 473,133 L 450,130 L 430,122 L 418,108 L 414,88 Z"
+        fill="url(#mapDots)" opacity="0.45" />
+
+      {/* Africa */}
+      <path d="M 416,130 L 444,122 L 480,120 L 516,128 L 543,146 L 556,174 L 558,208 L 552,250 L 540,292 L 521,334 L 500,364 L 477,370 L 458,356 L 443,330 L 430,295 L 418,257 L 408,216 L 406,176 L 412,152 Z"
+        fill="url(#mapDots)" opacity="0.45" />
+
+      {/* Asia */}
+      <path d="M 540,62 L 578,50 L 628,45 L 682,48 L 730,53 L 775,58 L 815,68 L 842,82 L 850,100 L 840,122 L 818,142 L 800,162 L 774,178 L 743,190 L 712,200 L 680,210 L 648,218 L 615,215 L 582,206 L 558,190 L 544,172 L 534,148 L 530,122 L 532,94 L 538,76 Z"
+        fill="url(#mapDots)" opacity="0.45" />
+
+      {/* SE Asia islands */}
+      <ellipse cx="718" cy="244" rx="18" ry="10" fill="url(#mapDots)" opacity="0.45" />
+      <ellipse cx="754" cy="257" rx="24" ry="11" fill="url(#mapDots)" opacity="0.45" />
+      <ellipse cx="800" cy="238" rx="10" ry="7"  fill="url(#mapDots)" opacity="0.40" />
+
+      {/* Australia */}
+      <path d="M 738,272 L 766,262 L 808,268 L 840,280 L 847,306 L 843,333 L 825,351 L 800,358 L 766,353 L 742,336 L 730,310 L 730,288 Z"
+        fill="url(#mapDots)" opacity="0.45" />
+
+      {/* ── RADAR OVERLAY ── */}
+      <circle cx={cx} cy={cy} r="220" fill="url(#radarGlowW)" />
+
+      {/* Rings — Oro */}
+      <circle cx={cx} cy={cy} r="55"  fill="none" stroke="#AD8855" strokeWidth="1"   opacity="0.55" />
+      <circle cx={cx} cy={cy} r="110" fill="none" stroke="#AD8855" strokeWidth="1"   opacity="0.42" />
+      <circle cx={cx} cy={cy} r="165" fill="none" stroke="#AD8855" strokeWidth="0.8" opacity="0.30" />
+      <circle cx={cx} cy={cy} r="220" fill="none" stroke="#AD8855" strokeWidth="0.8" opacity="0.22" />
+
+      {/* Crosshairs */}
+      <line x1={cx} y1="20"     x2={cx} y2="460"   stroke="#AD8855" strokeWidth="0.8" opacity="0.28" />
+      <line x1="230" y1={cy}    x2="670" y2={cy}    stroke="#AD8855" strokeWidth="0.8" opacity="0.28" />
+      <line x1="294" y1="84"    x2="606" y2="396"   stroke="#AD8855" strokeWidth="0.5" opacity="0.15" />
+      <line x1="606" y1="84"    x2="294" y2="396"   stroke="#AD8855" strokeWidth="0.5" opacity="0.15" />
+
+      {/* Tick marks */}
+      {ticks.map((t, i) => (
+        <line key={i} x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2}
+          stroke="#AD8855" strokeWidth={t.major ? 1.5 : 0.75} opacity={t.major ? 0.42 : 0.22} />
+      ))}
 
       {/* Sweep sector */}
-      <path
-        d="M 260 260 L 260 20 A 240 240 0 0 1 434 134 Z"
-        fill="#003E4A"
-        opacity="0.04"
-      />
-      <path
-        d="M 260 260 L 260 20 A 240 240 0 0 1 434 134 Z"
-        fill="none"
-        stroke="#003E4A"
-        strokeWidth="1"
-        opacity="0.12"
-      />
+      <path d={`M ${cx} ${cy} L ${cx} 20 A 220 220 0 0 1 ${cx + 155} ${cy - 165} Z`}
+        fill="#AD8855" opacity="0.04" />
+      <path d={`M ${cx} ${cy} L ${cx} 20 A 220 220 0 0 1 ${cx + 155} ${cy - 165} Z`}
+        fill="none" stroke="#AD8855" strokeWidth="1" opacity="0.15" />
 
-      {/* Target blip – main */}
-      <circle cx="330" cy="152" r="10" fill="#003E4A" opacity="0.08" />
-      <circle cx="330" cy="152" r="5"  fill="#AD8855" opacity="0.9" />
-      <circle cx="330" cy="152" r="2"  fill="#AD8855" />
+      {/* ── CONNECTION LINES (center → cities) ── */}
+      <line x1={cx} y1={cy} x2="207" y2="170" stroke="#AD8855" strokeWidth="0.8" opacity="0.45" strokeDasharray="5 3" />
+      <line x1={cx} y1={cy} x2="193" y2="215" stroke="#AD8855" strokeWidth="0.8" opacity="0.45" strokeDasharray="5 3" />
+      <line x1={cx} y1={cy} x2="460" y2="112" stroke="#AD8855" strokeWidth="0.7" opacity="0.30" strokeDasharray="5 3" />
+      <line x1={cx} y1={cy} x2="796" y2="153" stroke="#AD8855" strokeWidth="0.7" opacity="0.28" strokeDasharray="5 3" />
+      <line x1={cx} y1={cy} x2="588" y2="186" stroke="#AD8855" strokeWidth="0.7" opacity="0.28" strokeDasharray="5 3" />
+      <line x1={cx} y1={cy} x2="267" y2="320" stroke="#AD8855" strokeWidth="0.7" opacity="0.25" strokeDasharray="5 3" />
 
-      {/* Target blip – secondary */}
-      <circle cx="190" cy="338" r="8"  fill="#003E4A" opacity="0.08" />
-      <circle cx="190" cy="338" r="4"  fill="#AD8855" opacity="0.6" />
+      {/* ── CITY DOTS ── */}
+      {/* Washington D.C. (USA) */}
+      <circle cx="207" cy="170" r="8"  fill="#003E4A" opacity="0.12" filter="url(#glowMX)" />
+      <circle cx="207" cy="170" r="4"  fill="#003E4A" opacity="0.85" />
+      <circle cx="207" cy="170" r="1.8" fill="#F5F7F8" />
+      <text x="214" y="167" fontSize="7" fill="#003E4A" opacity="0.80" fontFamily="Montserrat,sans-serif" fontWeight="700">EUA</text>
 
-      {/* Outer intersections */}
-      <circle cx="260" cy="80"  r="3" fill="#AD8855" opacity="0.5" />
-      <circle cx="440" cy="260" r="3" fill="#AD8855" opacity="0.4" />
-      <circle cx="260" cy="440" r="3" fill="#AD8855" opacity="0.4" />
-      <circle cx="80"  cy="260" r="3" fill="#AD8855" opacity="0.35" />
+      {/* Mexico City */}
+      <circle cx="193" cy="215" r="8"  fill="#003E4A" opacity="0.12" filter="url(#glowMX)" />
+      <circle cx="193" cy="215" r="4"  fill="#003E4A" opacity="0.85" />
+      <circle cx="193" cy="215" r="1.8" fill="#F5F7F8" />
+      <text x="200" y="212" fontSize="7" fill="#003E4A" opacity="0.80" fontFamily="Montserrat,sans-serif" fontWeight="700">México</text>
 
-      {/* Center pulse */}
-      <circle cx="260" cy="260" r="20" fill="url(#centerGlow)" />
-      <circle cx="260" cy="260" r="8"  fill="#003E4A" opacity="0.15" />
-      <circle cx="260" cy="260" r="4"  fill="#AD8855" opacity="0.9" />
-      <circle cx="260" cy="260" r="2"  fill="#AD8855" />
+      {/* London */}
+      <circle cx="460" cy="112" r="3" fill="#AD8855" opacity="0.85" />
+      <circle cx="460" cy="112" r="1.2" fill="#F5F7F8" />
 
-      {/* Coordinate labels */}
-      <text x="265" y="35"  fontSize="8" fill="#003E4A" opacity="0.35" fontFamily="Montserrat, sans-serif">N</text>
-      <text x="265" y="490" fontSize="8" fill="#003E4A" opacity="0.35" fontFamily="Montserrat, sans-serif">S</text>
-      <text x="492" y="264" fontSize="8" fill="#003E4A" opacity="0.35" fontFamily="Montserrat, sans-serif">E</text>
-      <text x="22"  y="264" fontSize="8" fill="#003E4A" opacity="0.35" fontFamily="Montserrat, sans-serif">W</text>
+      {/* Tokyo */}
+      <circle cx="796" cy="153" r="3" fill="#AD8855" opacity="0.85" />
+      <circle cx="796" cy="153" r="1.2" fill="#F5F7F8" />
+
+      {/* Dubai */}
+      <circle cx="588" cy="186" r="3" fill="#AD8855" opacity="0.75" />
+      <circle cx="588" cy="186" r="1.2" fill="#F5F7F8" />
+
+      {/* São Paulo */}
+      <circle cx="267" cy="320" r="3" fill="#AD8855" opacity="0.70" />
+      <circle cx="267" cy="320" r="1.2" fill="#F5F7F8" />
+
+      {/* Johannesburg */}
+      <circle cx="498" cy="336" r="2.5" fill="#AD8855" opacity="0.60" />
+
+      {/* Singapore */}
+      <circle cx="710" cy="240" r="2.5" fill="#AD8855" opacity="0.60" />
+
+      {/* ── CENTER ── */}
+      <circle cx={cx} cy={cy} r="18" fill="url(#centerGlowW)" />
+      <circle cx={cx} cy={cy} r="7"  fill="#AD8855" opacity="0.15" />
+      <circle cx={cx} cy={cy} r="3.5" fill="#AD8855" opacity="0.90" />
+      <circle cx={cx} cy={cy} r="1.5" fill="#F5F7F8" />
+
+      {/* NSEW labels */}
+      <text x="453" y="32"  fontSize="8" fill="#AD8855" opacity="0.50" fontFamily="Montserrat,sans-serif">N</text>
+      <text x="453" y="458" fontSize="8" fill="#AD8855" opacity="0.50" fontFamily="Montserrat,sans-serif">S</text>
+      <text x="660" y="244" fontSize="8" fill="#AD8855" opacity="0.50" fontFamily="Montserrat,sans-serif">E</text>
+      <text x="218" y="244" fontSize="8" fill="#AD8855" opacity="0.50" fontFamily="Montserrat,sans-serif">W</text>
     </svg>
   )
 }
@@ -188,7 +257,7 @@ export function Hero({ dict, contactDict }: HeroProps) {
           {/* Right — Radar SVG */}
           <div className="order-1 lg:order-2 flex justify-center items-center animate-fade-in" style={{ animationDelay: '0.15s' }}>
             <div className="relative w-full max-w-[460px]">
-              <RadarSVG />
+              <WorldRadarSVG />
               {/* Logo centrado sobre el radar */}
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                 <Image
