@@ -88,7 +88,7 @@ export default async function HomePage() {
       <Navbar dict={c.nav} />
 
       <main>
-        <Hero dict={c.hero} contactDict={c.contact} />
+        <Hero dict={c.hero} contactDict={c.contact} radarUrl={config.radar_url} />
         <Stats dict={c.stats} />
         <AboutSection dict={c.about} />
         <ServicesSection dict={c.services} services={services} locale={locale} />

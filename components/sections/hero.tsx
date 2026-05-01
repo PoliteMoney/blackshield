@@ -11,9 +11,10 @@ interface HeroProps {
     trust_1: string; trust_2: string; trust_3: string
   }
   contactDict: { whatsapp: string }
+  radarUrl?: string
 }
 
-export function Hero({ dict }: HeroProps) {
+export function Hero({ dict, radarUrl = '/images/radar.png' }: HeroProps) {
   return (
     <section className="relative min-h-screen bg-[var(--color-background)] overflow-hidden flex items-center">
       {/* Subtle background texture */}
@@ -87,7 +88,7 @@ export function Hero({ dict }: HeroProps) {
           {/* Right — Radar image (sets the column height) */}
           <div className="order-1 lg:order-2 flex items-center justify-center animate-fade-in" style={{ animationDelay: '0.15s' }}>
             <Image
-              src="/images/radar.png"
+              src={radarUrl}
               alt="Radar Blackshield"
               width={900}
               height={900}

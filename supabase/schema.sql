@@ -362,6 +362,7 @@ INSERT INTO site_config (key, value, type, label, category) VALUES
   ('site_tagline_en', 'Legal Strategy. Powered by Intelligence.', 'text', 'Slogan (EN)', 'branding'),
   ('logo_url', '/images/logo_negro.png', 'image', 'Logo principal', 'branding'),
   ('logo_white_url', '/images/logo_beige.jpeg', 'image', 'Logo claro', 'branding'),
+  ('radar_url', '/images/radar.png', 'image', 'Imagen radar (Hero)', 'branding'),
   ('color_primary', '#AD8855', 'color', 'Color primario (Oro)', 'branding'),
   ('color_secondary', '#1A1C1E', 'color', 'Color secundario (Negro)', 'branding'),
   ('color_accent', '#003E4A', 'color', 'Color acento (Azul Petróleo)', 'branding'),

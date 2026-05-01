@@ -8,6 +8,7 @@ const fallback: SiteConfig = {
   site_tagline_en: 'Legal Strategy. Powered by Intelligence.',
   logo_url: '/images/logo_negro.png',
   logo_white_url: '/images/logo_beige.jpeg',
+  radar_url: '/images/radar.png',
   color_primary: '#AD8855',
   color_secondary: '#1A1C1E',
   color_accent: '#003E4A',
