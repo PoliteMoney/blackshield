@@ -15,50 +15,46 @@ interface HeroProps {
 
 export function Hero({ dict }: HeroProps) {
   return (
-    <section className="relative min-h-screen flex items-center bg-[var(--color-background)] overflow-hidden">
+    <section className="relative min-h-screen bg-[var(--color-background)] overflow-hidden flex items-center">
       {/* Subtle background texture */}
       <div className="absolute inset-0 pointer-events-none"
         style={{ backgroundImage: 'radial-gradient(circle at 70% 50%, rgba(0,62,74,0.04) 0%, transparent 60%)' }} />
 
-      <div className="relative container-custom mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 items-center">
+      <div className="relative container-custom mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
+        {/* items-stretch: left column stretches to match the image height */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 items-stretch">
 
-          {/* Left — Text content */}
-          <div className="order-2 lg:order-1 animate-fade-in">
-            {/* Eyebrow label */}
-            <p className="text-xs font-semibold tracking-[0.25em] uppercase text-[var(--color-accent)] mb-6">
-              {dict.badge}
-            </p>
+          {/* Left — text distributed top→bottom across image height */}
+          <div className="order-2 lg:order-1 flex flex-col justify-between py-2 animate-fade-in lg:pr-12">
 
-            {/* Main headline */}
-            <h1
-              className="text-5xl sm:text-6xl lg:text-[4.25rem] font-light leading-[1.1] text-[var(--color-secondary)] mb-6"
-              style={{ fontFamily: 'var(--font-heading)' }}
-            >
-              {dict.tagline_line1}{' '}
-              <em className="not-italic" style={{ color: 'var(--color-primary)' }}>
-                {dict.tagline_line2}
-              </em>
-            </h1>
-
-            {/* Oro divider */}
-            <div className="flex items-center gap-4 mb-6">
-              <div className="h-px w-12 bg-[var(--color-primary)]" />
-              <div className="h-1 w-1 rounded-full bg-[var(--color-primary)]" />
+            {/* Top group: identity + headline + tagline + description */}
+            <div>
+              <p className="text-xs font-semibold tracking-[0.25em] uppercase text-[var(--color-accent)] mb-6">
+                {dict.badge}
+              </p>
+              <h1
+                className="text-5xl sm:text-6xl lg:text-[4.25rem] font-light leading-[1.1] text-[var(--color-secondary)] mb-6"
+                style={{ fontFamily: 'var(--font-heading)' }}
+              >
+                {dict.tagline_line1}{' '}
+                <em className="not-italic" style={{ color: 'var(--color-primary)' }}>
+                  {dict.tagline_line2}
+                </em>
+              </h1>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="h-px w-12 bg-[var(--color-primary)]" />
+                <div className="h-1 w-1 rounded-full bg-[var(--color-primary)]" />
+              </div>
+              <p className="text-sm font-medium tracking-widest uppercase text-[var(--color-accent)] opacity-80 mb-5">
+                {dict.sub_tagline}
+              </p>
+              <p className="text-base text-[var(--color-foreground)]/60 max-w-lg leading-relaxed">
+                {dict.subtitle}
+              </p>
             </div>
 
-            {/* Sub-tagline */}
-            <p className="text-sm font-medium tracking-widest uppercase text-[var(--color-accent)] opacity-80 mb-5">
-              {dict.sub_tagline}
-            </p>
-
-            {/* Description */}
-            <p className="text-base text-[var(--color-foreground)]/60 max-w-lg leading-relaxed mb-10">
-              {dict.subtitle}
-            </p>
-
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            {/* Middle group: CTAs */}
+            <div className="flex flex-col sm:flex-row gap-4 py-8">
               <Link
                 href="/agendar"
                 className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--color-accent)] text-white text-sm font-semibold tracking-wide rounded-lg hover:bg-[#004d5c] transition-colors duration-300 shadow-lg shadow-[var(--color-accent)]/20"
@@ -74,8 +70,8 @@ export function Hero({ dict }: HeroProps) {
               </Link>
             </div>
 
-            {/* Trust indicators */}
-            <div className="flex flex-wrap gap-6 mt-12 pt-10 border-t border-[var(--color-border)]">
+            {/* Bottom group: trust indicators */}
+            <div className="flex flex-wrap gap-6 pt-8 border-t border-[var(--color-border)]">
               {[dict.trust_1, dict.trust_2, dict.trust_3].map((label) => (
                 <div key={label} className="flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)]" />
@@ -85,20 +81,19 @@ export function Hero({ dict }: HeroProps) {
                 </div>
               ))}
             </div>
+
           </div>
 
-          {/* Right — Radar image */}
-          <div className="order-1 lg:order-2 flex justify-center items-center animate-fade-in" style={{ animationDelay: '0.15s' }}>
-            <div className="w-full">
-              <Image
-                src="/images/radar.png"
-                alt="Radar Blackshield"
-                width={900}
-                height={900}
-                className="w-full h-auto object-contain"
-                priority
-              />
-            </div>
+          {/* Right — Radar image (sets the column height) */}
+          <div className="order-1 lg:order-2 flex items-center justify-center animate-fade-in" style={{ animationDelay: '0.15s' }}>
+            <Image
+              src="/images/radar.png"
+              alt="Radar Blackshield"
+              width={900}
+              height={900}
+              className="w-full h-auto object-contain"
+              priority
+            />
           </div>
 
         </div>
