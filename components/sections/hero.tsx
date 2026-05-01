@@ -21,7 +21,7 @@ export function Hero({ dict }: HeroProps) {
         style={{ backgroundImage: 'radial-gradient(circle at 70% 50%, rgba(0,62,74,0.04) 0%, transparent 60%)' }} />
 
       <div className="relative container-custom mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 items-center">
 
           {/* Left — Text content */}
           <div className="order-2 lg:order-1 animate-fade-in">
@@ -89,12 +89,12 @@ export function Hero({ dict }: HeroProps) {
 
           {/* Right — Radar image */}
           <div className="order-1 lg:order-2 flex justify-center items-center animate-fade-in" style={{ animationDelay: '0.15s' }}>
-            <div className="w-full max-w-[520px]">
+            <div className="w-full">
               <Image
                 src="/images/radar.png"
                 alt="Radar Blackshield"
-                width={520}
-                height={520}
+                width={900}
+                height={900}
                 className="w-full h-auto object-contain"
                 priority
               />
