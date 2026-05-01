@@ -29,11 +29,11 @@ export function Hero({ dict }: HeroProps) {
 
             {/* Top group: identity + headline + tagline + description */}
             <div>
-              <p className="text-xs font-semibold tracking-[0.25em] uppercase text-[var(--color-accent)] mb-6">
+              <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-[var(--color-accent)] mb-4">
                 {dict.badge}
               </p>
               <h1
-                className="text-5xl sm:text-6xl lg:text-[4.25rem] font-light leading-[1.1] text-[var(--color-secondary)] mb-6"
+                className="text-3xl sm:text-4xl lg:text-[2.6rem] font-light leading-[1.15] text-[var(--color-secondary)] mb-4"
                 style={{ fontFamily: 'var(--font-heading)' }}
               >
                 {dict.tagline_line1}{' '}
@@ -41,41 +41,41 @@ export function Hero({ dict }: HeroProps) {
                   {dict.tagline_line2}
                 </em>
               </h1>
-              <div className="flex items-center gap-4 mb-6">
-                <div className="h-px w-12 bg-[var(--color-primary)]" />
+              <div className="flex items-center gap-3 mb-4">
+                <div className="h-px w-8 bg-[var(--color-primary)]" />
                 <div className="h-1 w-1 rounded-full bg-[var(--color-primary)]" />
               </div>
-              <p className="text-sm font-medium tracking-widest uppercase text-[var(--color-accent)] opacity-80 mb-5">
+              <p className="text-[11px] font-medium tracking-widest uppercase text-[var(--color-accent)] opacity-80 mb-4">
                 {dict.sub_tagline}
               </p>
-              <p className="text-base text-[var(--color-foreground)]/60 max-w-lg leading-relaxed">
+              <p className="text-sm text-[var(--color-foreground)]/60 max-w-lg leading-relaxed">
                 {dict.subtitle}
               </p>
             </div>
 
             {/* Middle group: CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 py-8">
+            <div className="flex flex-col sm:flex-row gap-3 py-6">
               <Link
                 href="/agendar"
-                className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--color-accent)] text-white text-sm font-semibold tracking-wide rounded-lg hover:bg-[#004d5c] transition-colors duration-300 shadow-lg shadow-[var(--color-accent)]/20"
+                className="group inline-flex items-center justify-center gap-2 px-6 py-3 bg-[var(--color-accent)] text-white text-xs font-semibold tracking-wide rounded-lg hover:bg-[#004d5c] transition-colors duration-300 shadow-lg shadow-[var(--color-accent)]/20"
               >
                 {dict.cta_primary}
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 href="/#services"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent border border-[var(--color-secondary)]/20 text-[var(--color-secondary)] text-sm font-medium rounded-lg hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-colors duration-300"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-transparent border border-[var(--color-secondary)]/20 text-[var(--color-secondary)] text-xs font-medium rounded-lg hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-colors duration-300"
               >
                 {dict.cta_secondary}
               </Link>
             </div>
 
             {/* Bottom group: trust indicators */}
-            <div className="flex flex-wrap gap-6 pt-8 border-t border-[var(--color-border)]">
+            <div className="flex flex-wrap gap-5 pt-6 border-t border-[var(--color-border)]">
               {[dict.trust_1, dict.trust_2, dict.trust_3].map((label) => (
-                <div key={label} className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)]" />
-                  <span className="text-xs font-medium text-[var(--color-foreground)]/50 tracking-wide">
+                <div key={label} className="flex items-center gap-1.5">
+                  <div className="w-1 h-1 rounded-full bg-[var(--color-primary)]" />
+                  <span className="text-[10px] font-medium text-[var(--color-foreground)]/50 tracking-wide">
                     {label}
                   </span>
                 </div>
