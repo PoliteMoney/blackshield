@@ -55,9 +55,12 @@ export function Navbar({ dict }: NavbarProps) {
             <Image
               src={config.logo_url || '/images/logo_negro.png'}
               alt={config.site_name || 'Blackshield'}
-              width={160}
-              height={44}
-              className="h-10 w-auto object-contain"
+              width={220}
+              height={72}
+              className={cn(
+                'w-auto object-contain transition-all duration-300',
+                isScrolled ? 'h-10' : 'h-16'
+              )}
               priority
             />
           </Link>
