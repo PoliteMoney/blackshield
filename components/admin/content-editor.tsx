@@ -158,6 +158,13 @@ const SCHEMAS: Record<string, { label: string; fields: FieldDef[] }> = {
       { key: 'rights',       label: 'Texto derechos reservados',    type: 'text' },
     ],
   },
+  capacities: {
+    label: 'Capacidades',
+    fields: [
+      { key: 'title', label: 'Título de sección', type: 'text' },
+      { key: 'items', label: 'Items (título + descripción)', type: 'step-array' },
+    ],
+  },
   how_we_work: {
     label: 'Cómo Trabajamos',
     fields: [

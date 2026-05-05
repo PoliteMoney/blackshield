@@ -162,6 +162,22 @@
     "rights": "All rights reserved.",
     "made_with": "Made with"
   },
+  "capacities": {
+    "title": "Capabilities",
+    "items": [
+      { "title": "Strategic Representation",          "desc": "Presence, coordination and execution in Mexico with full control." },
+      { "title": "Strategic Intelligence",            "desc": "Context analysis, risks, actors and scenarios." },
+      { "title": "Market Entry & Operations",         "desc": "Project structuring, expansion and execution in Mexico." },
+      { "title": "Corporate & Tax Structuring",       "desc": "Efficient structures, compliance and international control." },
+      { "title": "Asset Protection",                  "desc": "Real estate, investments, shares and personal and business assets." },
+      { "title": "Legal Affairs Management",          "desc": "Strategy and control of legal processes in Mexico and other jurisdictions." },
+      { "title": "Victim Representation",             "desc": "Monitoring, rights, intelligence and case control in Mexico." },
+      { "title": "Crisis & Reputation Management",   "desc": "Legal, media and strategic control in critical situations." },
+      { "title": "Governance & Compliance",           "desc": "Prevention, control and institutional structure." },
+      { "title": "Intellectual Property & Contracts","desc": "Brand protection, agreements and commercial relations." },
+      { "title": "Institutional Strengthening",      "desc": "Training, leadership and organizational improvement." }
+    ]
+  },
   "how_we_work": {
     "title": "How we work",
     "items": [

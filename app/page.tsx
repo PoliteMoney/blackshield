@@ -8,7 +8,7 @@ import { CookieBanner } from '@/components/layout/cookie-banner'
 import { Hero } from '@/components/sections/hero'
 import { Stats } from '@/components/sections/stats'
 import { AboutSection } from '@/components/sections/about-section'
-import { ServicesSection } from '@/components/sections/services-section'
+import { CapacitiesSection } from '@/components/sections/capacities-section'
 import { SectorsSection } from '@/components/sections/sectors-section'
 import { MethodologySection } from '@/components/sections/methodology-section'
 import { FAQSection } from '@/components/sections/faq-section'
@@ -21,11 +21,7 @@ import { getSiteConfig } from '@/lib/site-config'
 async function getPageData(locale: Locale) {
   const supabase = createClient()
 
-  const [servicesRes, sectorsRes, faqsRes] = await Promise.all([
-    supabase.from('services').select(`
-      id, slug, icon, featured, order_index,
-      translations:services_translations(title, short_description, locale)
-    `).eq('is_active', true).order('order_index'),
+  const [sectorsRes, faqsRes] = await Promise.all([
     supabase.from('sectors').select(`
       id, slug, icon,
       translations:sectors_translations(title, description, locale)
@@ -44,7 +40,6 @@ async function getPageData(locale: Locale) {
   }
 
   return {
-    services: filterByLocale(servicesRes.data || []),
     sectors: filterByLocale(sectorsRes.data || []),
     faqs: filterByLocale(faqsRes.data || []),
   }
@@ -62,7 +57,7 @@ export default async function HomePage() {
   const headersList = headers()
   const locale: Locale = cookieLocale || getLocaleFromHeader(headersList.get('accept-language'))
 
-  const [dict, { services, sectors, faqs }, config, db] = await Promise.all([
+  const [dict, { sectors, faqs }, config, db] = await Promise.all([
     getDictionary(locale),
     getPageData(locale),
     getSiteConfig(),
@@ -75,7 +70,7 @@ export default async function HomePage() {
     hero:        merge(dict.hero,        db.hero),
     about:       merge(dict.about,       db.about),
     stats:       merge(dict.stats,       db.stats),
-    services:    merge(dict.services,    db.services),
+    capacities:  merge(dict.capacities,  db.capacities),
     sectors:     merge(dict.sectors,     db.sectors),
     methodology: merge(dict.methodology, db.methodology),
     how_we_work:      merge(dict.how_we_work,      db.how_we_work),
@@ -98,7 +93,7 @@ export default async function HomePage() {
         <HowWeWorkSection workDict={c.how_we_work} interveneDict={c.when_we_intervene} />
         <Stats dict={c.stats} />
         <AboutSection dict={c.about} />
-        <ServicesSection dict={c.services} services={services} locale={locale} />
+        <CapacitiesSection dict={c.capacities} />
         <SectorsSection dict={c.sectors} sectors={sectors} />
         <MethodologySection dict={c.methodology} />
         <CTASection dict={c.cta} />

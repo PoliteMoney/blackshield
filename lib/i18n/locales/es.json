@@ -162,6 +162,22 @@
     "rights": "Todos los derechos reservados.",
     "made_with": "Hecho con"
   },
+  "capacities": {
+    "title": "Capacidades",
+    "items": [
+      { "title": "Representación estratégica",      "desc": "Presencia, coordinación y ejecución en México con control total." },
+      { "title": "Inteligencia estratégica",        "desc": "Análisis de contexto, riesgos, actores y escenarios." },
+      { "title": "Entrada y operación",             "desc": "Estructuración de proyectos, expansión y ejecución en México." },
+      { "title": "Estructuración corporativa y fiscal", "desc": "Estructuras eficientes, cumplimiento y control internacional." },
+      { "title": "Protección patrimonial",          "desc": "Inmuebles, inversiones, acciones y patrimonio personal y empresarial." },
+      { "title": "Dirección de asuntos legales",   "desc": "Estrategia y control de procesos legales en México y otras jurisdicciones." },
+      { "title": "Representación de víctimas",      "desc": "Seguimiento, derechos, inteligencia y control del caso en México." },
+      { "title": "Gestión de crisis y reputación", "desc": "Control legal, mediático y estratégico en situaciones críticas." },
+      { "title": "Gobernanza y cumplimiento",       "desc": "Prevención, control y estructura institucional." },
+      { "title": "Propiedad intelectual y contratos", "desc": "Protección de marcas, acuerdos y relaciones comerciales." },
+      { "title": "Fortalecimiento institucional",  "desc": "Capacitación, liderazgo y mejora organizacional." }
+    ]
+  },
   "how_we_work": {
     "title": "Cómo trabajamos",
     "items": [
