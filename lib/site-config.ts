@@ -6,7 +6,7 @@ const fallback: SiteConfig = {
   site_name: 'Blackshield Global Consulting',
   site_tagline_es: 'Legal Strategy. Powered by Intelligence.',
   site_tagline_en: 'Legal Strategy. Powered by Intelligence.',
-  logo_url: '/images/logo_negro.png',
+  logo_url: '/images/logo_completo_negro.png',
   logo_white_url: '/images/logo_beige.jpeg',
   radar_url: '/images/radar.png',
   color_primary: '#AD8855',
