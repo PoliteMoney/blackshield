@@ -158,6 +158,15 @@ const SCHEMAS: Record<string, { label: string; fields: FieldDef[] }> = {
       { key: 'rights',       label: 'Texto derechos reservados',    type: 'text' },
     ],
   },
+  strategic: {
+    label: 'Sección Estratégica (México)',
+    fields: [
+      { key: 'title',       label: 'Título',        type: 'text' },
+      { key: 'paragraph_1', label: 'Párrafo 1',     type: 'textarea' },
+      { key: 'paragraph_2', label: 'Párrafo 2',     type: 'textarea' },
+      { key: 'paragraph_3', label: 'Párrafo 3',     type: 'textarea' },
+    ],
+  },
   cookies: {
     label: 'Banner de cookies',
     fields: [

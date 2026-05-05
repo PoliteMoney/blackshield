@@ -162,6 +162,12 @@
     "rights": "Todos los derechos reservados.",
     "made_with": "Hecho con"
   },
+  "strategic": {
+    "title": "Control estratégico en México",
+    "paragraph_1": "Con más de 15 años de operación en el mercado mexicano, Blackshield Global Consulting ha desarrollado un profundo conocimiento del entorno legal, regulatorio y empresarial que distingue a México como una plaza de primer nivel.",
+    "paragraph_2": "Nuestra red de alianzas estratégicas, combinada con inteligencia de mercado y análisis jurídico de alto nivel, permite a nuestros clientes tomar decisiones informadas y anticipar riesgos antes de que se materialicen.",
+    "paragraph_3": "Acompañamos a empresas nacionales e internacionales en cada etapa de su ciclo de vida: desde la entrada al mercado hasta la gestión de crisis y la resolución de conflictos complejos."
+  },
   "cookies": {
     "message": "Utilizamos cookies para mejorar su experiencia. Al continuar navegando, acepta nuestra",
     "policy": "política de cookies",

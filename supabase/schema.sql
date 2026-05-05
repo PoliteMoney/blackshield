@@ -641,3 +641,11 @@ ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
 INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
 ('home', 'cookies', 'en', true, '{"message":"We use cookies to improve your experience. By continuing to browse, you accept our","policy":"cookie policy","accept":"Accept","decline":"Decline"}')
 ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
+
+INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
+('home', 'strategic', 'es', true, '{"title":"Control estratégico en México","paragraph_1":"Con más de 15 años de operación en el mercado mexicano, Blackshield Global Consulting ha desarrollado un profundo conocimiento del entorno legal, regulatorio y empresarial que distingue a México como una plaza de primer nivel.","paragraph_2":"Nuestra red de alianzas estratégicas, combinada con inteligencia de mercado y análisis jurídico de alto nivel, permite a nuestros clientes tomar decisiones informadas y anticipar riesgos antes de que se materialicen.","paragraph_3":"Acompañamos a empresas nacionales e internacionales en cada etapa de su ciclo de vida: desde la entrada al mercado hasta la gestión de crisis y la resolución de conflictos complejos."}')
+ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
+
+INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
+('home', 'strategic', 'en', true, '{"title":"Strategic Control in Mexico","paragraph_1":"With over 15 years of operation in the Mexican market, Blackshield Global Consulting has developed a deep understanding of the legal, regulatory and business environment that sets Mexico apart as a premier destination.","paragraph_2":"Our network of strategic alliances, combined with market intelligence and high-level legal analysis, enables our clients to make informed decisions and anticipate risks before they materialize.","paragraph_3":"We accompany national and international companies at every stage of their lifecycle: from market entry to crisis management and the resolution of complex disputes."}')
+ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
