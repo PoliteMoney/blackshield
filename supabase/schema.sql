@@ -649,3 +649,19 @@ ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
 INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
 ('home', 'strategic', 'en', true, '{"title":"Strategic Control in Mexico","paragraph_1":"With over 15 years of operation in the Mexican market, Blackshield Global Consulting has developed a deep understanding of the legal, regulatory and business environment that sets Mexico apart as a premier destination.","paragraph_2":"Our network of strategic alliances, combined with market intelligence and high-level legal analysis, enables our clients to make informed decisions and anticipate risks before they materialize.","paragraph_3":"We accompany national and international companies at every stage of their lifecycle: from market entry to crisis management and the resolution of complex disputes."}')
 ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
+
+INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
+('home', 'how_we_work', 'es', true, '{"title":"Cómo trabajamos","items":[{"label":"PLANEACIÓN E INTELIGENCIA","description":"Analizamos el entorno real y convertimos información en criterio accionable para decidir mejor.","tagline":"Entender antes de entrar."},{"label":"EJECUCIÓN","description":"Estructuramos y coordinamos la implementación en México. Desde lo legal y cooperativo hasta la operación.","tagline":"Orden, control y alineación."},{"label":"PROTECCIÓN","description":"Damos seguimiento, anticipamos riesgos y mantenemos control del escenario.","tagline":"No reaccionamos tarde."}]}')
+ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
+
+INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
+('home', 'when_we_intervene', 'es', true, '{"title":"Cuándo intervenimos","tagline":"Antes de entrar. Mientras opera. Cuando necesita resolver.","items":["Antes de entrar a México","Al operar o expandirse","Para proteger patrimonio","Al enfrentar un conflicto o situación legal","Como aliado local para firmas y asesores internacionales","En situaciones de crisis o contingencia"]}')
+ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
+
+INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
+('home', 'how_we_work', 'en', true, '{"title":"How we work","items":[{"label":"PLANNING & INTELLIGENCE","description":"We analyze the real environment and turn information into actionable insight to make better decisions.","tagline":"Understand before entering."},{"label":"EXECUTION","description":"We structure and coordinate implementation in Mexico — from the legal and regulatory to the operational.","tagline":"Order, control and alignment."},{"label":"PROTECTION","description":"We monitor, anticipate risks and maintain control of the situation.","tagline":"We don''t react late."}]}')
+ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
+
+INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
+('home', 'when_we_intervene', 'en', true, '{"title":"When we intervene","tagline":"Before entering. While operating. When you need to resolve.","items":["Before entering Mexico","When operating or expanding","To protect assets and heritage","When facing a conflict or legal situation","As a local ally for international firms and advisors","In crisis or contingency situations"]}')
+ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;

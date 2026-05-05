@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils'
 
 // ── Field schema ──────────────────────────────────────────────────────────────
 
-type FieldType = 'text' | 'textarea' | 'string-array' | 'step-array'
+type FieldType = 'text' | 'textarea' | 'string-array' | 'step-array' | 'work-array'
 
 interface FieldDef {
   key: string
@@ -156,6 +156,21 @@ const SCHEMAS: Record<string, { label: string; fields: FieldDef[] }> = {
       { key: 'privacy',      label: 'Aviso de privacidad',          type: 'text' },
       { key: 'cookies',      label: 'Política de cookies',          type: 'text' },
       { key: 'rights',       label: 'Texto derechos reservados',    type: 'text' },
+    ],
+  },
+  how_we_work: {
+    label: 'Cómo Trabajamos',
+    fields: [
+      { key: 'title', label: 'Título de sección', type: 'text' },
+      { key: 'items', label: 'Items (etiqueta + descripción + tagline)', type: 'work-array' },
+    ],
+  },
+  when_we_intervene: {
+    label: 'Cuándo Intervenimos',
+    fields: [
+      { key: 'title',   label: 'Título de sección',    type: 'text' },
+      { key: 'tagline', label: 'Tagline inferior',      type: 'text' },
+      { key: 'items',   label: 'Items (un label por línea)', type: 'string-array' },
     ],
   },
   strategic: {
@@ -347,6 +362,33 @@ function FieldInput({
     )
   }
 
+  if (def.type === 'work-array') {
+    const items: Array<{ label: string; description: string; tagline: string }> = Array.isArray(value) ? value : []
+    return (
+      <div>
+        <label className="block text-xs font-medium text-gray-500 mb-2">{def.label}</label>
+        <div className="space-y-3">
+          {items.map((item, i) => (
+            <WorkItemRow
+              key={i}
+              index={i}
+              item={item}
+              onChange={updated => onChange(items.map((s, j) => j === i ? updated : s))}
+              onRemove={() => onChange(items.filter((_, j) => j !== i))}
+            />
+          ))}
+          <button
+            type="button"
+            onClick={() => onChange([...items, { label: '', description: '', tagline: '' }])}
+            className="flex items-center gap-2 w-full px-3 py-2.5 border border-dashed border-gray-300 rounded-lg text-sm text-gray-500 hover:border-gray-400 hover:text-gray-700 transition-colors justify-center"
+          >
+            <Plus className="w-3.5 h-3.5" /> Agregar item
+          </button>
+        </div>
+      </div>
+    )
+  }
+
   if (def.type === 'step-array') {
     const steps: Array<{ title: string; desc: string }> = Array.isArray(value) ? value : []
     return (
@@ -443,6 +485,60 @@ function StepRow({
             placeholder="Descripción del paso"
             rows={2}
             className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-gray-400 resize-none"
+          />
+        </div>
+      )}
+    </div>
+  )
+}
+
+function WorkItemRow({
+  index,
+  item,
+  onChange,
+  onRemove,
+}: {
+  index: number
+  item: { label: string; description: string; tagline: string }
+  onChange: (updated: { label: string; description: string; tagline: string }) => void
+  onRemove: () => void
+}) {
+  const [open, setOpen] = useState(true)
+  return (
+    <div className="border border-gray-200 rounded-xl overflow-hidden">
+      <div className="flex items-center justify-between px-4 py-2.5 bg-gray-50 border-b border-gray-200">
+        <span className="text-xs font-semibold text-gray-500">Item {index + 1}</span>
+        <div className="flex items-center gap-1.5">
+          <button type="button" onClick={() => setOpen(o => !o)} className="text-gray-400 hover:text-gray-600 p-1">
+            {open ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+          </button>
+          <button type="button" onClick={onRemove} className="text-red-400 hover:text-red-600 p-1">
+            <Trash2 className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      </div>
+      {open && (
+        <div className="p-4 space-y-3">
+          <input
+            type="text"
+            value={item.label}
+            onChange={e => onChange({ ...item, label: e.target.value })}
+            placeholder="Etiqueta (en mayúsculas)"
+            className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-gray-400"
+          />
+          <textarea
+            value={item.description}
+            onChange={e => onChange({ ...item, description: e.target.value })}
+            placeholder="Descripción"
+            rows={2}
+            className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-gray-400 resize-none"
+          />
+          <input
+            type="text"
+            value={item.tagline}
+            onChange={e => onChange({ ...item, tagline: e.target.value })}
+            placeholder="Tagline / frase clave"
+            className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-gray-400"
           />
         </div>
       )}

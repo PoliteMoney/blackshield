@@ -15,6 +15,7 @@ import { FAQSection } from '@/components/sections/faq-section'
 import { ContactSection } from '@/components/sections/contact-section'
 import { CTASection } from '@/components/sections/cta-section'
 import { StrategicSection } from '@/components/sections/strategic-section'
+import { HowWeWorkSection } from '@/components/sections/how-we-work-section'
 import { getSiteConfig } from '@/lib/site-config'
 
 async function getPageData(locale: Locale) {
@@ -77,6 +78,8 @@ export default async function HomePage() {
     services:    merge(dict.services,    db.services),
     sectors:     merge(dict.sectors,     db.sectors),
     methodology: merge(dict.methodology, db.methodology),
+    how_we_work:      merge(dict.how_we_work,      db.how_we_work),
+    when_we_intervene: merge(dict.when_we_intervene, db.when_we_intervene),
     strategic:   merge(dict.strategic,   db.strategic),
     cta:         merge(dict.cta,         db.cta),
     faq:         merge(dict.faq,         db.faq),
@@ -92,6 +95,7 @@ export default async function HomePage() {
       <main>
         <Hero dict={c.hero} contactDict={c.contact} radarUrl={config.radar_url} />
         <StrategicSection dict={c.strategic} />
+        <HowWeWorkSection workDict={c.how_we_work} interveneDict={c.when_we_intervene} />
         <Stats dict={c.stats} />
         <AboutSection dict={c.about} />
         <ServicesSection dict={c.services} services={services} locale={locale} />

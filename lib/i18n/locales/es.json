@@ -162,6 +162,38 @@
     "rights": "Todos los derechos reservados.",
     "made_with": "Hecho con"
   },
+  "how_we_work": {
+    "title": "Cómo trabajamos",
+    "items": [
+      {
+        "label": "PLANEACIÓN E INTELIGENCIA",
+        "description": "Analizamos el entorno real y convertimos información en criterio accionable para decidir mejor.",
+        "tagline": "Entender antes de entrar."
+      },
+      {
+        "label": "EJECUCIÓN",
+        "description": "Estructuramos y coordinamos la implementación en México. Desde lo legal y cooperativo hasta la operación.",
+        "tagline": "Orden, control y alineación."
+      },
+      {
+        "label": "PROTECCIÓN",
+        "description": "Damos seguimiento, anticipamos riesgos y mantenemos control del escenario.",
+        "tagline": "No reaccionamos tarde."
+      }
+    ]
+  },
+  "when_we_intervene": {
+    "title": "Cuándo intervenimos",
+    "tagline": "Antes de entrar. Mientras opera. Cuando necesita resolver.",
+    "items": [
+      "Antes de entrar a México",
+      "Al operar o expandirse",
+      "Para proteger patrimonio",
+      "Al enfrentar un conflicto o situación legal",
+      "Como aliado local para firmas y asesores internacionales",
+      "En situaciones de crisis o contingencia"
+    ]
+  },
   "strategic": {
     "title": "Control estratégico en México",
     "paragraph_1": "Con más de 15 años de operación en el mercado mexicano, Blackshield Global Consulting ha desarrollado un profundo conocimiento del entorno legal, regulatorio y empresarial que distingue a México como una plaza de primer nivel.",
