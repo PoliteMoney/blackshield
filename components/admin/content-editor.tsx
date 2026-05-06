@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils'
 
 // ── Field schema ──────────────────────────────────────────────────────────────
 
-type FieldType = 'text' | 'textarea' | 'string-array' | 'step-array' | 'work-array'
+type FieldType = 'text' | 'textarea' | 'string-array' | 'step-array' | 'work-array' | 'image-url'
 
 interface FieldDef {
   key: string
@@ -183,10 +183,11 @@ const SCHEMAS: Record<string, { label: string; fields: FieldDef[] }> = {
   strategic: {
     label: 'Sección Estratégica (México)',
     fields: [
-      { key: 'title',       label: 'Título',        type: 'text' },
-      { key: 'paragraph_1', label: 'Párrafo 1',     type: 'textarea' },
-      { key: 'paragraph_2', label: 'Párrafo 2',     type: 'textarea' },
-      { key: 'paragraph_3', label: 'Párrafo 3',     type: 'textarea' },
+      { key: 'title',       label: 'Título',                                    type: 'text' },
+      { key: 'paragraph_1', label: 'Párrafo 1',                                 type: 'textarea' },
+      { key: 'paragraph_2', label: 'Párrafo 2',                                 type: 'textarea' },
+      { key: 'paragraph_3', label: 'Párrafo 3',                                 type: 'textarea' },
+      { key: 'image_url',   label: 'Imagen derecha (URL)',                       type: 'image-url', placeholder: '/images/mi-imagen.png  ó  https://...' },
     ],
   },
   cookies: {
@@ -419,6 +420,30 @@ function FieldInput({
             <Plus className="w-3.5 h-3.5" /> Agregar paso
           </button>
         </div>
+      </div>
+    )
+  }
+
+  if (def.type === 'image-url') {
+    return (
+      <div>
+        <label className="block text-xs font-medium text-gray-500 mb-1">{def.label}</label>
+        <input
+          type="text"
+          value={value ?? ''}
+          onChange={e => onChange(e.target.value)}
+          placeholder={def.placeholder ?? 'https:// ó /images/...'}
+          className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-gray-400 font-mono"
+        />
+        {value && (
+          <div className="mt-2 rounded-lg overflow-hidden border border-gray-200 bg-gray-50">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={value} alt="preview" className="w-full max-h-48 object-contain" />
+          </div>
+        )}
+        <p className="text-[11px] text-gray-400 mt-1">
+          Sube la imagen a <strong>/public/images/</strong> y escribe <strong>/images/nombre.png</strong>, o pega una URL externa. Dejar vacío usa el SVG por defecto.
+        </p>
       </div>
     )
   }

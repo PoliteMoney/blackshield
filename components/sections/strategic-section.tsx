@@ -1,5 +1,7 @@
 'use client'
 
+import Image from 'next/image'
+
 function MexicoDecorSVG() {
   return (
     <svg viewBox="0 0 500 310" className="w-full h-auto" aria-hidden="true">
@@ -68,6 +70,7 @@ interface StrategicSectionProps {
     paragraph_1: string
     paragraph_2: string
     paragraph_3: string
+    image_url?: string
   }
 }
 
@@ -99,10 +102,20 @@ export function StrategicSection({ dict }: StrategicSectionProps) {
             </div>
           </div>
 
-          {/* Right — Mexico SVG decoration */}
+          {/* Right — image or SVG fallback */}
           <div className="flex justify-center lg:justify-end">
             <div className="w-full max-w-[520px]">
-              <MexicoDecorSVG />
+              {dict.image_url ? (
+                <Image
+                  src={dict.image_url}
+                  alt={dict.title}
+                  width={520}
+                  height={320}
+                  className="w-full h-auto object-contain"
+                />
+              ) : (
+                <MexicoDecorSVG />
+              )}
             </div>
           </div>
 
