@@ -62,7 +62,7 @@ export function CapacitiesSection({ dict }: CapacitiesSectionProps) {
   const row2 = items.slice(6, 11)
 
   return (
-    <section className="bg-[#0D1E28]">
+    <section id="capacities" className="bg-[#0D1E28]">
       <div className="container-custom mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24">
 
         <h2
