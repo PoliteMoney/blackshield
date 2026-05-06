@@ -3,7 +3,12 @@
 import { useEffect, useRef, useState } from 'react'
 
 interface StatsProps {
-  dict: { years: string; clients: string; countries: string; satisfaction: string }
+  dict: {
+    years: string;         years_value: string;         years_suffix: string
+    clients: string;       clients_value: string;       clients_suffix: string
+    countries: string;     countries_value: string;     countries_suffix: string
+    satisfaction: string;  satisfaction_value: string;  satisfaction_suffix: string
+  }
 }
 
 function useCountUp(end: number, duration = 2000, started: boolean) {
@@ -35,18 +40,23 @@ export function Stats({ dict }: StatsProps) {
     return () => observer.disconnect()
   }, [])
 
-  const stats = [
-    { value: 15, suffix: '+', label: dict.years },
-    { value: 500, suffix: '+', label: dict.clients },
-    { value: 12, suffix: '', label: dict.countries },
-    { value: 98, suffix: '%', label: dict.satisfaction },
-  ]
+  const yearsVal        = parseInt(dict.years_value)        || 15
+  const clientsVal      = parseInt(dict.clients_value)      || 500
+  const countriesVal    = parseInt(dict.countries_value)    || 12
+  const satisfactionVal = parseInt(dict.satisfaction_value) || 98
 
   const counts = [
-    useCountUp(15, 1500, started),
-    useCountUp(500, 2000, started),
-    useCountUp(12, 1200, started),
-    useCountUp(98, 1800, started),
+    useCountUp(yearsVal,        1500, started),
+    useCountUp(clientsVal,      2000, started),
+    useCountUp(countriesVal,    1200, started),
+    useCountUp(satisfactionVal, 1800, started),
+  ]
+
+  const stats = [
+    { suffix: dict.years_suffix        ?? '+',  label: dict.years },
+    { suffix: dict.clients_suffix      ?? '+',  label: dict.clients },
+    { suffix: dict.countries_suffix    ?? '',   label: dict.countries },
+    { suffix: dict.satisfaction_suffix ?? '%',  label: dict.satisfaction },
   ]
 
   return (

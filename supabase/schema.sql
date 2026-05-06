@@ -557,7 +557,7 @@ INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
 ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
 
 INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
-('home', 'stats', 'es', true, '{"years":"Años de Experiencia","clients":"Clientes Atendidos","countries":"Países de Operación","satisfaction":"Satisfacción"}')
+('home', 'stats', 'es', true, '{"years":"Años de Experiencia","years_value":"15","years_suffix":"+","clients":"Clientes Atendidos","clients_value":"500","clients_suffix":"+","countries":"Países de Operación","countries_value":"12","countries_suffix":"","satisfaction":"Satisfacción","satisfaction_value":"98","satisfaction_suffix":"%"}')
 ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
 
 INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
@@ -607,7 +607,7 @@ INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
 ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
 
 INSERT INTO page_content (page, section, locale, is_active, extra) VALUES
-('home', 'stats', 'en', true, '{"years":"Years of Experience","clients":"Clients Served","countries":"Operating Countries","satisfaction":"Satisfaction"}')
+('home', 'stats', 'en', true, '{"years":"Years of Experience","years_value":"15","years_suffix":"+","clients":"Clients Served","clients_value":"500","clients_suffix":"+","countries":"Operating Countries","countries_value":"12","countries_suffix":"","satisfaction":"Satisfaction","satisfaction_value":"98","satisfaction_suffix":"%"}')
 ON CONFLICT (page, section, locale) DO UPDATE SET extra = EXCLUDED.extra;
 
 INSERT INTO page_content (page, section, locale, is_active, extra) VALUES

@@ -57,10 +57,18 @@ const SCHEMAS: Record<string, { label: string; fields: FieldDef[] }> = {
   stats: {
     label: 'Estadísticas',
     fields: [
-      { key: 'years',        label: 'Etiqueta – Años',        type: 'text' },
-      { key: 'clients',      label: 'Etiqueta – Clientes',    type: 'text' },
-      { key: 'countries',    label: 'Etiqueta – Países',      type: 'text' },
-      { key: 'satisfaction', label: 'Etiqueta – Satisfacción',type: 'text' },
+      { key: 'years_value',        label: 'Años — número',             type: 'text', placeholder: '15' },
+      { key: 'years_suffix',       label: 'Años — sufijo',             type: 'text', placeholder: '+' },
+      { key: 'years',              label: 'Años — etiqueta',           type: 'text' },
+      { key: 'clients_value',      label: 'Clientes — número',         type: 'text', placeholder: '500' },
+      { key: 'clients_suffix',     label: 'Clientes — sufijo',         type: 'text', placeholder: '+' },
+      { key: 'clients',            label: 'Clientes — etiqueta',       type: 'text' },
+      { key: 'countries_value',    label: 'Países — número',           type: 'text', placeholder: '12' },
+      { key: 'countries_suffix',   label: 'Países — sufijo',           type: 'text', placeholder: '(vacío)' },
+      { key: 'countries',          label: 'Países — etiqueta',         type: 'text' },
+      { key: 'satisfaction_value', label: 'Satisfacción — número',     type: 'text', placeholder: '98' },
+      { key: 'satisfaction_suffix',label: 'Satisfacción — sufijo',     type: 'text', placeholder: '%' },
+      { key: 'satisfaction',       label: 'Satisfacción — etiqueta',   type: 'text' },
     ],
   },
   services: {

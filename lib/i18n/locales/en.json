@@ -73,10 +73,10 @@
     ]
   },
   "stats": {
-    "years": "Years of Experience",
-    "clients": "Clients Served",
-    "countries": "Operating Countries",
-    "satisfaction": "Satisfaction"
+    "years": "Years of Experience",   "years_value": "15",  "years_suffix": "+",
+    "clients": "Clients Served",      "clients_value": "500", "clients_suffix": "+",
+    "countries": "Operating Countries","countries_value": "12", "countries_suffix": "",
+    "satisfaction": "Satisfaction",   "satisfaction_value": "98", "satisfaction_suffix": "%"
   },
   "testimonials": {
     "badge": "Testimonials",
