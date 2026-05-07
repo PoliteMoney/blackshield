@@ -101,7 +101,7 @@ export default async function HomePage() {
         <ContactSection dict={c.contact} />
       </main>
 
-      <Footer dict={c.footer} navDict={c.nav} />
+      <Footer dict={c.footer} navDict={c.nav} capacitiesDict={c.capacities} />
       {config.cookie_policy_enabled === 'true' && <CookieBanner dict={c.cookies} />}
     </>
   )

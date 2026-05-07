@@ -8,19 +8,14 @@ import { useSiteConfig } from '@/components/providers/site-config-provider'
 interface FooterProps {
   dict: Record<string, string>
   navDict: Record<string, string>
+  capacitiesDict?: { title?: string; items?: Array<{ title: string; desc?: string }> }
 }
 
-export function Footer({ dict, navDict }: FooterProps) {
+export function Footer({ dict, navDict, capacitiesDict }: FooterProps) {
   const config = useSiteConfig()
   const year = new Date().getFullYear()
 
-  const services = [
-    { label: 'Consultoría Estratégica', href: '/#services' },
-    { label: 'Seguridad Corporativa', href: '/#services' },
-    { label: 'Gestión de Riesgos', href: '/#services' },
-    { label: 'Cumplimiento Normativo', href: '/#services' },
-    { label: 'Inteligencia Empresarial', href: '/#services' },
-  ]
+  const capacities = (capacitiesDict?.items ?? []).slice(0, 6)
 
   return (
     <footer className="bg-[var(--color-secondary)] text-white">
@@ -91,17 +86,17 @@ export function Footer({ dict, navDict }: FooterProps) {
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Capacities */}
           <div>
             <h3 className="text-[10px] font-semibold tracking-[0.22em] uppercase text-[var(--color-primary)] mb-5">
               {dict.services}
             </h3>
             <ul className="space-y-3">
-              {services.map((s) => (
-                <li key={s.label}>
-                  <Link href={s.href}
+              {capacities.map((item) => (
+                <li key={item.title}>
+                  <Link href="/#capacities"
                     className="text-white/50 hover:text-white text-sm transition-colors">
-                    {s.label}
+                    {item.title}
                   </Link>
                 </li>
               ))}
