@@ -28,7 +28,7 @@ export function Footer({ dict, navDict, capacitiesDict }: FooterProps) {
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block mb-5">
               <Image
-                src={config.logo_white_url || '/images/logo_beige.jpeg'}
+                src={config.logo_white_url || '/images/logotipo_white.png'}
                 alt={config.site_name || 'Blackshield'}
                 width={160}
                 height={44}

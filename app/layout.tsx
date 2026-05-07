@@ -13,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: { default: config.site_name || 'Blackshield Global Consulting', template: `%s | ${config.site_name}` },
     description: config.site_tagline_es || 'Consultoría estratégica, seguridad corporativa y gestión de riesgos.',
     metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'),
-    icons: { icon: config.logo_url || '/images/logo_completo.png' },
+    icons: { icon: '/images/favicon.png' },
     openGraph: {
       siteName: config.site_name,
       type: 'website',
