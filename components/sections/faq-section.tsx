@@ -10,7 +10,7 @@ interface FAQ {
 }
 
 interface FAQSectionProps {
-  dict: { badge: string; title: string; subtitle: string }
+  dict: { badge: string; title: string; subtitle: string; items?: Array<{ question: string; answer: string }> }
   faqs: FAQ[]
 }
 
@@ -18,18 +18,21 @@ export function FAQSection({ dict, faqs }: FAQSectionProps) {
   const [open, setOpen] = useState<string | null>(null)
 
   const defaultFaqs = [
-    { id: '1', q: '¿Cómo funciona una consulta inicial?', a: 'La consulta inicial es confidencial y gratuita. En ella conocemos su situación, necesidades y objetivos para proponer la solución más adecuada. Puede agendar una cita virtual o presencial según su preferencia.' },
-    { id: '2', q: '¿Qué sectores atiende Blackshield?', a: 'Atendemos empresas privadas, instituciones gubernamentales, sector financiero, salud, energía y tecnología. Nuestra experiencia abarca múltiples industrias con soluciones adaptadas a cada contexto.' },
-    { id: '3', q: '¿Cómo garantizan la confidencialidad?', a: 'Todos nuestros compromisos incluyen acuerdos de confidencialidad (NDA). Contamos con protocolos estrictos de seguridad de la información y manejo discreto de todos los casos.' },
-    { id: '4', q: '¿Trabajan con clientes internacionales?', a: 'Sí. Contamos con experiencia en 12 países y podemos atender clientes internacionales de forma remota o con presencia física según los requerimientos del proyecto.' },
-    { id: '5', q: '¿Cuál es el proceso para iniciar un proyecto?', a: 'El proceso inicia con una consulta inicial, seguida de una propuesta formal, firma de acuerdos y arranque del proyecto. El timeline varía según la complejidad y urgencia de cada caso.' },
-    { id: '6', q: '¿Ofrecen servicios de urgencia?', a: 'Sí. Para situaciones críticas contamos con capacidad de respuesta inmediata. Contáctenos directamente por WhatsApp para atención prioritaria.' },
+    { id: 'd1', q: '¿Cómo funciona una consulta inicial?', a: 'La consulta inicial es confidencial y gratuita. En ella conocemos su situación, necesidades y objetivos para proponer la solución más adecuada. Puede agendar una cita virtual o presencial según su preferencia.' },
+    { id: 'd2', q: '¿Qué sectores atiende Blackshield?', a: 'Atendemos empresas privadas, instituciones gubernamentales, sector financiero, salud, energía y tecnología. Nuestra experiencia abarca múltiples industrias con soluciones adaptadas a cada contexto.' },
+    { id: 'd3', q: '¿Cómo garantizan la confidencialidad?', a: 'Todos nuestros compromisos incluyen acuerdos de confidencialidad (NDA). Contamos con protocolos estrictos de seguridad de la información y manejo discreto de todos los casos.' },
+    { id: 'd4', q: '¿Trabajan con clientes internacionales?', a: 'Sí. Contamos con experiencia en 12 países y podemos atender clientes internacionales de forma remota o con presencia física según los requerimientos del proyecto.' },
+    { id: 'd5', q: '¿Cuál es el proceso para iniciar un proyecto?', a: 'El proceso inicia con una consulta inicial, seguida de una propuesta formal, firma de acuerdos y arranque del proyecto. El timeline varía según la complejidad y urgencia de cada caso.' },
+    { id: 'd6', q: '¿Ofrecen servicios de urgencia?', a: 'Sí. Para situaciones críticas contamos con capacidad de respuesta inmediata. Contáctenos directamente por WhatsApp para atención prioritaria.' },
   ]
 
-  const displayFaqs = faqs.length > 0 ? faqs : defaultFaqs.map(f => ({
-    id: f.id,
-    translations: [{ question: f.q, answer: f.a }]
-  }))
+  // Priority: 1) items from content-editor (page_content), 2) faqs table, 3) hardcoded default
+  const contentItems = Array.isArray(dict.items) && dict.items.length > 0
+    ? dict.items.map((item, i) => ({ id: `c${i}`, translations: [{ question: item.question, answer: item.answer }] }))
+    : null
+
+  const displayFaqs = contentItems
+    ?? (faqs.length > 0 ? faqs : defaultFaqs.map(f => ({ id: f.id, translations: [{ question: f.q, answer: f.a }] })))
 
   return (
     <section id="faq" className="section-padding bg-[var(--color-muted)]">
