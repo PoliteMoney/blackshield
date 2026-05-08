@@ -1,6 +1,13 @@
 'use client'
 
+import Link from 'next/link'
 import { Compass, Maximize2, Shield, Globe, Building2, Scale, Users, AlertTriangle } from 'lucide-react'
+
+const WORK_SLUGS = [
+  'planeacion-e-inteligencia',
+  'ejecucion',
+  'proteccion',
+]
 
 const WORK_ICONS = [
   <Compass key="compass" className="w-8 h-8" />,
@@ -47,11 +54,15 @@ export function HowWeWorkSection({ workDict, interveneDict }: HowWeWorkSectionPr
 
         <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[var(--color-border)]">
           {workItems.slice(0, 3).map((item, i) => (
-            <div key={i} className="flex flex-col items-center text-center px-8 py-8 md:py-4">
-              <div className="w-16 h-16 rounded-full border border-[var(--color-secondary)]/25 flex items-center justify-center mb-6 text-[var(--color-secondary)]/60">
+            <Link
+              key={i}
+              href={`/como-trabajamos/${WORK_SLUGS[i]}`}
+              className="flex flex-col items-center text-center px-8 py-8 md:py-4 group hover:bg-[var(--color-muted)] transition-colors rounded-xl"
+            >
+              <div className="w-16 h-16 rounded-full border border-[var(--color-secondary)]/25 flex items-center justify-center mb-6 text-[var(--color-secondary)]/60 group-hover:border-[var(--color-primary)] group-hover:text-[var(--color-primary)] transition-colors">
                 {WORK_ICONS[i] ?? WORK_ICONS[0]}
               </div>
-              <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[var(--color-secondary)] mb-4">
+              <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[var(--color-secondary)] mb-4 group-hover:text-[var(--color-primary)] transition-colors">
                 {item.label}
               </p>
               <p className="text-sm text-[var(--color-foreground)]/55 leading-relaxed mb-5 max-w-xs">
@@ -62,7 +73,7 @@ export function HowWeWorkSection({ workDict, interveneDict }: HowWeWorkSectionPr
                   {item.tagline}
                 </p>
               )}
-            </div>
+            </Link>
           ))}
         </div>
       </div>

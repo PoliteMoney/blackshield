@@ -306,6 +306,32 @@ const SCHEMAS: Record<string, { label: string; fields: FieldDef[]; page?: string
       { key: 'paragraphs', label: 'Párrafos (uno por línea)',        type: 'string-array' },
     ],
   },
+
+  // ── Cómo trabajamos detail pages ──────────────────────────────────────────
+  'planeacion-e-inteligencia': {
+    label: 'Cómo: Planeación e inteligencia',
+    page: 'como-trabajamos',
+    fields: [
+      { key: 'title',      label: 'Título de la página',            type: 'text' },
+      { key: 'paragraphs', label: 'Párrafos (uno por línea)',        type: 'string-array' },
+    ],
+  },
+  'ejecucion': {
+    label: 'Cómo: Ejecución',
+    page: 'como-trabajamos',
+    fields: [
+      { key: 'title',      label: 'Título de la página',            type: 'text' },
+      { key: 'paragraphs', label: 'Párrafos (uno por línea)',        type: 'string-array' },
+    ],
+  },
+  'proteccion': {
+    label: 'Cómo: Protección',
+    page: 'como-trabajamos',
+    fields: [
+      { key: 'title',      label: 'Título de la página',            type: 'text' },
+      { key: 'paragraphs', label: 'Párrafos (uno por línea)',        type: 'string-array' },
+    ],
+  },
 }
 
 const SECTION_KEYS = Object.keys(SCHEMAS)
