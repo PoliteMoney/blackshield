@@ -24,6 +24,7 @@ const SLUGS = [
   'gobernanza',
   'propiedad-intelectual',
   'fortalecimiento-institucional',
+  'derecho-corporativo',
 ]
 
 // ── Fallback content ──────────────────────────────────────────────────────────
@@ -115,6 +116,16 @@ const FALLBACK: Record<string, { title: string; paragraphs: string[] }> = {
       'La fortaleza de cualquier organización depende, en última instancia, de la calidad de sus líderes, sus equipos y sus procesos internos. Blackshield diseña programas de capacitación y fortalecimiento institucional orientados a mejorar las capacidades estratégicas, legales y operativas de las organizaciones que acompañamos.',
       'Desarrollamos talleres, programas de formación y diagnósticos organizacionales para equipos directivos, áreas jurídicas, unidades de cumplimiento y equipos de comunicación. También apoyamos en procesos de transformación institucional, diseño de estructuras y desarrollo de liderazgo.',
       'Nuestros programas son personalizados y prácticos: partimos del diagnóstico real de cada organización, diseñamos contenidos relevantes y medimos el impacto en términos concretos de capacidad instalada y resultados operativos.',
+    ],
+  },
+  'derecho-corporativo': {
+    title: 'Derecho corporativo y estructura empresarial',
+    paragraphs: [
+      'Diseñamos y coordinamos estructuras corporativas nacionales e internacionales para operar, invertir y expandirse en México con control, claridad y visión estratégica.',
+      'Intervenimos en la creación, reorganización y fortalecimiento de estructuras empresariales orientadas a crecimiento, protección patrimonial, continuidad operativa y coordinación eficiente entre entidades mexicanas y extranjeras.',
+      'Nuestro alcance incluye: constitución y reorganización de sociedades; holdings y estructuras multinivel; estructuras entre empresas mexicanas y extranjeras; gobierno corporativo y órganos de decisión; relaciones entre socios, inversionistas y grupos empresariales; participación accionaria y control corporativo; expansión y operación transnacional; acuerdos corporativos, continuidad y sucesión empresarial; y coordinación estratégica entre entidades operativas, patrimoniales, inmobiliarias y de servicios.',
+      'Nuestro enfoque busca que cada estructura no solo funcione legalmente, sino que permita operar con orden, protección y sostenibilidad a nivel nacional e internacional.',
+      'Una estructura corporativa correcta no solo organiza la operación: protege el control, facilita el crecimiento y reduce riesgos a largo plazo.',
     ],
   },
 }

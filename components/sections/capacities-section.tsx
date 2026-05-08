@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import {
   User, Target, TrendingUp, FileText, Lock, Scale,
-  Users, Megaphone, Shield, Copyright, GraduationCap,
+  Users, Megaphone, Shield, Copyright, GraduationCap, Building2,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -19,20 +19,22 @@ const SLUGS = [
   'gobernanza',
   'propiedad-intelectual',
   'fortalecimiento-institucional',
+  'derecho-corporativo',
 ]
 
 const ICONS = [
-  <User         key={0}  className="w-8 h-8" />,
-  <Target       key={1}  className="w-8 h-8" />,
-  <TrendingUp   key={2}  className="w-8 h-8" />,
-  <FileText     key={3}  className="w-8 h-8" />,
-  <Lock         key={4}  className="w-8 h-8" />,
-  <Scale        key={5}  className="w-8 h-8" />,
-  <Users        key={6}  className="w-8 h-8" />,
-  <Megaphone    key={7}  className="w-8 h-8" />,
-  <Shield       key={8}  className="w-8 h-8" />,
-  <Copyright    key={9}  className="w-8 h-8" />,
+  <User          key={0}  className="w-8 h-8" />,
+  <Target        key={1}  className="w-8 h-8" />,
+  <TrendingUp    key={2}  className="w-8 h-8" />,
+  <FileText      key={3}  className="w-8 h-8" />,
+  <Lock          key={4}  className="w-8 h-8" />,
+  <Scale         key={5}  className="w-8 h-8" />,
+  <Users         key={6}  className="w-8 h-8" />,
+  <Megaphone     key={7}  className="w-8 h-8" />,
+  <Shield        key={8}  className="w-8 h-8" />,
+  <Copyright     key={9}  className="w-8 h-8" />,
   <GraduationCap key={10} className="w-8 h-8" />,
+  <Building2     key={11} className="w-8 h-8" />,
 ]
 
 interface CapacitiesSectionProps {
@@ -75,7 +77,7 @@ function Card({
 export function CapacitiesSection({ dict }: CapacitiesSectionProps) {
   const items = Array.isArray(dict?.items) ? dict.items : []
   const row1 = items.slice(0, 6)
-  const row2 = items.slice(6, 11)
+  const row2 = items.slice(6, 12)
 
   return (
     <section id="capacities" className="bg-[#0D1E28]">
@@ -95,8 +97,8 @@ export function CapacitiesSection({ dict }: CapacitiesSectionProps) {
           ))}
         </div>
 
-        {/* Row 2 — 5 items centered */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 lg:max-w-[83.33%] lg:mx-auto">
+        {/* Row 2 — 6 items */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
           {row2.map((item, i) => (
             <Card key={i + 6} item={item} index={i + 6} lastInRow={i === row2.length - 1} />
           ))}

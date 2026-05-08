@@ -298,6 +298,14 @@ const SCHEMAS: Record<string, { label: string; fields: FieldDef[]; page?: string
       { key: 'paragraphs', label: 'Párrafos (uno por línea)',        type: 'string-array' },
     ],
   },
+  'derecho-corporativo': {
+    label: 'Cap: Derecho corporativo',
+    page: 'capacidades',
+    fields: [
+      { key: 'title',      label: 'Título de la página',            type: 'text' },
+      { key: 'paragraphs', label: 'Párrafos (uno por línea)',        type: 'string-array' },
+    ],
+  },
 }
 
 const SECTION_KEYS = Object.keys(SCHEMAS)
