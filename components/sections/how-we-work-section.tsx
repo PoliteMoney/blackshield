@@ -46,7 +46,7 @@ export function HowWeWorkSection({ workDict, interveneDict }: HowWeWorkSectionPr
       {/* ── Cómo trabajamos ── */}
       <div className="container-custom mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
         <h2
-          className="text-3xl sm:text-4xl font-light text-center text-[var(--color-secondary)] mb-14"
+          className="text-3xl sm:text-4xl xl:text-5xl font-light text-center text-[var(--color-secondary)] mb-14"
           style={{ fontFamily: 'var(--font-heading)' }}
         >
           {workDict?.title}
@@ -84,7 +84,7 @@ export function HowWeWorkSection({ workDict, interveneDict }: HowWeWorkSectionPr
       {/* ── Cuándo intervenimos ── */}
       <div className="container-custom mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20">
         <h2
-          className="text-3xl sm:text-4xl font-light text-center text-[var(--color-secondary)] mb-12"
+          className="text-3xl sm:text-4xl xl:text-5xl font-light text-center text-[var(--color-secondary)] mb-12"
           style={{ fontFamily: 'var(--font-heading)' }}
         >
           {interveneDict?.title}

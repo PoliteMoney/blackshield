@@ -21,12 +21,12 @@ export function Hero({ dict, radarUrl = '/images/radar.png' }: HeroProps) {
       <div className="absolute inset-0 pointer-events-none"
         style={{ backgroundImage: 'radial-gradient(circle at 70% 50%, rgba(0,62,74,0.04) 0%, transparent 60%)' }} />
 
-      <div className="relative container-custom mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
+      <div className="relative container-custom mx-auto px-4 sm:px-6 lg:px-8 py-16 xl:py-20 w-full">
         {/* items-stretch: left column stretches to match the image height */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 items-stretch">
 
           {/* Left — text distributed top→bottom across image height */}
-          <div className="order-2 lg:order-1 flex flex-col justify-between py-2 animate-fade-in lg:pr-12">
+          <div className="order-2 lg:order-1 flex flex-col justify-between py-2 animate-fade-in lg:pr-12 xl:pr-20">
 
             {/* Top group: identity + headline + tagline + description */}
             <div>
@@ -34,7 +34,7 @@ export function Hero({ dict, radarUrl = '/images/radar.png' }: HeroProps) {
                 {dict.badge}
               </p>
               <h1
-                className="text-3xl sm:text-4xl lg:text-[2.6rem] font-light leading-[1.15] text-[var(--color-secondary)] mb-4"
+                className="text-3xl sm:text-4xl lg:text-[2.6rem] xl:text-5xl font-light leading-[1.15] text-[var(--color-secondary)] mb-4"
                 style={{ fontFamily: 'var(--font-heading)' }}
               >
                 {dict.tagline_line1}{' '}
@@ -49,7 +49,7 @@ export function Hero({ dict, radarUrl = '/images/radar.png' }: HeroProps) {
               <p className="text-[11px] font-medium tracking-widest uppercase text-[var(--color-accent)] opacity-80 mb-4">
                 {dict.sub_tagline}
               </p>
-              <p className="text-sm text-[var(--color-foreground)]/60 max-w-lg leading-relaxed">
+              <p className="text-sm xl:text-base text-[var(--color-foreground)]/60 max-w-lg leading-relaxed">
                 {dict.subtitle}
               </p>
             </div>

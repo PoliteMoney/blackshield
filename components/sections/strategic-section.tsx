@@ -83,7 +83,7 @@ export function StrategicSection({ dict }: StrategicSectionProps) {
           {/* Left — text */}
           <div>
             <h2
-              className="text-3xl sm:text-4xl lg:text-[2.6rem] font-light leading-tight text-white mb-5"
+              className="text-3xl sm:text-4xl lg:text-[2.6rem] xl:text-5xl font-light leading-tight text-white mb-5"
               style={{ fontFamily: 'var(--font-heading)' }}
             >
               {dict.title}

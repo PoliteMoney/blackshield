@@ -41,7 +41,7 @@ export function FAQSection({ dict, faqs }: FAQSectionProps) {
           <span className="inline-block px-4 py-1.5 bg-[var(--color-primary)]/20 text-[var(--color-accent)] text-sm font-medium rounded-full mb-4">
             {dict.badge}
           </span>
-          <h2 className="text-3xl lg:text-4xl font-bold text-[var(--color-secondary)] mb-4">{dict.title}</h2>
+          <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-[var(--color-secondary)] mb-4">{dict.title}</h2>
           <p className="text-[var(--color-muted-foreground)] max-w-2xl mx-auto text-lg">{dict.subtitle}</p>
         </div>
 

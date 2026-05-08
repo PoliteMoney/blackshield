@@ -20,7 +20,7 @@ export function AboutSection({ dict, content }: AboutSectionProps) {
       <div className="container-custom mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Visual */}
-          <div className="relative">
+          <div className="relative md:mx-6 lg:mx-0">
             <div className="relative rounded-2xl overflow-hidden">
               <div className="aspect-[4/3] bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-secondary)] flex items-center justify-center relative overflow-hidden">
                 {/* Radar rings decoration */}
@@ -48,12 +48,12 @@ export function AboutSection({ dict, content }: AboutSectionProps) {
                 </div>
               </div>
             </div>
-            {/* Floating cards */}
-            <div className="absolute -right-6 top-8 bg-white rounded-xl shadow-xl p-4 border border-[var(--color-border)]">
+            {/* Floating cards — hidden on mobile to prevent horizontal scroll */}
+            <div className="hidden md:block absolute -right-6 top-8 bg-white rounded-xl shadow-xl p-4 border border-[var(--color-border)]">
               <div className="text-2xl font-bold text-[var(--color-secondary)]">15+</div>
               <div className="text-xs text-[var(--color-muted-foreground)]">{dict.years_label}</div>
             </div>
-            <div className="absolute -left-6 bottom-8 bg-[var(--color-secondary)] rounded-xl shadow-xl p-4">
+            <div className="hidden md:block absolute -left-6 bottom-8 bg-[var(--color-secondary)] rounded-xl shadow-xl p-4">
               <div className="text-2xl font-bold text-[var(--color-primary)]">500+</div>
               <div className="text-xs text-white/60">{dict.clients_label}</div>
             </div>
@@ -64,7 +64,7 @@ export function AboutSection({ dict, content }: AboutSectionProps) {
             <span className="inline-block px-4 py-1.5 bg-[var(--color-primary)]/20 text-[var(--color-accent)] text-sm font-medium rounded-full mb-4">
               {dict.badge}
             </span>
-            <h2 className="text-3xl lg:text-4xl font-bold text-[var(--color-secondary)] mb-4">
+            <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-[var(--color-secondary)] mb-4">
               {content?.title || dict.title}
             </h2>
             <p className="text-[var(--color-muted-foreground)] text-lg leading-relaxed mb-8">

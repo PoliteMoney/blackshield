@@ -58,7 +58,7 @@ function Card({
       href={`/capacidades/${SLUGS[index] ?? SLUGS[0]}`}
       className={cn(
         'flex flex-col items-center text-center px-5 py-10 group cursor-pointer transition-colors hover:bg-[#AD8855]/5',
-        !lastInRow && 'border-r border-[#AD8855]/20',
+        !lastInRow && 'lg:border-r lg:border-[#AD8855]/20',
       )}
     >
       <div className="text-[#AD8855] mb-5 opacity-85 group-hover:opacity-100 transition-opacity">
@@ -84,7 +84,7 @@ export function CapacitiesSection({ dict }: CapacitiesSectionProps) {
       <div className="container-custom mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24">
 
         <h2
-          className="text-3xl sm:text-4xl font-light text-center text-white mb-16"
+          className="text-3xl sm:text-4xl xl:text-5xl font-light text-center text-white mb-16"
           style={{ fontFamily: 'var(--font-heading)' }}
         >
           {dict?.title}

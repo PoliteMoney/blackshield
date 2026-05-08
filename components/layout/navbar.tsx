@@ -66,7 +66,7 @@ export function Navbar({ dict }: NavbarProps) {
           </Link>
 
           {/* Desktop nav links */}
-          <div className="hidden lg:flex items-center gap-7">
+          <div className="hidden lg:flex items-center gap-5 xl:gap-7">
             {navItems.map((item) => (
               <Link
                 key={item.key}
