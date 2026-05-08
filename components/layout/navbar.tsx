@@ -34,7 +34,7 @@ export function Navbar({ dict }: NavbarProps) {
 
   const navItems: NavItem[] = [
     { key: 'about',       label: dict.about       || 'Quiénes Somos', href: '/#about' },
-    { key: 'services',    label: dict.services    || 'Servicios',     href: '/#capacities' },
+    { key: 'services',    label: dict.services    || 'Capacidades',   href: '/#capacities' },
     { key: 'sectors',     label: dict.sectors     || 'Sectores',      href: '/#sectors' },
     { key: 'methodology', label: dict.methodology || 'Metodología',   href: '/#methodology' },
     ...(config.blog_enabled === 'true' ? [{ key: 'blog', label: dict.blog || 'Blog', href: '/blog' }] : []),
