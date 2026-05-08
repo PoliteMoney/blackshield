@@ -1,10 +1,25 @@
 'use client'
 
+import Link from 'next/link'
 import {
   User, Target, TrendingUp, FileText, Lock, Scale,
   Users, Megaphone, Shield, Copyright, GraduationCap,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+
+const SLUGS = [
+  'representacion-estrategica',
+  'inteligencia-estrategica',
+  'entrada-y-operacion',
+  'estructuracion-corporativa',
+  'proteccion-patrimonial',
+  'asuntos-legales',
+  'representacion-de-victimas',
+  'gestion-de-crisis',
+  'gobernanza',
+  'propiedad-intelectual',
+  'fortalecimiento-institucional',
+]
 
 const ICONS = [
   <User         key={0}  className="w-8 h-8" />,
@@ -37,22 +52,23 @@ function Card({
   lastInRow: boolean
 }) {
   return (
-    <div
+    <Link
+      href={`/capacidades/${SLUGS[index] ?? SLUGS[0]}`}
       className={cn(
-        'flex flex-col items-center text-center px-5 py-10',
+        'flex flex-col items-center text-center px-5 py-10 group cursor-pointer transition-colors hover:bg-[#AD8855]/5',
         !lastInRow && 'border-r border-[#AD8855]/20',
       )}
     >
-      <div className="text-[#AD8855] mb-5 opacity-85">
+      <div className="text-[#AD8855] mb-5 opacity-85 group-hover:opacity-100 transition-opacity">
         {ICONS[index] ?? ICONS[0]}
       </div>
-      <p className="text-[11px] font-semibold text-white leading-snug mb-3 uppercase tracking-wide">
+      <p className="text-[11px] font-semibold text-white leading-snug mb-3 uppercase tracking-wide group-hover:text-[#AD8855] transition-colors">
         {item.title}
       </p>
       <p className="text-[11px] text-white/50 leading-relaxed">
         {item.desc}
       </p>
-    </div>
+    </Link>
   )
 }
 

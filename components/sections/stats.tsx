@@ -8,6 +8,7 @@ interface StatsProps {
     clients: string;       clients_value: string;       clients_suffix: string
     countries: string;     countries_value: string;     countries_suffix: string
     satisfaction: string;  satisfaction_value: string;  satisfaction_suffix: string
+    visible?: boolean
   }
 }
 

@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils'
 
 // ── Field schema ──────────────────────────────────────────────────────────────
 
-type FieldType = 'text' | 'textarea' | 'string-array' | 'step-array' | 'work-array' | 'image-url'
+type FieldType = 'text' | 'textarea' | 'string-array' | 'step-array' | 'work-array' | 'image-url' | 'toggle'
 
 interface FieldDef {
   key: string
@@ -17,7 +17,7 @@ interface FieldDef {
   placeholder?: string
 }
 
-const SCHEMAS: Record<string, { label: string; fields: FieldDef[] }> = {
+const SCHEMAS: Record<string, { label: string; fields: FieldDef[]; page?: string }> = {
   hero: {
     label: 'Hero',
     fields: [
@@ -57,6 +57,7 @@ const SCHEMAS: Record<string, { label: string; fields: FieldDef[] }> = {
   stats: {
     label: 'Estadísticas',
     fields: [
+      { key: 'visible',            label: 'Mostrar sección',           type: 'toggle' },
       { key: 'years_value',        label: 'Años — número',             type: 'text', placeholder: '15' },
       { key: 'years_suffix',       label: 'Años — sufijo',             type: 'text', placeholder: '+' },
       { key: 'years',              label: 'Años — etiqueta',           type: 'text' },
@@ -207,6 +208,96 @@ const SCHEMAS: Record<string, { label: string; fields: FieldDef[] }> = {
       { key: 'decline', label: 'Botón rechazar',         type: 'text' },
     ],
   },
+
+  // ── Capacity detail pages ──────────────────────────────────────────────────
+  'representacion-estrategica': {
+    label: 'Cap: Representación estratégica',
+    page: 'capacidades',
+    fields: [
+      { key: 'title',      label: 'Título de la página',            type: 'text' },
+      { key: 'paragraphs', label: 'Párrafos (uno por línea)',        type: 'string-array' },
+    ],
+  },
+  'inteligencia-estrategica': {
+    label: 'Cap: Inteligencia estratégica',
+    page: 'capacidades',
+    fields: [
+      { key: 'title',      label: 'Título de la página',            type: 'text' },
+      { key: 'paragraphs', label: 'Párrafos (uno por línea)',        type: 'string-array' },
+    ],
+  },
+  'entrada-y-operacion': {
+    label: 'Cap: Entrada y operación',
+    page: 'capacidades',
+    fields: [
+      { key: 'title',      label: 'Título de la página',            type: 'text' },
+      { key: 'paragraphs', label: 'Párrafos (uno por línea)',        type: 'string-array' },
+    ],
+  },
+  'estructuracion-corporativa': {
+    label: 'Cap: Estructuración corporativa',
+    page: 'capacidades',
+    fields: [
+      { key: 'title',      label: 'Título de la página',            type: 'text' },
+      { key: 'paragraphs', label: 'Párrafos (uno por línea)',        type: 'string-array' },
+    ],
+  },
+  'proteccion-patrimonial': {
+    label: 'Cap: Protección patrimonial',
+    page: 'capacidades',
+    fields: [
+      { key: 'title',      label: 'Título de la página',            type: 'text' },
+      { key: 'paragraphs', label: 'Párrafos (uno por línea)',        type: 'string-array' },
+    ],
+  },
+  'asuntos-legales': {
+    label: 'Cap: Asuntos legales',
+    page: 'capacidades',
+    fields: [
+      { key: 'title',      label: 'Título de la página',            type: 'text' },
+      { key: 'paragraphs', label: 'Párrafos (uno por línea)',        type: 'string-array' },
+    ],
+  },
+  'representacion-de-victimas': {
+    label: 'Cap: Representación de víctimas',
+    page: 'capacidades',
+    fields: [
+      { key: 'title',      label: 'Título de la página',            type: 'text' },
+      { key: 'paragraphs', label: 'Párrafos (uno por línea)',        type: 'string-array' },
+    ],
+  },
+  'gestion-de-crisis': {
+    label: 'Cap: Gestión de crisis',
+    page: 'capacidades',
+    fields: [
+      { key: 'title',      label: 'Título de la página',            type: 'text' },
+      { key: 'paragraphs', label: 'Párrafos (uno por línea)',        type: 'string-array' },
+    ],
+  },
+  'gobernanza': {
+    label: 'Cap: Gobernanza y cumplimiento',
+    page: 'capacidades',
+    fields: [
+      { key: 'title',      label: 'Título de la página',            type: 'text' },
+      { key: 'paragraphs', label: 'Párrafos (uno por línea)',        type: 'string-array' },
+    ],
+  },
+  'propiedad-intelectual': {
+    label: 'Cap: Propiedad intelectual',
+    page: 'capacidades',
+    fields: [
+      { key: 'title',      label: 'Título de la página',            type: 'text' },
+      { key: 'paragraphs', label: 'Párrafos (uno por línea)',        type: 'string-array' },
+    ],
+  },
+  'fortalecimiento-institucional': {
+    label: 'Cap: Fortalecimiento institucional',
+    page: 'capacidades',
+    fields: [
+      { key: 'title',      label: 'Título de la página',            type: 'text' },
+      { key: 'paragraphs', label: 'Párrafos (uno por línea)',        type: 'string-array' },
+    ],
+  },
 }
 
 const SECTION_KEYS = Object.keys(SCHEMAS)
@@ -258,8 +349,9 @@ export function ContentEditor({ content: initial }: { content: any[] }) {
     const supabase = createClient()
     try {
       const extra = data[activeLocale]?.[activeSection] ?? {}
+      const page = SCHEMAS[activeSection]?.page ?? 'home'
       const { error } = await supabase.from('page_content').upsert(
-        { page: 'home', section: activeSection, locale: activeLocale, is_active: true, extra },
+        { page, section: activeSection, locale: activeLocale, is_active: true, extra },
         { onConflict: 'page,section,locale' }
       )
       if (error) throw error
@@ -275,20 +367,34 @@ export function ContentEditor({ content: initial }: { content: any[] }) {
     <div className="flex gap-6">
       {/* Sidebar — sections */}
       <div className="w-52 flex-shrink-0 space-y-0.5">
-        {SECTION_KEYS.map(key => (
-          <button
-            key={key}
-            onClick={() => setActiveSection(key)}
-            className={cn(
-              'w-full px-4 py-2.5 rounded-xl text-sm font-medium transition-colors text-left',
-              activeSection === key
-                ? 'bg-[var(--color-secondary)] text-white'
-                : 'text-gray-600 hover:bg-gray-100'
-            )}
-          >
-            {SCHEMAS[key].label}
-          </button>
-        ))}
+        {SECTION_KEYS.map((key, idx) => {
+          const isCapPage = SCHEMAS[key].page === 'capacidades'
+          const prevIsCapPage = idx > 0 && SCHEMAS[SECTION_KEYS[idx - 1]].page === 'capacidades'
+          const showDivider = isCapPage && !prevIsCapPage
+          return (
+            <div key={key}>
+              {showDivider && (
+                <div className="px-2 pt-4 pb-1">
+                  <div className="h-px bg-gray-200 mb-2" />
+                  <p className="text-[10px] font-semibold tracking-widest uppercase text-gray-400 px-2">
+                    Páginas de Capacidades
+                  </p>
+                </div>
+              )}
+              <button
+                onClick={() => setActiveSection(key)}
+                className={cn(
+                  'w-full px-4 py-2.5 rounded-xl text-sm font-medium transition-colors text-left',
+                  activeSection === key
+                    ? 'bg-[var(--color-secondary)] text-white'
+                    : 'text-gray-600 hover:bg-gray-100'
+                )}
+              >
+                {SCHEMAS[key].label}
+              </button>
+            </div>
+          )
+        })}
       </div>
 
       {/* Editor panel */}
@@ -361,6 +467,30 @@ function FieldInput({
   value: any
   onChange: (val: any) => void
 }) {
+  if (def.type === 'toggle') {
+    const checked = value === true || value === 'true' || (value === undefined || value === '')
+    return (
+      <div className="flex items-center justify-between py-1">
+        <label className="text-xs font-medium text-gray-500">{def.label}</label>
+        <button
+          type="button"
+          onClick={() => onChange(!checked)}
+          className={cn(
+            'relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none',
+            checked ? 'bg-[var(--color-accent)]' : 'bg-gray-300'
+          )}
+        >
+          <span
+            className={cn(
+              'inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform',
+              checked ? 'translate-x-6' : 'translate-x-1'
+            )}
+          />
+        </button>
+      </div>
+    )
+  }
+
   if (def.type === 'string-array') {
     const text = Array.isArray(value) ? value.join('\n') : (value ?? '')
     return (

@@ -91,11 +91,11 @@ export default async function HomePage() {
         <Hero dict={c.hero} contactDict={c.contact} radarUrl={config.radar_url} />
         <StrategicSection dict={c.strategic} />
         <HowWeWorkSection workDict={c.how_we_work} interveneDict={c.when_we_intervene} />
-        <Stats dict={c.stats} />
+        {c.stats.visible !== false && <Stats dict={c.stats} />}
         <AboutSection dict={c.about} />
         <CapacitiesSection dict={c.capacities} />
-        <SectorsSection dict={c.sectors} sectors={sectors} />
         <MethodologySection dict={c.methodology} />
+        <SectorsSection dict={c.sectors} sectors={sectors} />
         <CTASection dict={c.cta} />
         <FAQSection dict={c.faq} faqs={faqs} />
         <ContactSection dict={c.contact} />
