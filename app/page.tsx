@@ -45,10 +45,16 @@ async function getPageData(locale: Locale) {
   }
 }
 
-// Merge DB content over JSON fallback — DB values always win
+// Merge DB content over JSON fallback — DB values win only when non-empty
 function merge<T extends object>(base: T, override?: Record<string, any>): T {
-  if (!override || Object.keys(override).length === 0) return base
-  return { ...base, ...override }
+  if (!override) return base
+  const result = { ...base } as Record<string, any>
+  for (const [key, val] of Object.entries(override)) {
+    if (val === null || val === undefined) continue
+    if (typeof val === 'string' && val.trim() === '') continue
+    result[key] = val
+  }
+  return result as T
 }
 
 export default async function HomePage() {

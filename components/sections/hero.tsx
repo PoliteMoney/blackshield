@@ -26,7 +26,7 @@ export function Hero({ dict, radarUrl = '/images/radar.png' }: HeroProps) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 items-stretch">
 
           {/* Left — text distributed top→bottom across image height */}
-          <div className="order-2 lg:order-1 flex flex-col justify-between py-2 animate-fade-in lg:pr-12 xl:pr-20">
+          <div className="order-2 lg:order-1 flex flex-col justify-between py-2 lg:pr-12 xl:pr-20">
 
             {/* Top group: identity + headline + tagline + description */}
             <div>

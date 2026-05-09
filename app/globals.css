@@ -95,6 +95,15 @@
   }
 }
 
+/* Ensure animated elements are never stuck invisible */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in, .animate-slide-in {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 /* Smooth scrolling */
 html { scroll-behavior: smooth; }
 
