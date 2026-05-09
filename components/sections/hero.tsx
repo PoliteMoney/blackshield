@@ -6,7 +6,7 @@ import { ArrowRight, ChevronDown } from 'lucide-react'
 
 interface HeroProps {
   dict: {
-    badge: string; title: string; tagline_line1: string; tagline_line2: string
+    badge: string; title: string; tagline_line1: string
     sub_tagline: string; subtitle: string; cta_primary: string; cta_secondary: string; scroll: string
     trust_1: string; trust_2: string; trust_3: string
   }
