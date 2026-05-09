@@ -24,8 +24,6 @@ const SCHEMAS: Record<string, { label: string; fields: FieldDef[]; page?: string
       { key: 'badge',           label: 'Badge / etiqueta superior',   type: 'text' },
       { key: 'tagline_line1',        label: 'Título – línea 1',                    type: 'text' },
       { key: 'show_tagline_line1',  label: 'Mostrar línea 1',                     type: 'toggle' },
-      { key: 'tagline_line2',       label: 'Título – línea 2 (énfasis dorado)',   type: 'text' },
-      { key: 'show_tagline_line2',  label: 'Mostrar línea 2',                     type: 'toggle' },
       { key: 'sub_tagline',     label: 'Sub-tagline',                 type: 'text' },
       { key: 'subtitle',        label: 'Descripción',                 type: 'textarea' },
       { key: 'cta_primary',     label: 'Botón principal',             type: 'text' },
