@@ -31,7 +31,7 @@ export function AdminSidebar({ role }: { role: string }) {
       {/* Logo */}
       <div className="p-6 border-b border-white/10">
         <Link href="/admin">
-          <Image src="/images/logo_blanco.png" alt="Blackshield Admin" width={140} height={36}
+          <Image src="/images/isotipo_blanco.png" alt="Blackshield Admin" width={36} height={36}
             className="h-9 w-auto object-contain" />
         </Link>
         <p className="text-white/30 text-xs mt-2">Panel de Administración</p>
