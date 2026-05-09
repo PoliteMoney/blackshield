@@ -15,6 +15,9 @@ interface HeroProps {
 }
 
 export function Hero({ dict, radarUrl = '/images/radar.png' }: HeroProps) {
+  const showLine1 = (dict as any).show_tagline_line1 !== false
+  const showLine2 = (dict as any).show_tagline_line2 !== false
+
   return (
     <section className="relative min-h-screen bg-[var(--color-background)] overflow-hidden flex items-center">
       {/* Subtle background texture */}
@@ -37,10 +40,13 @@ export function Hero({ dict, radarUrl = '/images/radar.png' }: HeroProps) {
                 className="text-3xl sm:text-4xl lg:text-[2.6rem] xl:text-5xl font-light leading-[1.15] text-[var(--color-secondary)] mb-4"
                 style={{ fontFamily: 'var(--font-heading)' }}
               >
-                {dict.tagline_line1}{' '}
-                <em className="not-italic" style={{ color: 'var(--color-primary)' }}>
-                  {dict.tagline_line2}
-                </em>
+                {showLine1 && dict.tagline_line1}
+                {showLine1 && showLine2 && ' '}
+                {showLine2 && (
+                  <em className="not-italic" style={{ color: 'var(--color-primary)' }}>
+                    {dict.tagline_line2}
+                  </em>
+                )}
               </h1>
               <div className="flex items-center gap-3 mb-4">
                 <div className="h-px w-8 bg-[var(--color-primary)]" />
