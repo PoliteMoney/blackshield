@@ -104,9 +104,9 @@ export function ContactSection({ dict }: ContactSectionProps) {
                 href={`https://wa.me/${waNumber}?text=${encodeURIComponent(waMessage || '')}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 p-5 bg-green-600 text-white rounded-2xl hover:bg-green-700 transition-colors"
+                className="flex items-center gap-3 p-5 bg-[#003E4A] text-white rounded-2xl hover:bg-[#004d5c] transition-colors"
               >
-                <MessageCircle className="w-6 h-6" />
+                <MessageCircle className="w-6 h-6 text-green-400" />
                 <div>
                   <p className="font-semibold">{dict.whatsapp}</p>
                   <p className="text-sm text-white/70">{dict.whatsapp_instant}</p>
