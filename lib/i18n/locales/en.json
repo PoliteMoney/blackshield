@@ -195,6 +195,11 @@
         "label": "PROTECTION",
         "description": "We monitor, anticipate risks and maintain control of the situation.",
         "tagline": "We don't react late."
+      },
+      {
+        "label": "RESULTS & FOLLOW-UP",
+        "description": "We validate results, adjust the strategy and ensure objectives are maintained in the long term.",
+        "tagline": "The work doesn't end with delivery."
       }
     ]
   },

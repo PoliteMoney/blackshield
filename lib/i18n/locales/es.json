@@ -195,6 +195,11 @@
         "label": "PROTECCIÓN",
         "description": "Damos seguimiento, anticipamos riesgos y mantenemos control del escenario.",
         "tagline": "No reaccionamos tarde."
+      },
+      {
+        "label": "RESULTADOS Y SEGUIMIENTO",
+        "description": "Validamos resultados, ajustamos la estrategia y garantizamos que los objetivos se mantengan a largo plazo.",
+        "tagline": "El trabajo no termina con la entrega."
       }
     ]
   },

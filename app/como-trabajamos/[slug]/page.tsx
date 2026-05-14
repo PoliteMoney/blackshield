@@ -14,6 +14,7 @@ const SLUGS = [
   'planeacion-e-inteligencia',
   'ejecucion',
   'proteccion',
+  'resultados',
 ]
 
 const FALLBACK: Record<string, { title: string; paragraphs: string[] }> = {
@@ -47,6 +48,16 @@ const FALLBACK: Record<string, { title: string; paragraphs: string[] }> = {
       'Monitoreamos cambios regulatorios, movimientos de actores relevantes y señales tempranas de riesgo para actuar antes de que los problemas escalen.',
       'La protección no es defensiva: es anticipación, vigilancia y capacidad de respuesta en tiempo real.',
       'El objetivo es que nuestros clientes operen con certeza, sabiendo que hay un equipo estratégico monitoreando y actuando cuando el contexto lo requiere.',
+    ],
+  },
+  'resultados': {
+    title: 'Resultados y seguimiento',
+    paragraphs: [
+      'El trabajo no termina con la entrega.',
+      'Validamos que los resultados obtenidos sean consistentes con los objetivos definidos al inicio. Medimos, comparamos y ajustamos cuando el contexto lo exige.',
+      'Mantenemos una relación activa con el cliente para garantizar que las estrategias implementadas sigan siendo eficaces en el tiempo, incluso cuando el entorno cambia.',
+      'El seguimiento no es solo administrativo: es estratégico. Nos aseguramos de que cada acción ejecutada genere el impacto esperado y que los logros se sostengan.',
+      'Nuestro compromiso va más allá del proyecto: es con el resultado real, verificable y duradero.',
     ],
   },
 }
