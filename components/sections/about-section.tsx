@@ -20,7 +20,7 @@ export function AboutSection({ dict, content }: AboutSectionProps) {
       <div className="container-custom mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Visual */}
-          <div className="relative md:mx-6 lg:mx-0">
+          <div className="relative">
             <div className="relative rounded-2xl overflow-hidden">
               <div className="aspect-[4/3] bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-secondary)] flex items-center justify-center relative overflow-hidden">
                 {/* Radar rings decoration */}
@@ -34,28 +34,37 @@ export function AboutSection({ dict, content }: AboutSectionProps) {
                   </svg>
                 </div>
                 <div className="text-center p-8 relative z-10">
-                  <div className="w-24 h-24 rounded-full bg-[var(--color-primary)]/20 border border-[var(--color-primary)]/30 flex items-center justify-center mx-auto mb-6">
-                    <svg viewBox="0 0 100 100" className="w-16 h-16 text-[var(--color-primary)]" fill="currentColor">
-                      <path d="M50 5L5 25v25c0 27.6 19.4 53.4 45 59 25.6-5.6 45-31.4 45-59V25L50 5z" fillOpacity="0.3" />
-                      <path d="M50 15L15 31v19c0 21.5 15 41.5 35 46 20-4.5 35-24.5 35-46V31L50 15z" fillOpacity="0.5" />
-                      <path d="M45 55l-10-10 3.5-3.5L45 48l17-17 3.5 3.5L45 55z" />
+                  <div className="w-28 h-28 rounded-full bg-[var(--color-primary)]/20 border border-[var(--color-primary)]/30 flex items-center justify-center mx-auto mb-6">
+                    <svg viewBox="0 0 100 100" className="w-20 h-20 text-[var(--color-primary)]">
+                      {/* Outer shield */}
+                      <path
+                        d="M50 4 L7 19 L7 51 C7 75 26 93 50 99 C74 93 93 75 93 51 L93 19 Z"
+                        fill="currentColor" fillOpacity="0.12"
+                        stroke="currentColor" strokeOpacity="0.75" strokeWidth="1.5"
+                      />
+                      {/* Inner shield */}
+                      <path
+                        d="M50 14 L17 27 L17 51 C17 69 32 85 50 90 C68 85 83 69 83 51 L83 27 Z"
+                        fill="currentColor" fillOpacity="0.22"
+                        stroke="currentColor" strokeOpacity="0.45" strokeWidth="0.8"
+                      />
+                      {/* Checkmark */}
+                      <path
+                        d="M32 52 L44 64 L68 40"
+                        fill="none"
+                        stroke="currentColor" strokeWidth="4"
+                        strokeLinecap="round" strokeLinejoin="round"
+                      />
                     </svg>
                   </div>
-                  <p className="text-[var(--color-primary)] text-xs font-semibold tracking-[0.2em] uppercase mb-1">
+                  <p className="text-[var(--color-primary)] text-xs font-semibold tracking-[0.2em] uppercase mb-2">
                     Blackshield Global Consulting
                   </p>
-                  <p className="text-white/40 text-xs tracking-widest uppercase">Est. 2009</p>
+                  <p className="text-white/50 text-[9px] font-medium tracking-[0.16em] uppercase leading-relaxed">
+                    Legal Strategy.<br />Powered by Intelligence.
+                  </p>
                 </div>
               </div>
-            </div>
-            {/* Floating cards — hidden on mobile to prevent horizontal scroll */}
-            <div className="hidden md:block absolute -right-6 top-8 bg-white rounded-xl shadow-xl p-4 border border-[var(--color-border)]">
-              <div className="text-2xl font-bold text-[var(--color-secondary)]">15+</div>
-              <div className="text-xs text-[var(--color-muted-foreground)]">{dict.years_label}</div>
-            </div>
-            <div className="hidden md:block absolute -left-6 bottom-8 bg-[var(--color-secondary)] rounded-xl shadow-xl p-4">
-              <div className="text-2xl font-bold text-[var(--color-primary)]">500+</div>
-              <div className="text-xs text-white/60">{dict.clients_label}</div>
             </div>
           </div>
 
