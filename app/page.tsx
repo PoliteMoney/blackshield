@@ -16,12 +16,14 @@ import { ContactSection } from '@/components/sections/contact-section'
 import { CTASection } from '@/components/sections/cta-section'
 import { StrategicSection } from '@/components/sections/strategic-section'
 import { HowWeWorkSection } from '@/components/sections/how-we-work-section'
+import { InsightsSection } from '@/components/sections/insights-section'
+import { ScrollReveal } from '@/components/ui/scroll-reveal'
 import { getSiteConfig } from '@/lib/site-config'
 
 async function getPageData(locale: Locale) {
   const supabase = createClient()
 
-  const [sectorsRes, faqsRes] = await Promise.all([
+  const [sectorsRes, faqsRes, postsRes] = await Promise.all([
     supabase.from('sectors').select(`
       id, slug, icon,
       translations:sectors_translations(title, description, locale)
@@ -30,6 +32,10 @@ async function getPageData(locale: Locale) {
       id,
       translations:faqs_translations(question, answer, locale)
     `).eq('is_active', true).order('order_index'),
+    supabase.from('blog_posts').select(`
+      id, slug, image_url, category, published_at, source_platform, source_url,
+      translations:blog_posts_translations(title, excerpt, locale), post_reactions(count)
+    `).eq('status', 'published').order('published_at', { ascending: false }).limit(8),
   ])
 
   function filterByLocale(items: any[]) {
@@ -39,9 +45,25 @@ async function getPageData(locale: Locale) {
     }))
   }
 
+  const insights = filterByLocale(postsRes.data || [])
+    .map((post: any) => ({
+      id: post.id,
+      slug: post.slug,
+      image_url: post.image_url,
+      category: post.category,
+      published_at: post.published_at,
+      source_platform: post.source_platform,
+      source_url: post.source_url,
+      title: post.translations[0]?.title || '',
+      excerpt: post.translations[0]?.excerpt || '',
+      reactionCount: post.post_reactions?.[0]?.count ?? 0,
+    }))
+    .filter((post: any) => post.title)
+
   return {
     sectors: filterByLocale(sectorsRes.data || []),
     faqs: filterByLocale(faqsRes.data || []),
+    insights,
   }
 }
 
@@ -63,7 +85,7 @@ export default async function HomePage() {
   const headersList = headers()
   const locale: Locale = cookieLocale || getLocaleFromHeader(headersList.get('accept-language'))
 
-  const [dict, { sectors, faqs }, config, db] = await Promise.all([
+  const [dict, { sectors, faqs, insights }, config, db] = await Promise.all([
     getDictionary(locale),
     getPageData(locale),
     getSiteConfig(),
@@ -87,6 +109,7 @@ export default async function HomePage() {
     contact:     merge(dict.contact,     db.contact),
     footer:      merge(dict.footer,      db.footer),
     cookies:     merge(dict.cookies,     db.cookies),
+    insights:    merge(dict.blog,        db.insights),
   }
 
   return (
@@ -94,17 +117,22 @@ export default async function HomePage() {
       <Navbar dict={c.nav} />
 
       <main>
-        <Hero dict={c.hero} contactDict={c.contact} radarUrl={config.radar_url} />
-        <StrategicSection dict={c.strategic} />
-        <HowWeWorkSection workDict={c.how_we_work} interveneDict={c.when_we_intervene} />
-        {(c.stats as any).visible !== false && <Stats dict={c.stats} />}
-        <AboutSection dict={c.about} />
-        <CapacitiesSection dict={c.capacities} />
-        <MethodologySection dict={c.methodology} />
-        <SectorsSection dict={c.sectors} sectors={sectors} />
-        <CTASection dict={c.cta} />
-        <FAQSection dict={c.faq} faqs={faqs} />
-        <ContactSection dict={c.contact} />
+        <Hero dict={c.hero} contactDict={c.contact} />
+        <ScrollReveal><StrategicSection dict={c.strategic} /></ScrollReveal>
+        <ScrollReveal><HowWeWorkSection workDict={c.how_we_work} interveneDict={c.when_we_intervene} /></ScrollReveal>
+        {(c.stats as any).visible !== false && (
+          <ScrollReveal><Stats dict={c.stats} /></ScrollReveal>
+        )}
+        <ScrollReveal><AboutSection dict={c.about} /></ScrollReveal>
+        <ScrollReveal><CapacitiesSection dict={c.capacities} /></ScrollReveal>
+        <ScrollReveal><MethodologySection dict={c.methodology} /></ScrollReveal>
+        <ScrollReveal><SectorsSection dict={c.sectors} sectors={sectors} /></ScrollReveal>
+        {config.blog_enabled === 'true' && (
+          <ScrollReveal><InsightsSection dict={c.insights} posts={insights} locale={locale} /></ScrollReveal>
+        )}
+        <ScrollReveal><CTASection dict={c.cta} /></ScrollReveal>
+        <ScrollReveal><FAQSection dict={c.faq} faqs={faqs} /></ScrollReveal>
+        <ScrollReveal><ContactSection dict={c.contact} /></ScrollReveal>
       </main>
 
       <Footer dict={c.footer} navDict={c.nav} capacitiesDict={c.capacities} />

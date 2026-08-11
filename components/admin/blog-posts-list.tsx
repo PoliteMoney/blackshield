@@ -3,9 +3,10 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
-import { Edit2, Trash2, Eye, EyeOff } from 'lucide-react'
+import { Edit2, Trash2, Eye, EyeOff, Heart } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { formatDate } from '@/lib/utils'
+import { SourceBadge } from '@/components/blog/source-badge'
 import toast from 'react-hot-toast'
 
 export function BlogPostsList({ posts: initial }: { posts: any[] }) {
@@ -33,22 +34,30 @@ export function BlogPostsList({ posts: initial }: { posts: any[] }) {
       <table className="w-full">
         <thead>
           <tr className="border-b border-gray-100">
-            {['Título', 'Categoría', 'Estado', 'Fecha', 'Acciones'].map(h => (
+            {['Título', 'Origen', 'Categoría', 'Estado', 'Reacciones', 'Fecha', 'Acciones'].map(h => (
               <th key={h} className="text-left px-4 py-3 text-xs font-semibold text-gray-500 uppercase">{h}</th>
             ))}
           </tr>
         </thead>
         <tbody>
           {posts.length === 0 && (
-            <tr><td colSpan={5} className="text-center py-12 text-gray-400">No hay artículos</td></tr>
+            <tr><td colSpan={7} className="text-center py-12 text-gray-400">No hay artículos</td></tr>
           )}
           {posts.map(post => {
             const t = (post.translations || []).find((tr: any) => tr.locale === 'es') || post.translations?.[0]
+            const reactionCount = post.post_reactions?.[0]?.count ?? 0
             return (
               <tr key={post.id} className="border-b border-gray-50 hover:bg-gray-50">
                 <td className="px-4 py-4">
                   <p className="font-medium text-gray-900 text-sm">{t?.title || post.slug}</p>
                   <p className="text-xs text-gray-400">/{post.slug}</p>
+                </td>
+                <td className="px-4 py-4">
+                  {post.source_platform && post.source_platform !== 'native' ? (
+                    <SourceBadge platform={post.source_platform} />
+                  ) : (
+                    <span className="text-xs text-gray-400">Propio</span>
+                  )}
                 </td>
                 <td className="px-4 py-4 text-sm text-gray-600">{post.category || '—'}</td>
                 <td className="px-4 py-4">
@@ -56,6 +65,11 @@ export function BlogPostsList({ posts: initial }: { posts: any[] }) {
                     post.status === 'published' ? 'bg-green-100 text-green-700' :
                     post.status === 'draft' ? 'bg-yellow-100 text-yellow-700' : 'bg-gray-100 text-gray-600')}>
                     {post.status === 'published' ? 'Publicado' : post.status === 'draft' ? 'Borrador' : post.status}
+                  </span>
+                </td>
+                <td className="px-4 py-4 text-sm text-gray-600">
+                  <span className="inline-flex items-center gap-1.5">
+                    <Heart className="w-3.5 h-3.5 text-gray-400" /> {reactionCount}
                   </span>
                 </td>
                 <td className="px-4 py-4 text-sm text-gray-500">

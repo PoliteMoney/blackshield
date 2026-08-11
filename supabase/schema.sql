@@ -103,6 +103,9 @@ CREATE TABLE IF NOT EXISTS blog_posts (
   category TEXT,
   tags TEXT[],
   status TEXT DEFAULT 'draft', -- draft, published, archived
+  source_platform TEXT NOT NULL DEFAULT 'native', -- native, facebook, linkedin, instagram, x
+  source_url TEXT, -- original post URL when reposted from a social network
+  media JSONB NOT NULL DEFAULT '[]'::jsonb, -- gallery: [{ url, type: 'image'|'video' }]
   published_at TIMESTAMPTZ,
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
@@ -118,6 +121,16 @@ CREATE TABLE IF NOT EXISTS blog_posts_translations (
   meta_title TEXT,
   meta_description TEXT,
   UNIQUE(post_id, locale)
+);
+
+-- Anonymous "like" reactions (Instagram-style single heart reaction)
+CREATE TABLE IF NOT EXISTS post_reactions (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  post_id UUID REFERENCES blog_posts(id) ON DELETE CASCADE,
+  visitor_id TEXT NOT NULL,
+  reaction TEXT NOT NULL DEFAULT 'like',
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  UNIQUE(post_id, visitor_id)
 );
 
 -- ============================================================
@@ -304,6 +317,12 @@ CREATE POLICY "Public read blog_translations" ON blog_posts_translations FOR SEL
 CREATE POLICY "Admin all blog_translations" ON blog_posts_translations FOR ALL
   USING (EXISTS (SELECT 1 FROM admin_profiles WHERE id = auth.uid() AND is_active = true));
 
+-- post_reactions: public read; writes only via toggle_post_reaction() below
+ALTER TABLE post_reactions ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Public read post_reactions" ON post_reactions FOR SELECT USING (true);
+CREATE POLICY "Admin all post_reactions" ON post_reactions FOR ALL
+  USING (EXISTS (SELECT 1 FROM admin_profiles WHERE id = auth.uid() AND is_active = true));
+
 -- faqs
 ALTER TABLE faqs ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Public read faqs" ON faqs FOR SELECT USING (is_active = true);
@@ -352,6 +371,24 @@ CREATE POLICY "Admin manage profiles" ON admin_profiles FOR ALL
   USING (EXISTS (SELECT 1 FROM admin_profiles ap WHERE ap.id = auth.uid() AND ap.role = 'admin' AND ap.is_active = true));
 
 -- ============================================================
+-- STORAGE
+-- ============================================================
+
+-- Public bucket for blog post images/video (25MB per file)
+INSERT INTO storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+VALUES (
+  'blog-media', 'blog-media', true, 26214400,
+  ARRAY['image/png','image/jpeg','image/webp','image/gif','video/mp4','video/webm','video/quicktime']
+)
+ON CONFLICT (id) DO NOTHING;
+
+-- Only admins can upload/delete inside blog-media; reads are public via the bucket's public flag.
+CREATE POLICY "Admin upload blog-media" ON storage.objects FOR INSERT
+  WITH CHECK (bucket_id = 'blog-media' AND EXISTS (SELECT 1 FROM admin_profiles WHERE id = auth.uid() AND is_active = true));
+CREATE POLICY "Admin delete blog-media" ON storage.objects FOR DELETE
+  USING (bucket_id = 'blog-media' AND EXISTS (SELECT 1 FROM admin_profiles WHERE id = auth.uid() AND is_active = true));
+
+-- ============================================================
 -- SEED DEFAULT DATA
 -- ============================================================
 
@@ -382,7 +419,8 @@ INSERT INTO site_config (key, value, type, label, category) VALUES
   ('privacy_en', '', 'text', 'Privacy policy (EN)', 'legal'),
   ('cookie_policy_enabled', 'true', 'boolean', 'Banner de cookies', 'legal'),
   ('social_linkedin', '', 'text', 'LinkedIn URL', 'social'),
-  ('social_twitter', '', 'text', 'Twitter/X URL', 'social'),
+  ('social_x', '', 'text', 'X (Twitter) URL', 'social'),
+  ('social_instagram', '', 'text', 'Instagram URL', 'social'),
   ('social_facebook', '', 'text', 'Facebook URL', 'social'),
   ('address', '', 'text', 'Dirección', 'contact'),
   ('blog_enabled', 'true', 'boolean', 'Blog habilitado', 'features'),
@@ -536,6 +574,31 @@ BEGIN
   WHERE a.date = p_date AND a.status NOT IN ('cancelled');
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- Toggle an anonymous visitor's "like" reaction on a blog post.
+-- SECURITY DEFINER + no public INSERT/DELETE policy on post_reactions means an
+-- anon visitor can only ever touch their own (post_id, visitor_id) row via this function.
+CREATE OR REPLACE FUNCTION toggle_post_reaction(p_post_id UUID, p_visitor_id TEXT)
+RETURNS BOOLEAN
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
+DECLARE liked BOOLEAN;
+BEGIN
+  IF EXISTS (SELECT 1 FROM post_reactions WHERE post_id = p_post_id AND visitor_id = p_visitor_id) THEN
+    DELETE FROM post_reactions WHERE post_id = p_post_id AND visitor_id = p_visitor_id;
+    liked := false;
+  ELSE
+    INSERT INTO post_reactions (post_id, visitor_id) VALUES (p_post_id, p_visitor_id)
+      ON CONFLICT (post_id, visitor_id) DO NOTHING;
+    liked := true;
+  END IF;
+  RETURN liked;
+END;
+$$;
+
+GRANT EXECUTE ON FUNCTION toggle_post_reaction(UUID, TEXT) TO anon, authenticated;
 
 -- ============================================================
 -- PAGE CONTENT SEED (all sections, ES + EN)

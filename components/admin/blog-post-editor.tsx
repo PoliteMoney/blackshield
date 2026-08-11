@@ -6,6 +6,9 @@ import { createClient } from '@/lib/supabase/client'
 import toast from 'react-hot-toast'
 import { slugify } from '@/lib/utils'
 import { Save, Globe } from 'lucide-react'
+import { SOURCE_PLATFORMS } from '@/components/blog/source-badge'
+import { MediaUploader, type MediaItem } from '@/components/admin/media-uploader'
+import { RichTextEditor } from '@/components/admin/rich-text-editor'
 
 const LOCALES = [
   { code: 'es', label: '🇲🇽 Español' },
@@ -22,7 +25,10 @@ export function BlogPostEditor({ post, translations }: { post: any; translations
     author_name: post?.author_name || '',
     image_url: post?.image_url || '',
     status: post?.status || 'draft',
+    source_platform: post?.source_platform || 'native',
+    source_url: post?.source_url || '',
   })
+  const [media, setMedia] = useState<MediaItem[]>(post?.media || [])
   const [trans, setTrans] = useState<Record<string, any>>(
     LOCALES.reduce((acc, loc) => {
       const t = translations.find(tr => tr.locale === loc.code) || {}
@@ -42,7 +48,8 @@ export function BlogPostEditor({ post, translations }: { post: any; translations
     setSaving(true)
     const supabase = createClient()
     const finalStatus = status || meta.status
-    const finalMeta = { ...meta, status: finalStatus }
+    const coverImage = media.find(m => m.type === 'image')?.url || meta.image_url
+    const finalMeta = { ...meta, status: finalStatus, media, image_url: coverImage }
     if (!finalMeta.slug) finalMeta.slug = slugify(trans.es.title)
 
     try {
@@ -100,12 +107,20 @@ export function BlogPostEditor({ post, translations }: { post: any; translations
                 rows={3} className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-gray-400 resize-none" />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Contenido (HTML)</label>
-              <textarea value={trans[activeLocale]?.content || ''}
-                onChange={e => updateTrans(activeLocale, 'content', e.target.value)}
-                rows={16} className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-gray-400 resize-y font-mono" />
+              <label className="block text-sm font-medium text-gray-700 mb-2">Contenido</label>
+              <RichTextEditor
+                key={activeLocale}
+                value={trans[activeLocale]?.content || ''}
+                onChange={html => updateTrans(activeLocale, 'content', html)}
+              />
             </div>
           </div>
+        </div>
+
+        {/* Media composer — like attaching photos/videos to a Facebook post */}
+        <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
+          <h3 className="font-semibold text-gray-800 mb-4">Fotos y videos</h3>
+          <MediaUploader value={media} onChange={setMedia} />
         </div>
       </div>
 
@@ -131,12 +146,33 @@ export function BlogPostEditor({ post, translations }: { post: any; translations
               onChange={e => setMeta(p => ({ ...p, author_name: e.target.value }))}
               className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none" />
           </div>
+        </div>
+
+        <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 space-y-4">
+          <h3 className="font-semibold text-gray-800">Origen</h3>
           <div>
-            <label className="block text-xs font-medium text-gray-500 mb-1">URL de imagen destacada</label>
-            <input type="text" value={meta.image_url}
-              onChange={e => setMeta(p => ({ ...p, image_url: e.target.value }))}
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none" />
+            <label className="block text-xs font-medium text-gray-500 mb-1">Publicado desde</label>
+            <select value={meta.source_platform}
+              onChange={e => setMeta(p => ({ ...p, source_platform: e.target.value }))}
+              className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none bg-white">
+              {SOURCE_PLATFORMS.map(p => (
+                <option key={p.value} value={p.value}>{p.label}</option>
+              ))}
+            </select>
           </div>
+          {meta.source_platform !== 'native' && (
+            <div>
+              <label className="block text-xs font-medium text-gray-500 mb-1">URL de la publicación original</label>
+              <input type="text" value={meta.source_url}
+                onChange={e => setMeta(p => ({ ...p, source_url: e.target.value }))}
+                placeholder="https://..."
+                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none" />
+              <p className="text-[11px] text-gray-400 mt-1.5 leading-relaxed">
+                Copia el título, texto e imagen del post original en los campos de arriba — este enlace
+                se mostrará en el sitio como &quot;Ver publicación original&quot;.
+              </p>
+            </div>
+          )}
         </div>
 
         <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 space-y-3">
