@@ -134,25 +134,25 @@ export function BookingForm({ dict, services, settings, locale }: BookingFormPro
                 <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">{dict.name} *</label>
                 <input type="text" required value={form.full_name}
                   onChange={e => setForm(p => ({ ...p, full_name: e.target.value }))}
-                  className="w-full px-4 py-3 rounded-xl border border-[var(--color-border)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 text-sm" />
+                  className="w-full px-4 py-3 rounded-lg border border-[var(--color-border)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 text-sm" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">{dict.email} *</label>
                 <input type="email" required value={form.email}
                   onChange={e => setForm(p => ({ ...p, email: e.target.value }))}
-                  className="w-full px-4 py-3 rounded-xl border border-[var(--color-border)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 text-sm" />
+                  className="w-full px-4 py-3 rounded-lg border border-[var(--color-border)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 text-sm" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">{dict.phone}</label>
                 <input type="tel" value={form.phone}
                   onChange={e => setForm(p => ({ ...p, phone: e.target.value }))}
-                  className="w-full px-4 py-3 rounded-xl border border-[var(--color-border)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 text-sm" />
+                  className="w-full px-4 py-3 rounded-lg border border-[var(--color-border)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 text-sm" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">{dict.company}</label>
                 <input type="text" value={form.company}
                   onChange={e => setForm(p => ({ ...p, company: e.target.value }))}
-                  className="w-full px-4 py-3 rounded-xl border border-[var(--color-border)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 text-sm" />
+                  className="w-full px-4 py-3 rounded-lg border border-[var(--color-border)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 text-sm" />
               </div>
             </div>
 
@@ -167,7 +167,7 @@ export function BookingForm({ dict, services, settings, locale }: BookingFormPro
                   <button key={value} type="button"
                     onClick={() => setForm(p => ({ ...p, appointment_type: value }))}
                     className={cn(
-                      'flex items-center gap-3 p-4 rounded-xl border-2 transition-all',
+                      'flex items-center gap-3 p-4 rounded-lg border-2 transition-all',
                       form.appointment_type === value
                         ? 'border-[var(--color-accent)] bg-[var(--color-muted)]'
                         : 'border-[var(--color-border)] hover:border-[var(--color-primary)]'
@@ -190,7 +190,7 @@ export function BookingForm({ dict, services, settings, locale }: BookingFormPro
                   <button key={value} type="button"
                     onClick={() => setForm(p => ({ ...p, duration: value }))}
                     className={cn(
-                      'flex items-center gap-3 p-4 rounded-xl border-2 transition-all',
+                      'flex items-center gap-3 p-4 rounded-lg border-2 transition-all',
                       form.duration === value
                         ? 'border-[var(--color-accent)] bg-[var(--color-muted)]'
                         : 'border-[var(--color-border)] hover:border-[var(--color-primary)]'
@@ -208,7 +208,7 @@ export function BookingForm({ dict, services, settings, locale }: BookingFormPro
                 <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">{dict.service}</label>
                 <select value={form.service_id}
                   onChange={e => setForm(p => ({ ...p, service_id: e.target.value }))}
-                  className="w-full px-4 py-3 rounded-xl border border-[var(--color-border)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 text-sm bg-white">
+                  className="w-full px-4 py-3 rounded-lg border border-[var(--color-border)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 text-sm bg-white">
                   <option value="">{dict.select_service}</option>
                   {services.map(s => <option key={s.id} value={s.id}>{s.title}</option>)}
                 </select>
@@ -216,7 +216,7 @@ export function BookingForm({ dict, services, settings, locale }: BookingFormPro
             )}
 
             <button type="button" onClick={() => form.full_name && form.email ? setStep(2) : toast.error(locale === 'es' ? 'Complete los campos requeridos' : 'Fill required fields')}
-              className="w-full py-4 bg-[var(--color-secondary)] text-white font-semibold rounded-xl hover:opacity-90 transition-opacity">
+              className="w-full py-4 bg-[var(--color-secondary)] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity">
               {locale === 'es' ? 'Continuar' : 'Continue'} →
             </button>
           </div>
@@ -280,12 +280,12 @@ export function BookingForm({ dict, services, settings, locale }: BookingFormPro
             </div>
             <div className="flex gap-4 mt-8">
               <button type="button" onClick={() => setStep(1)}
-                className="flex-1 py-4 border border-[var(--color-border)] text-[var(--color-secondary)] font-medium rounded-xl hover:bg-[var(--color-muted)] transition-colors">
+                className="flex-1 py-4 border border-[var(--color-border)] text-[var(--color-secondary)] font-medium rounded-lg hover:bg-[var(--color-muted)] transition-colors">
                 ← {locale === 'es' ? 'Atrás' : 'Back'}
               </button>
               <button type="button"
                 onClick={() => form.date && form.time ? setStep(3) : toast.error(locale === 'es' ? 'Seleccione fecha y hora' : 'Select date and time')}
-                className="flex-1 py-4 bg-[var(--color-secondary)] text-white font-semibold rounded-xl hover:opacity-90 transition-opacity">
+                className="flex-1 py-4 bg-[var(--color-secondary)] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity">
                 {locale === 'es' ? 'Continuar' : 'Continue'} →
               </button>
             </div>
@@ -295,7 +295,7 @@ export function BookingForm({ dict, services, settings, locale }: BookingFormPro
         {/* Step 3: Confirm */}
         {step === 3 && (
           <div>
-            <div className="bg-[var(--color-muted)] rounded-xl p-6 mb-6 space-y-3">
+            <div className="bg-[var(--color-muted)] rounded-lg p-6 mb-6 space-y-3">
               <h3 className="font-semibold text-[var(--color-secondary)] mb-4">{locale === 'es' ? 'Resumen de su cita' : 'Appointment Summary'}</h3>
               {[
                 { label: locale === 'es' ? 'Nombre' : 'Name', value: form.full_name },
@@ -315,15 +315,15 @@ export function BookingForm({ dict, services, settings, locale }: BookingFormPro
               <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">{dict.notes}</label>
               <textarea value={form.notes} onChange={e => setForm(p => ({ ...p, notes: e.target.value }))}
                 rows={3}
-                className="w-full px-4 py-3 rounded-xl border border-[var(--color-border)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 text-sm resize-none" />
+                className="w-full px-4 py-3 rounded-lg border border-[var(--color-border)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 text-sm resize-none" />
             </div>
             <div className="flex gap-4">
               <button type="button" onClick={() => setStep(2)}
-                className="flex-1 py-4 border border-[var(--color-border)] text-[var(--color-secondary)] font-medium rounded-xl hover:bg-[var(--color-muted)] transition-colors">
+                className="flex-1 py-4 border border-[var(--color-border)] text-[var(--color-secondary)] font-medium rounded-lg hover:bg-[var(--color-muted)] transition-colors">
                 ← {locale === 'es' ? 'Atrás' : 'Back'}
               </button>
               <button type="submit" disabled={loading}
-                className="flex-1 py-4 bg-[var(--color-secondary)] text-white font-semibold rounded-xl hover:opacity-90 transition-opacity disabled:opacity-60 flex items-center justify-center gap-2">
+                className="flex-1 py-4 bg-[var(--color-secondary)] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity disabled:opacity-60 flex items-center justify-center gap-2">
                 {loading && <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />}
                 {loading ? dict.booking : dict.book}
               </button>

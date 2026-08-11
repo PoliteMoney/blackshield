@@ -2,8 +2,16 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from 'lucide-react'
+import { Mail, Phone, MapPin, Linkedin, Instagram, Facebook } from 'lucide-react'
 import { useSiteConfig } from '@/components/providers/site-config-provider'
+import { XIcon } from '@/components/ui/x-icon'
+
+const SOCIAL_LINKS = [
+  { key: 'social_linkedin', icon: Linkedin, label: 'LinkedIn' },
+  { key: 'social_x', icon: XIcon, label: 'X' },
+  { key: 'social_instagram', icon: Instagram, label: 'Instagram' },
+  { key: 'social_facebook', icon: Facebook, label: 'Facebook' },
+] as const
 
 interface FooterProps {
   dict: Record<string, string>
@@ -42,24 +50,16 @@ export function Footer({ dict, navDict, capacitiesDict }: FooterProps) {
               {dict.description}
             </p>
             <div className="flex gap-3 mt-6">
-              {config.social_linkedin && (
-                <a href={config.social_linkedin} target="_blank" rel="noopener noreferrer"
-                  className="p-2 bg-white/8 border border-white/10 rounded-lg hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-all">
-                  <Linkedin className="w-4 h-4" />
-                </a>
-              )}
-              {config.social_twitter && (
-                <a href={config.social_twitter} target="_blank" rel="noopener noreferrer"
-                  className="p-2 bg-white/8 border border-white/10 rounded-lg hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-all">
-                  <Twitter className="w-4 h-4" />
-                </a>
-              )}
-              {config.social_facebook && (
-                <a href={config.social_facebook} target="_blank" rel="noopener noreferrer"
-                  className="p-2 bg-white/8 border border-white/10 rounded-lg hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-all">
-                  <Facebook className="w-4 h-4" />
-                </a>
-              )}
+              {SOCIAL_LINKS.map(({ key, icon: Icon, label }) => {
+                const url = config[key]
+                if (!url) return null
+                return (
+                  <a key={key} href={url} target="_blank" rel="noopener noreferrer" aria-label={label}
+                    className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] hover:bg-[var(--color-primary)]/10 transition-all duration-300">
+                    <Icon className="w-4 h-4" />
+                  </a>
+                )
+              })}
             </div>
           </div>
 

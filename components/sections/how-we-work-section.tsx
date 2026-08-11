@@ -47,10 +47,7 @@ export function HowWeWorkSection({ workDict, interveneDict }: HowWeWorkSectionPr
 
       {/* ── Cómo trabajamos ── */}
       <div className="container-custom mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
-        <h2
-          className="text-3xl sm:text-4xl xl:text-5xl font-light text-center text-[var(--color-secondary)] mb-14"
-          style={{ fontFamily: 'var(--font-heading)' }}
-        >
+        <h2 className="display-heading text-4xl sm:text-5xl xl:text-6xl text-center text-[var(--color-secondary)] mb-16">
           {workDict?.title}
         </h2>
 
@@ -59,9 +56,9 @@ export function HowWeWorkSection({ workDict, interveneDict }: HowWeWorkSectionPr
             <Link
               key={i}
               href={`/como-trabajamos/${WORK_SLUGS[i]}`}
-              className="flex flex-col items-center text-center px-6 py-8 group hover:bg-[var(--color-muted)] transition-colors rounded-xl"
+              className="flex flex-col items-center text-center px-6 py-8 group hover:bg-[var(--color-muted)] transition-colors rounded-lg"
             >
-              <div className="w-16 h-16 rounded-full border border-[var(--color-secondary)]/25 flex items-center justify-center mb-6 text-[var(--color-secondary)] group-hover:border-[var(--color-secondary)] transition-colors">
+              <div className="w-16 h-16 rounded-full bg-brushed-gold border-2 border-[var(--color-accent)] flex items-center justify-center mb-6 text-[var(--color-accent)] group-hover:shadow-lg group-hover:shadow-[var(--color-accent)]/25 transition-shadow">
                 {WORK_ICONS[i] ?? WORK_ICONS[0]}
               </div>
               <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[var(--color-secondary)] mb-4">
@@ -85,17 +82,14 @@ export function HowWeWorkSection({ workDict, interveneDict }: HowWeWorkSectionPr
 
       {/* ── Cuándo intervenimos ── */}
       <div className="container-custom mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20">
-        <h2
-          className="text-3xl sm:text-4xl xl:text-5xl font-light text-center text-[var(--color-secondary)] mb-12"
-          style={{ fontFamily: 'var(--font-heading)' }}
-        >
+        <h2 className="display-heading text-4xl sm:text-5xl xl:text-6xl text-center text-[var(--color-secondary)] mb-14">
           {interveneDict?.title}
         </h2>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8">
           {interveneItems.slice(0, 6).map((label, i) => (
             <div key={i} className="flex flex-col items-center text-center gap-3">
-              <div className="w-12 h-12 rounded-full border border-[var(--color-secondary)]/20 flex items-center justify-center text-[var(--color-secondary)]">
+              <div className="w-12 h-12 rounded-full bg-brushed-gold border-2 border-[var(--color-accent)] flex items-center justify-center text-[var(--color-accent)]">
                 {INTERVENE_ICONS[i] ?? INTERVENE_ICONS[0]}
               </div>
               <p className="text-xs text-[var(--color-secondary)] leading-snug">

@@ -26,10 +26,7 @@ export function CTASection({ dict }: CTASectionProps) {
           <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)]" />
           <div className="h-px w-16 bg-[var(--color-primary)]" />
         </div>
-        <h2
-          className="text-4xl lg:text-5xl font-light text-white mb-5 leading-tight"
-          style={{ fontFamily: 'var(--font-heading)' }}
-        >
+        <h2 className="display-heading text-5xl sm:text-6xl lg:text-7xl leading-[1.0] text-white mb-6">
           {dict.title}
         </h2>
         <p className="text-white/50 text-base max-w-xl mx-auto mb-10 leading-relaxed">
@@ -38,7 +35,7 @@ export function CTASection({ dict }: CTASectionProps) {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href="/agendar"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-[var(--color-accent)] text-white text-sm font-semibold tracking-wide rounded-lg hover:bg-[#004d5c] transition-colors duration-300 shadow-lg shadow-[var(--color-accent)]/25"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-[var(--color-accent)] text-white text-sm font-semibold tracking-wide rounded-lg hover:bg-[var(--color-accent-hover)] transition-colors duration-300 shadow-lg shadow-[var(--color-accent)]/25"
           >
             {dict.button}
             <ArrowRight className="w-4 h-4" />

@@ -19,6 +19,8 @@
     --color-card: #FFFFFF;
     --color-card-foreground: #1A1C1E;
     --color-accent: #003E4A;
+    --color-accent-hover: #004d5c;
+    --color-navy-deep: #0D1E28;
     --color-grafito: #383B3E;
     --font-sans: 'Montserrat', system-ui, sans-serif;
     --font-heading: 'Cormorant Garamond', serif;
@@ -45,7 +47,13 @@
   }
 
   .section-padding {
-    @apply py-16 px-4 sm:py-20 sm:px-6 lg:px-8 xl:py-28;
+    @apply py-24 px-4 sm:py-32 sm:px-6 lg:px-8 xl:py-40;
+  }
+
+  /* Bold editorial display headline — the site's one loud voice */
+  .display-heading {
+    @apply font-light tracking-tight;
+    font-family: var(--font-heading);
   }
 
   .container-custom {
@@ -93,6 +101,74 @@
     background: var(--color-accent);
     color: var(--color-secondary-foreground);
   }
+
+  /* Brushed-gold fill — icon badges: petrol-blue outline, warm gold interior */
+  .bg-brushed-gold {
+    background: linear-gradient(135deg, #C9A97A 0%, var(--color-primary) 45%, #8A6A3F 100%);
+  }
+
+  /* Flat, hairline-bordered card — replaces glossy rounded-2xl/shadow-lift cards */
+  .card-flat {
+    @apply rounded-lg border border-[var(--color-border)] bg-[var(--color-card)] transition-colors duration-300;
+  }
+
+  .card-flat:hover {
+    border-color: var(--color-primary);
+  }
+}
+
+/* Radar map (Hero signature graphic) — scales to fill the same height as the text column */
+.radar-map-container {
+  width: 100%;
+  height: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  background-color: transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.global-radar-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Muted, desaturated treatment for the world map layer */
+.world-map-layer {
+  opacity: 0.25;
+  filter: grayscale(100%) contrast(150%);
+}
+
+.radar-spin {
+  animation: radar-map-spin 8s linear infinite;
+}
+
+@keyframes radar-map-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.mexico-ping {
+  animation: radar-map-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes radar-map-ping {
+  0% { r: 5; opacity: 1; stroke-width: 3; }
+  100% { r: 45; opacity: 0; stroke-width: 0.5; }
+}
+
+/* Scroll-triggered section fade */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Ensure animated elements are never stuck invisible */
@@ -101,6 +177,16 @@
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  .radar-spin, .mexico-ping {
+    animation: none !important;
+  }
+
+  .scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }
 

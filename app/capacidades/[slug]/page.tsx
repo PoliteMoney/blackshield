@@ -198,22 +198,22 @@ export default async function CapacidadPage({ params }: { params: { slug: string
       <Navbar dict={navDict} />
 
       {/* Hero */}
-      <section className="bg-[#0D1E28] pt-32 pb-20">
+      <section className="bg-[var(--color-navy-deep)] pt-32 pb-20">
         <div className="container-custom mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             href="/#capacities"
-            className="inline-flex items-center gap-2 text-[#AD8855] text-xs font-semibold tracking-widest uppercase mb-8 hover:opacity-75 transition-opacity"
+            className="inline-flex items-center gap-2 text-[var(--color-primary)] text-xs font-semibold tracking-widest uppercase mb-8 hover:opacity-75 transition-opacity"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             Capacidades
           </Link>
           <h1
-            className="text-3xl sm:text-4xl lg:text-5xl font-light text-white max-w-3xl"
+            className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-white max-w-3xl"
             style={{ fontFamily: 'var(--font-heading)' }}
           >
             {title}
           </h1>
-          <div className="mt-6 h-px w-16 bg-[#AD8855] opacity-60" />
+          <div className="mt-6 h-px w-16 bg-[var(--color-primary)] opacity-60" />
         </div>
       </section>
 
@@ -234,7 +234,7 @@ export default async function CapacidadPage({ params }: { params: { slug: string
             </p>
             <Link
               href="/#contact"
-              className="inline-flex items-center gap-2 px-7 py-3.5 bg-[var(--color-accent)] text-white text-sm font-semibold tracking-wider uppercase rounded-xl hover:opacity-90 transition-opacity shadow-lg shadow-[var(--color-accent)]/20"
+              className="inline-flex items-center gap-2 px-7 py-3.5 bg-[var(--color-accent)] text-white text-sm font-semibold tracking-wider uppercase rounded-lg hover:opacity-90 transition-opacity shadow-lg shadow-[var(--color-accent)]/20"
             >
               Contactar a Blackshield
             </Link>

@@ -41,25 +41,25 @@ function MexicoDecorSVG() {
       {/* ── Gold geometric decoration ── */}
       {/* Outer rectangle */}
       <rect x="318" y="14" width="172" height="238"
-        fill="none" stroke="#AD8855" strokeWidth="1.2" opacity="0.70" />
+        fill="none" stroke="var(--color-primary)" strokeWidth="1.2" opacity="0.70" />
       {/* Inner rectangle */}
       <rect x="342" y="38" width="124" height="190"
-        fill="none" stroke="#AD8855" strokeWidth="0.6" opacity="0.38" />
+        fill="none" stroke="var(--color-primary)" strokeWidth="0.6" opacity="0.38" />
 
       {/* Quarter-circle arc — centered at bottom-left of outer rect (318, 252) */}
       <path d="M 318,82 A 170 170 0 0 1 488,252"
-        fill="none" stroke="#AD8855" strokeWidth="1.2" opacity="0.65" />
+        fill="none" stroke="var(--color-primary)" strokeWidth="1.2" opacity="0.65" />
       {/* Inner arc */}
       <path d="M 318,128 A 124 124 0 0 1 442,252"
-        fill="none" stroke="#AD8855" strokeWidth="0.6" opacity="0.35" />
+        fill="none" stroke="var(--color-primary)" strokeWidth="0.6" opacity="0.35" />
 
       {/* Crosshair accent on Yucatan tip */}
-      <circle cx="388" cy="118" r="3" fill="none" stroke="#AD8855" strokeWidth="1" opacity="0.6" />
-      <circle cx="388" cy="118" r="1.2" fill="#AD8855" opacity="0.7" />
+      <circle cx="388" cy="118" r="3" fill="none" stroke="var(--color-primary)" strokeWidth="1" opacity="0.6" />
+      <circle cx="388" cy="118" r="1.2" fill="var(--color-primary)" opacity="0.7" />
 
       {/* Small dot — Mexico City area */}
-      <circle cx="216" cy="142" r="2.5" fill="none" stroke="#AD8855" strokeWidth="1" opacity="0.5" />
-      <circle cx="216" cy="142" r="1" fill="#AD8855" opacity="0.6" />
+      <circle cx="216" cy="142" r="2.5" fill="none" stroke="var(--color-primary)" strokeWidth="1" opacity="0.5" />
+      <circle cx="216" cy="142" r="1" fill="var(--color-primary)" opacity="0.6" />
     </svg>
   )
 }
@@ -76,16 +76,13 @@ interface StrategicSectionProps {
 
 export function StrategicSection({ dict }: StrategicSectionProps) {
   return (
-    <section className="bg-[#0D1E28] overflow-hidden">
+    <section className="bg-[var(--color-navy-deep)] overflow-hidden">
       <div className="container-custom mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
           {/* Left — text */}
           <div>
-            <h2
-              className="text-3xl sm:text-4xl lg:text-[2.6rem] xl:text-5xl font-light leading-tight text-white mb-5"
-              style={{ fontFamily: 'var(--font-heading)' }}
-            >
+            <h2 className="display-heading text-4xl sm:text-5xl lg:text-6xl leading-[1.02] text-white mb-6">
               {dict.title}
             </h2>
             <div className="w-12 h-px bg-[var(--color-primary)] mb-8" />

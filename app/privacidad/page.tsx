@@ -15,8 +15,14 @@ export default async function PrivacyPage() {
     <>
       <Navbar dict={dict.nav} />
       <main className="pt-24">
-        <div className="bg-[var(--color-secondary)] py-16 text-center">
-          <h1 className="text-4xl font-bold text-white">{dict.footer.privacy}</h1>
+        <div className="bg-[var(--color-navy-deep)] py-16 text-center">
+          <h1
+            className="text-5xl font-light tracking-tight text-white"
+            style={{ fontFamily: 'var(--font-heading)' }}
+          >
+            {dict.footer.privacy}
+          </h1>
+          <div className="mx-auto mt-5 h-px w-16 bg-[var(--color-primary)] opacity-60" />
         </div>
         <div className="container-custom mx-auto px-4 sm:px-6 lg:px-8 py-16 max-w-4xl">
           {content ? (

@@ -2,6 +2,7 @@ import { cookies, headers } from 'next/headers'
 import { getDictionary, getLocaleFromHeader, type Locale } from '@/lib/i18n/dictionaries'
 import { Navbar } from '@/components/layout/navbar'
 import { Footer } from '@/components/layout/footer'
+import { Eyebrow } from '@/components/ui/eyebrow'
 import { BookingForm } from '@/components/booking/booking-form'
 import { createClient } from '@/lib/supabase/server'
 import { getSiteConfig } from '@/lib/site-config'
@@ -31,11 +32,14 @@ export default async function BookingPage() {
     <>
       <Navbar dict={dict.nav} />
       <main className="pt-24">
-        <div className="bg-[var(--color-secondary)] py-16 text-center">
-          <span className="inline-block px-4 py-1.5 bg-[var(--color-primary)]/20 text-[var(--color-primary)] text-sm font-medium rounded-full mb-4">
-            {dict.appointments.badge}
-          </span>
-          <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4">{dict.appointments.title}</h1>
+        <div className="bg-[var(--color-navy-deep)] py-16 text-center">
+          <Eyebrow label={dict.appointments.badge} align="center" className="mb-5" />
+          <h1
+            className="text-5xl lg:text-6xl font-light tracking-tight text-white mb-5"
+            style={{ fontFamily: 'var(--font-heading)' }}
+          >
+            {dict.appointments.title}
+          </h1>
           <p className="text-white/60 text-lg max-w-2xl mx-auto">{dict.appointments.subtitle}</p>
         </div>
         <div className="section-padding">

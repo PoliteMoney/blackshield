@@ -1,8 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { ArrowRight, ChevronDown } from 'lucide-react'
+import { Eyebrow } from '@/components/ui/eyebrow'
+import { RadarMap } from '@/components/sections/radar-map'
 
 interface HeroProps {
   dict: {
@@ -11,10 +12,9 @@ interface HeroProps {
     trust_1: string; trust_2: string; trust_3: string
   }
   contactDict: { whatsapp: string }
-  radarUrl?: string
 }
 
-export function Hero({ dict, radarUrl = '/images/radar.png' }: HeroProps) {
+export function Hero({ dict }: HeroProps) {
   const showLine1 = (dict as any).show_tagline_line1 !== false
 
   return (
@@ -25,19 +25,16 @@ export function Hero({ dict, radarUrl = '/images/radar.png' }: HeroProps) {
 
       <div className="relative container-custom mx-auto px-4 sm:px-6 lg:px-8 py-16 xl:py-20 w-full">
         {/* items-stretch: left column stretches to match the image height */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.25fr] gap-8 lg:gap-0 items-stretch">
 
           {/* Left — text distributed top→bottom across image height */}
           <div className="order-2 lg:order-1 flex flex-col justify-between py-2 lg:pr-12 xl:pr-20">
 
             {/* Top group: identity + headline + tagline + description */}
             <div>
-              <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-[var(--color-accent)] mb-4">
-                {dict.badge}
-              </p>
+              <Eyebrow label={dict.badge} tone="accent" className="mb-6" />
               <h1
-                className="text-3xl sm:text-4xl lg:text-[2.6rem] xl:text-5xl font-light leading-[1.15] text-[var(--color-secondary)] mb-4"
-                style={{ fontFamily: 'var(--font-heading)' }}
+                className="display-heading text-5xl sm:text-6xl lg:text-6xl xl:text-7xl leading-[0.98] text-[var(--color-secondary)] mb-5"
               >
                 {showLine1 && dict.tagline_line1}
               </h1>
@@ -57,7 +54,7 @@ export function Hero({ dict, radarUrl = '/images/radar.png' }: HeroProps) {
             <div className="flex flex-col sm:flex-row gap-3 py-6">
               <Link
                 href="/agendar"
-                className="group inline-flex items-center justify-center gap-2 px-6 py-3 bg-[var(--color-accent)] text-white text-xs font-semibold tracking-wide rounded-lg hover:bg-[#004d5c] transition-colors duration-300 shadow-lg shadow-[var(--color-accent)]/20"
+                className="group inline-flex items-center justify-center gap-2 px-6 py-3 bg-[var(--color-accent)] text-white text-xs font-semibold tracking-wide rounded-lg hover:bg-[var(--color-accent-hover)] transition-colors duration-300 shadow-lg shadow-[var(--color-accent)]/20"
               >
                 {dict.cta_primary}
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -84,16 +81,9 @@ export function Hero({ dict, radarUrl = '/images/radar.png' }: HeroProps) {
 
           </div>
 
-          {/* Right — Radar image (sets the column height) */}
-          <div className="order-1 lg:order-2 flex items-center justify-center animate-fade-in" style={{ animationDelay: '0.15s' }}>
-            <Image
-              src={radarUrl}
-              alt="Radar Blackshield"
-              width={900}
-              height={900}
-              className="w-full h-auto object-contain"
-              priority
-            />
+          {/* Right — Animated radar map (sets the column height) */}
+          <div className="order-1 lg:order-2 flex items-stretch justify-center animate-fade-in" style={{ animationDelay: '0.15s' }}>
+            <RadarMap />
           </div>
 
         </div>

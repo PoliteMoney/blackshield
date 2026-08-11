@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { Eyebrow } from '@/components/ui/eyebrow'
 
 interface FAQ {
   id: string
@@ -38,22 +39,19 @@ export function FAQSection({ dict, faqs }: FAQSectionProps) {
     <section id="faq" className="section-padding bg-[var(--color-muted)]">
       <div className="container-custom mx-auto">
         <div className="text-center mb-16">
-          <span className="inline-block px-4 py-1.5 bg-[var(--color-primary)]/20 text-[var(--color-accent)] text-sm font-medium rounded-full mb-4">
-            {dict.badge}
-          </span>
-          <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-[var(--color-secondary)] mb-4">{dict.title}</h2>
+          <Eyebrow label={dict.badge} align="center" className="mb-5" />
+          <h2 className="display-heading text-4xl lg:text-5xl xl:text-6xl text-[var(--color-secondary)] mb-5">
+            {dict.title}
+          </h2>
           <p className="text-[var(--color-muted-foreground)] max-w-2xl mx-auto text-lg">{dict.subtitle}</p>
         </div>
 
-        <div className="max-w-3xl mx-auto space-y-4">
+        <div className="max-w-3xl mx-auto space-y-3">
           {displayFaqs.map((faq) => {
             const t = faq.translations[0]
             const isOpen = open === faq.id
             return (
-              <div
-                key={faq.id}
-                className="bg-white rounded-2xl border border-[var(--color-border)] overflow-hidden shadow-sm"
-              >
+              <div key={faq.id} className="card-flat overflow-hidden bg-white">
                 <button
                   onClick={() => setOpen(isOpen ? null : faq.id)}
                   className="w-full flex items-center justify-between p-6 text-left hover:bg-[var(--color-muted)] transition-colors"

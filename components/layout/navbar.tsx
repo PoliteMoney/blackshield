@@ -65,59 +65,62 @@ export function Navbar({ dict }: NavbarProps) {
             />
           </Link>
 
-          {/* Desktop nav links */}
-          <div className="hidden lg:flex items-center gap-5 xl:gap-7">
-            {navItems.map((item) => (
-              <Link
-                key={item.key}
-                href={item.href}
-                className="text-xs font-semibold tracking-widest uppercase text-[var(--color-secondary)]/70 hover:text-[var(--color-secondary)] transition-colors duration-200 relative group"
-              >
-                {item.label}
-                <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-[var(--color-primary)] transition-all duration-300 group-hover:w-full" />
-              </Link>
-            ))}
-          </div>
-
-          {/* Right actions */}
-          <div className="hidden lg:flex items-center gap-4">
-            {/* Language switcher */}
-            <div className="relative">
-              <button
-                onClick={() => setIsLangOpen(!isLangOpen)}
-                className="flex items-center gap-1.5 text-[var(--color-secondary)]/60 hover:text-[var(--color-secondary)] text-xs font-semibold tracking-widest uppercase transition-colors"
-              >
-                <Globe className="w-3.5 h-3.5" />
-                {locale.toUpperCase()}
-                <ChevronDown className="w-3 h-3" />
-              </button>
-              {isLangOpen && (
-                <div className="absolute top-9 right-0 bg-white border border-[var(--color-border)] rounded-lg shadow-lg overflow-hidden min-w-[130px]">
-                  {(['es', 'en'] as Locale[]).map((lang) => (
-                    <button
-                      key={lang}
-                      onClick={() => { setLocale(lang); setIsLangOpen(false) }}
-                      className={cn(
-                        'flex items-center gap-2 w-full px-4 py-2.5 text-xs font-medium text-left hover:bg-[var(--color-muted)] transition-colors',
-                        locale === lang ? 'text-[var(--color-accent)]' : 'text-[var(--color-secondary)]/70'
-                      )}
-                    >
-                      {lang === 'es' ? '🇲🇽 Español' : '🇺🇸 English'}
-                    </button>
-                  ))}
-                </div>
-              )}
+          {/* Nav links + right actions, grouped so leftover space collects next to the logo */}
+          <div className="hidden lg:flex flex-1 items-center justify-end gap-10 xl:gap-14 ml-16 xl:ml-24">
+            {/* Desktop nav links */}
+            <div className="flex items-center gap-5 xl:gap-7">
+              {navItems.map((item) => (
+                <Link
+                  key={item.key}
+                  href={item.href}
+                  className="text-xs font-semibold tracking-widest uppercase text-[var(--color-secondary)]/70 hover:text-[var(--color-secondary)] transition-colors duration-200 relative group"
+                >
+                  {item.label}
+                  <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-[var(--color-primary)] transition-all duration-300 group-hover:w-full" />
+                </Link>
+              ))}
             </div>
 
-            {/* CTA */}
-            {config.appointments_enabled === 'true' && (
-              <Link
-                href="/agendar"
-                className="px-5 py-2.5 bg-[var(--color-accent)] text-white text-xs font-semibold tracking-widest uppercase rounded-lg hover:bg-[#004d5c] transition-colors duration-200 shadow-md shadow-[var(--color-accent)]/20"
-              >
-                {dict.book || 'Agendar Cita'}
-              </Link>
-            )}
+            {/* Right actions */}
+            <div className="flex items-center gap-4">
+              {/* Language switcher */}
+              <div className="relative">
+                <button
+                  onClick={() => setIsLangOpen(!isLangOpen)}
+                  className="flex items-center gap-1.5 text-[var(--color-secondary)]/60 hover:text-[var(--color-secondary)] text-xs font-semibold tracking-widest uppercase transition-colors"
+                >
+                  <Globe className="w-3.5 h-3.5" />
+                  {locale.toUpperCase()}
+                  <ChevronDown className="w-3 h-3" />
+                </button>
+                {isLangOpen && (
+                  <div className="absolute top-9 right-0 bg-white border border-[var(--color-border)] rounded-lg shadow-lg overflow-hidden min-w-[130px]">
+                    {(['es', 'en'] as Locale[]).map((lang) => (
+                      <button
+                        key={lang}
+                        onClick={() => { setLocale(lang); setIsLangOpen(false) }}
+                        className={cn(
+                          'flex items-center gap-2 w-full px-4 py-2.5 text-xs font-medium text-left hover:bg-[var(--color-muted)] transition-colors',
+                          locale === lang ? 'text-[var(--color-accent)]' : 'text-[var(--color-secondary)]/70'
+                        )}
+                      >
+                        {lang === 'es' ? '🇲🇽 Español' : '🇺🇸 English'}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* CTA */}
+              {config.appointments_enabled === 'true' && (
+                <Link
+                  href="/agendar"
+                  className="px-5 py-2.5 bg-[var(--color-accent)] text-white text-xs font-semibold tracking-widest uppercase rounded-lg hover:bg-[var(--color-accent-hover)] transition-colors duration-200 shadow-md shadow-[var(--color-accent)]/20"
+                >
+                  {dict.book || 'Agendar Cita'}
+                </Link>
+              )}
+            </div>
           </div>
 
           {/* Mobile toggle */}

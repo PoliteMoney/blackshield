@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Mail, Phone, MapPin, Send } from 'lucide-react'
 import { useSiteConfig } from '@/components/providers/site-config-provider'
 import { useLocale } from '@/components/providers/locale-provider'
+import { Eyebrow } from '@/components/ui/eyebrow'
 import toast from 'react-hot-toast'
 
 interface ContactSectionProps {
@@ -45,23 +46,23 @@ export function ContactSection({ dict }: ContactSectionProps) {
     <section id="contact" className="section-padding bg-background">
       <div className="container-custom mx-auto">
         <div className="text-center mb-16">
-          <span className="inline-block px-4 py-1.5 bg-[var(--color-primary)]/20 text-[var(--color-accent)] text-sm font-medium rounded-full mb-4">
-            {dict.badge}
-          </span>
-          <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-[var(--color-secondary)] mb-4">{dict.title}</h2>
+          <Eyebrow label={dict.badge} align="center" className="mb-5" />
+          <h2 className="display-heading text-4xl lg:text-5xl xl:text-6xl text-[var(--color-secondary)] mb-5">
+            {dict.title}
+          </h2>
           <p className="text-[var(--color-muted-foreground)] max-w-2xl mx-auto text-lg">{dict.subtitle}</p>
         </div>
 
         <div className="grid lg:grid-cols-5 gap-12">
           {/* Contact info */}
           <div className="lg:col-span-2 space-y-6">
-            <div className="p-6 bg-[var(--color-secondary)] rounded-2xl">
+            <div className="p-6 bg-[var(--color-secondary)] rounded-lg">
               <h3 className="text-white font-semibold mb-6">{dict.contact_info_title}</h3>
               <div className="space-y-5">
                 {config.contact_email && (
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-[var(--color-primary)]/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <Mail className="w-5 h-5 text-[var(--color-primary)]" />
+                    <div className="w-10 h-10 rounded-full border border-[var(--color-primary)]/40 flex items-center justify-center flex-shrink-0">
+                      <Mail className="w-4 h-4 text-[var(--color-primary)]" />
                     </div>
                     <div>
                       <p className="text-white/40 text-xs mb-1">{dict.email_label}</p>
@@ -73,8 +74,8 @@ export function ContactSection({ dict }: ContactSectionProps) {
                 )}
                 {waNumber && (
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-[var(--color-primary)]/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <Phone className="w-5 h-5 text-[var(--color-primary)]" />
+                    <div className="w-10 h-10 rounded-full border border-[var(--color-primary)]/40 flex items-center justify-center flex-shrink-0">
+                      <Phone className="w-4 h-4 text-[var(--color-primary)]" />
                     </div>
                     <div>
                       <p className="text-white/40 text-xs mb-1">{dict.phone_label}</p>
@@ -87,8 +88,8 @@ export function ContactSection({ dict }: ContactSectionProps) {
                 )}
                 {config.address && (
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-[var(--color-primary)]/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <MapPin className="w-5 h-5 text-[var(--color-primary)]" />
+                    <div className="w-10 h-10 rounded-full border border-[var(--color-primary)]/40 flex items-center justify-center flex-shrink-0">
+                      <MapPin className="w-4 h-4 text-[var(--color-primary)]" />
                     </div>
                     <div>
                       <p className="text-white/40 text-xs mb-1">{dict.address_label}</p>
@@ -104,7 +105,7 @@ export function ContactSection({ dict }: ContactSectionProps) {
                 href={`https://wa.me/${waNumber}?text=${encodeURIComponent(waMessage || '')}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 p-5 bg-[#003E4A] text-white rounded-2xl hover:bg-[#004d5c] transition-colors"
+                className="flex items-center gap-3 p-5 bg-[var(--color-accent)] text-white rounded-lg hover:bg-[var(--color-accent-hover)] transition-colors"
               >
                 <svg className="w-6 h-6 flex-shrink-0" viewBox="0 0 24 24" fill="#4ade80" xmlns="http://www.w3.org/2000/svg">
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
@@ -120,7 +121,7 @@ export function ContactSection({ dict }: ContactSectionProps) {
 
           {/* Contact form */}
           <div className="lg:col-span-3">
-            <div className="bg-white p-8 rounded-2xl border border-[var(--color-border)] shadow-sm">
+            <div className="bg-white p-8 rounded-lg border border-[var(--color-border)]">
               <h3 className="font-semibold text-[var(--color-secondary)] mb-6">{dict.form_title}</h3>
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid sm:grid-cols-2 gap-5">
@@ -131,7 +132,7 @@ export function ContactSection({ dict }: ContactSectionProps) {
                       value={form.full_name}
                       onChange={e => setForm(p => ({ ...p, full_name: e.target.value }))}
                       required
-                      className="w-full px-4 py-3 rounded-xl border border-[var(--color-border)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 text-sm"
+                      className="w-full px-4 py-3 rounded-lg border border-[var(--color-border)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 text-sm"
                     />
                   </div>
                   <div>
@@ -141,7 +142,7 @@ export function ContactSection({ dict }: ContactSectionProps) {
                       value={form.email}
                       onChange={e => setForm(p => ({ ...p, email: e.target.value }))}
                       required
-                      className="w-full px-4 py-3 rounded-xl border border-[var(--color-border)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 text-sm"
+                      className="w-full px-4 py-3 rounded-lg border border-[var(--color-border)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 text-sm"
                     />
                   </div>
                   <div>
@@ -150,7 +151,7 @@ export function ContactSection({ dict }: ContactSectionProps) {
                       type="tel"
                       value={form.phone}
                       onChange={e => setForm(p => ({ ...p, phone: e.target.value }))}
-                      className="w-full px-4 py-3 rounded-xl border border-[var(--color-border)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 text-sm"
+                      className="w-full px-4 py-3 rounded-lg border border-[var(--color-border)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 text-sm"
                     />
                   </div>
                   <div>
@@ -159,7 +160,7 @@ export function ContactSection({ dict }: ContactSectionProps) {
                       type="text"
                       value={form.company}
                       onChange={e => setForm(p => ({ ...p, company: e.target.value }))}
-                      className="w-full px-4 py-3 rounded-xl border border-[var(--color-border)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 text-sm"
+                      className="w-full px-4 py-3 rounded-lg border border-[var(--color-border)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 text-sm"
                     />
                   </div>
                 </div>
@@ -169,7 +170,7 @@ export function ContactSection({ dict }: ContactSectionProps) {
                     type="text"
                     value={form.subject}
                     onChange={e => setForm(p => ({ ...p, subject: e.target.value }))}
-                    className="w-full px-4 py-3 rounded-xl border border-[var(--color-border)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 text-sm"
+                    className="w-full px-4 py-3 rounded-lg border border-[var(--color-border)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 text-sm"
                   />
                 </div>
                 <div>
@@ -179,13 +180,13 @@ export function ContactSection({ dict }: ContactSectionProps) {
                     onChange={e => setForm(p => ({ ...p, message: e.target.value }))}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 rounded-xl border border-[var(--color-border)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 text-sm resize-none"
+                    className="w-full px-4 py-3 rounded-lg border border-[var(--color-border)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 text-sm resize-none"
                   />
                 </div>
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full flex items-center justify-center gap-2 py-4 bg-[var(--color-secondary)] text-white font-semibold rounded-xl hover:opacity-90 transition-opacity disabled:opacity-60"
+                  className="w-full flex items-center justify-center gap-2 py-4 bg-[var(--color-secondary)] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity disabled:opacity-60"
                 >
                   {loading ? (
                     <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />

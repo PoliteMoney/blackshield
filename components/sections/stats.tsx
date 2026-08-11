@@ -61,14 +61,14 @@ export function Stats({ dict }: StatsProps) {
   ]
 
   return (
-    <section ref={ref} className="py-16 bg-[var(--color-accent)]">
+    <section ref={ref} className="py-20 lg:py-24 bg-[var(--color-accent)]">
       <div className="container-custom mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((stat, i) => (
             <div key={stat.label} className="text-center">
               <div
-                className="text-4xl lg:text-5xl font-light mb-2 text-white"
-                style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-primary)' }}
+                className="display-heading text-6xl lg:text-7xl mb-3"
+                style={{ color: 'var(--color-primary)' }}
               >
                 {counts[i]}{stat.suffix}
               </div>

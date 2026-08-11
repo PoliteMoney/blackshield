@@ -1,6 +1,7 @@
 'use client'
 
 import { CheckCircle2 } from 'lucide-react'
+import { Eyebrow } from '@/components/ui/eyebrow'
 
 interface AboutSectionProps {
   dict: {
@@ -21,7 +22,7 @@ export function AboutSection({ dict, content }: AboutSectionProps) {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Visual */}
           <div className="relative">
-            <div className="relative rounded-2xl overflow-hidden">
+            <div className="relative rounded-lg overflow-hidden">
               <div className="aspect-[4/3] bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-secondary)] flex items-center justify-center relative overflow-hidden">
                 {/* Radar rings decoration */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-10">
@@ -70,10 +71,8 @@ export function AboutSection({ dict, content }: AboutSectionProps) {
 
           {/* Right: Content */}
           <div>
-            <span className="inline-block px-4 py-1.5 bg-[var(--color-primary)]/20 text-[var(--color-accent)] text-sm font-medium rounded-full mb-4">
-              {dict.badge}
-            </span>
-            <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-[var(--color-secondary)] mb-4">
+            <Eyebrow label={dict.badge} className="mb-5" />
+            <h2 className="display-heading text-4xl lg:text-5xl xl:text-6xl text-[var(--color-secondary)] mb-5">
               {content?.title || dict.title}
             </h2>
             <p className="text-[var(--color-muted-foreground)] text-lg leading-relaxed mb-8">
@@ -82,11 +81,11 @@ export function AboutSection({ dict, content }: AboutSectionProps) {
 
             {/* Mission & Vision */}
             <div className="grid sm:grid-cols-2 gap-6 mb-8">
-              <div className="p-5 bg-[var(--color-muted)] rounded-xl border border-[var(--color-border)]">
+              <div className="p-5 bg-[var(--color-muted)] rounded-lg border border-[var(--color-border)]">
                 <h3 className="font-semibold text-[var(--color-secondary)] mb-2">{dict.mission_title}</h3>
                 <p className="text-sm text-[var(--color-muted-foreground)]">{dict.mission_body}</p>
               </div>
-              <div className="p-5 bg-[var(--color-secondary)] rounded-xl">
+              <div className="p-5 bg-[var(--color-secondary)] rounded-lg">
                 <h3 className="font-semibold text-[var(--color-primary)] mb-2">{dict.vision_title}</h3>
                 <p className="text-sm text-white/60">{dict.vision_body}</p>
               </div>

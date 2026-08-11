@@ -57,14 +57,14 @@ function Card({
     <Link
       href={`/capacidades/${SLUGS[index] ?? SLUGS[0]}`}
       className={cn(
-        'flex flex-col items-center text-center px-5 py-10 group cursor-pointer transition-colors hover:bg-[#AD8855]/5',
-        !lastInRow && 'lg:border-r lg:border-[#AD8855]/20',
+        'flex flex-col items-center text-center px-5 py-10 group cursor-pointer transition-colors hover:bg-[var(--color-primary)]/5',
+        !lastInRow && 'lg:border-r lg:border-[var(--color-primary)]/20',
       )}
     >
-      <div className="text-[#AD8855] mb-5 opacity-85 group-hover:opacity-100 transition-opacity">
+      <div className="text-[var(--color-primary)] mb-5 opacity-85 group-hover:opacity-100 transition-opacity">
         {ICONS[index] ?? ICONS[0]}
       </div>
-      <p className="text-[11px] font-semibold text-white leading-snug mb-3 uppercase tracking-wide group-hover:text-[#AD8855] transition-colors">
+      <p className="text-[11px] font-semibold text-white leading-snug mb-3 uppercase tracking-wide group-hover:text-[var(--color-primary)] transition-colors">
         {item.title}
       </p>
       <p className="text-[11px] text-white/50 leading-relaxed">
@@ -80,18 +80,15 @@ export function CapacitiesSection({ dict }: CapacitiesSectionProps) {
   const row2 = items.slice(6, 12)
 
   return (
-    <section id="capacities" className="bg-[#0D1E28]">
+    <section id="capacities" className="bg-[var(--color-navy-deep)]">
       <div className="container-custom mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24">
 
-        <h2
-          className="text-3xl sm:text-4xl xl:text-5xl font-light text-center text-white mb-16"
-          style={{ fontFamily: 'var(--font-heading)' }}
-        >
+        <h2 className="display-heading text-4xl sm:text-5xl xl:text-6xl text-center text-white mb-20">
           {dict?.title}
         </h2>
 
         {/* Row 1 — 6 items */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 border-b border-[#AD8855]/15">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 border-b border-[var(--color-primary)]/15">
           {row1.map((item, i) => (
             <Card key={i} item={item} index={i} lastInRow={i === row1.length - 1} />
           ))}

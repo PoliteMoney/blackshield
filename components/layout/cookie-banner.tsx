@@ -30,7 +30,7 @@ export function CookieBanner({ dict }: CookieBannerProps) {
 
   return (
     <div className="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:max-w-sm z-50 animate-fade-in">
-      <div className="bg-[var(--color-secondary)] text-white rounded-2xl p-5 shadow-2xl border border-white/10">
+      <div className="bg-[var(--color-secondary)] text-white rounded-lg p-5 shadow-2xl border border-white/10">
         <div className="flex items-start gap-3">
           <Cookie className="w-5 h-5 text-[var(--color-primary)] flex-shrink-0 mt-0.5" />
           <div className="flex-1">
