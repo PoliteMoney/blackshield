@@ -2,10 +2,11 @@
 
 import Link from 'next/link'
 import {
-  User, Target, TrendingUp, FileText, Lock, Scale,
-  Users, Megaphone, Shield, Copyright, GraduationCap, Building2,
+  Target, TrendingUp, Lock, Scale,
+  Copyright, Building2,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { MaskIcon } from '@/components/ui/mask-icon'
 
 const SLUGS = [
   'representacion-estrategica',
@@ -23,18 +24,18 @@ const SLUGS = [
 ]
 
 const ICONS = [
-  <User          key={0}  className="w-8 h-8" />,
-  <Target        key={1}  className="w-8 h-8" />,
-  <TrendingUp    key={2}  className="w-8 h-8" />,
-  <FileText      key={3}  className="w-8 h-8" />,
-  <Lock          key={4}  className="w-8 h-8" />,
-  <Scale         key={5}  className="w-8 h-8" />,
-  <Users         key={6}  className="w-8 h-8" />,
-  <Megaphone     key={7}  className="w-8 h-8" />,
-  <Shield        key={8}  className="w-8 h-8" />,
-  <Copyright     key={9}  className="w-8 h-8" />,
-  <GraduationCap key={10} className="w-8 h-8" />,
-  <Building2     key={11} className="w-8 h-8" />,
+  <MaskIcon   key={0}  src="/images/rep_legal-mask.png"       className="w-8 h-8" />,
+  <Target     key={1}  className="w-8 h-8" />,
+  <TrendingUp key={2}  className="w-8 h-8" />,
+  <MaskIcon   key={3}  src="/images/tax-law-icon.svg"         className="w-8 h-8" />,
+  <Lock       key={4}  className="w-8 h-8" />,
+  <Scale      key={5}  className="w-8 h-8" />,
+  <MaskIcon   key={6}  src="/images/victimas-icon.svg"        className="w-8 h-8" />,
+  <MaskIcon   key={7}  src="/images/riesgo_reputacional.png"  className="w-8 h-8" />,
+  <MaskIcon   key={8}  src="/images/gobernanza-icon.svg"      className="w-8 h-8" />,
+  <Copyright  key={9}  className="w-8 h-8" />,
+  <MaskIcon   key={10} src="/images/audit-icon.svg"           className="w-8 h-8" />,
+  <Building2  key={11} className="w-8 h-8" />,
 ]
 
 interface CapacitiesSectionProps {

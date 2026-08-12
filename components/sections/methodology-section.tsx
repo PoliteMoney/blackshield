@@ -1,9 +1,14 @@
 'use client'
 
-import { Search, Lightbulb, Rocket, BarChart3 } from 'lucide-react'
+import { ScanSearch, Radar, Compass, Gauge } from 'lucide-react'
 import { Eyebrow } from '@/components/ui/eyebrow'
 
-const stepIcons = [Search, Lightbulb, Rocket, BarChart3]
+// Matched to each step's actual content:
+// 1. Lectura integral del escenario -> scanning/reading the situation
+// 2. Inteligencia de contexto        -> radar/intelligence gathering
+// 3. Estrategia legal                -> strategic direction
+// 4. Ejecución con control           -> a controlled, monitored process
+const stepIcons = [ScanSearch, Radar, Compass, Gauge]
 
 interface MethodologyStep { title: string; desc: string }
 
@@ -27,7 +32,7 @@ export function MethodologySection({ dict }: MethodologySectionProps) {
 
       <div className="container-custom mx-auto relative">
         <div className="text-center mb-20">
-          <Eyebrow label={dict.badge} align="center" className="mb-5" />
+          <Eyebrow label={dict.badge} align="center" size="lg" className="mb-5" />
           <h2 className="display-heading text-4xl lg:text-5xl xl:text-6xl text-white mb-5">
             {dict.title}
           </h2>
@@ -40,7 +45,7 @@ export function MethodologySection({ dict }: MethodologySectionProps) {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
             {dict.steps.map((step, index) => {
-              const Icon = stepIcons[index] || Search
+              const Icon = stepIcons[index] || ScanSearch
               return (
                 <div key={index} className="relative group text-center">
                   <span

@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { Building2, Landmark, DollarSign, HeartPulse, Zap, Cpu } from 'lucide-react'
 import { Eyebrow } from '@/components/ui/eyebrow'
 
@@ -11,6 +12,7 @@ interface Sector {
   id: string
   slug: string
   icon: string
+  image_url?: string | null
   translations: { title: string; description: string }[]
 }
 
@@ -24,7 +26,7 @@ export function SectorsSection({ dict, sectors }: SectorsSectionProps) {
     <section id="sectors" className="section-padding bg-background">
       <div className="container-custom mx-auto">
         <div className="text-center mb-16">
-          <Eyebrow label={dict.badge} align="center" className="mb-5" />
+          <Eyebrow label={dict.badge} align="center" size="lg" className="mb-5" />
           <h2 className="display-heading text-4xl lg:text-5xl xl:text-6xl text-[var(--color-secondary)] mb-5">
             {dict.title}
           </h2>
@@ -36,12 +38,25 @@ export function SectorsSection({ dict, sectors }: SectorsSectionProps) {
             const Icon = iconMap[sector.icon] || Building2
             const t = sector.translations[0]
             return (
-              <div key={sector.id} className="card-flat group p-8">
-                <div className="w-12 h-12 rounded-full border border-[var(--color-primary)]/40 flex items-center justify-center mb-6 group-hover:border-[var(--color-primary)] group-hover:bg-[var(--color-primary)]/10 transition-colors duration-300">
-                  <Icon className="w-5 h-5 text-[var(--color-primary)]" />
+              <div key={sector.id} className="card-flat group relative overflow-hidden p-8">
+                {sector.image_url && (
+                  <div className="absolute inset-0 opacity-[0.08] group-hover:opacity-[0.14] transition-opacity duration-300 pointer-events-none">
+                    <Image
+                      src={sector.image_url}
+                      alt=""
+                      fill
+                      className="object-cover"
+                      aria-hidden="true"
+                    />
+                  </div>
+                )}
+                <div className="relative">
+                  <div className="w-12 h-12 rounded-full border border-[var(--color-primary)]/40 flex items-center justify-center mb-6 group-hover:border-[var(--color-primary)] group-hover:bg-[var(--color-primary)]/10 transition-colors duration-300">
+                    <Icon className="w-5 h-5 text-[var(--color-primary)]" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-[var(--color-secondary)] mb-3">{t?.title}</h3>
+                  <p className="text-sm text-[var(--color-muted-foreground)] leading-relaxed">{t?.description}</p>
                 </div>
-                <h3 className="text-lg font-semibold text-[var(--color-secondary)] mb-3">{t?.title}</h3>
-                <p className="text-sm text-[var(--color-muted-foreground)] leading-relaxed">{t?.description}</p>
               </div>
             )
           })}

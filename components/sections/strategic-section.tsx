@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 function MexicoDecorSVG() {
   return (
-    <svg viewBox="0 0 500 310" className="w-full h-auto" aria-hidden="true">
+    <svg viewBox="0 0 500 310" preserveAspectRatio="xMidYMid meet" className="w-full h-full" aria-hidden="true">
       <defs>
         <pattern id="mexDots" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
           <circle cx="2" cy="2" r="1.6" fill="#4A8A9E" opacity="0.70" />
@@ -78,7 +78,7 @@ export function StrategicSection({ dict }: StrategicSectionProps) {
   return (
     <section className="bg-[var(--color-navy-deep)] overflow-hidden">
       <div className="container-custom mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-12 lg:gap-16 items-stretch">
 
           {/* Left — text */}
           <div>
@@ -99,16 +99,15 @@ export function StrategicSection({ dict }: StrategicSectionProps) {
             </div>
           </div>
 
-          {/* Right — image or SVG fallback */}
-          <div className="flex justify-center lg:justify-end">
-            <div className="w-full max-w-[520px]">
+          {/* Right — image or SVG fallback, scaled up to fill as much space as possible without cropping */}
+          <div className="flex items-stretch justify-center min-h-[320px]">
+            <div className="relative w-full rounded-lg overflow-hidden">
               {dict.image_url ? (
                 <Image
                   src={dict.image_url}
                   alt={dict.title}
-                  width={520}
-                  height={320}
-                  className="w-full h-auto object-contain"
+                  fill
+                  className="object-contain"
                 />
               ) : (
                 <MexicoDecorSVG />

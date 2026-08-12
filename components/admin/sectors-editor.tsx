@@ -108,10 +108,21 @@ export function SectorsEditor({ sectors: initial }: { sectors: any[] }) {
     setIconPicker(null)
   }
 
+  function getImageUrl(id: string) {
+    return edits[`${id}_image_url`] ?? sectors.find(s => s.id === id)?.image_url ?? ''
+  }
+
+  function setImageUrl(id: string, url: string) {
+    setEdits(prev => ({ ...prev, [`${id}_image_url`]: url }))
+  }
+
   async function saveSector(sector: any) {
     const supabase = createClient()
     try {
-      await supabase.from('sectors').update({ icon: getIcon(sector.id) }).eq('id', sector.id)
+      await supabase.from('sectors').update({
+        icon: getIcon(sector.id),
+        image_url: getImageUrl(sector.id) || null,
+      }).eq('id', sector.id)
       for (const loc of LOCALES) {
         const existing = (sector.translations || []).find((t: any) => t.locale === loc.code)
         const payload = {
@@ -281,6 +292,30 @@ export function SectorsEditor({ sectors: initial }: { sectors: any[] }) {
                       </div>
                     </div>
                   )}
+                </div>
+
+                {/* Background image */}
+                <div>
+                  <label className="block text-xs font-medium text-gray-500 mb-2">
+                    Imagen de fondo (opcional, se muestra semitransparente detrás de la tarjeta)
+                  </label>
+                  <div className="flex items-center gap-3">
+                    {getImageUrl(sector.id) && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={getImageUrl(sector.id)}
+                        alt=""
+                        className="w-12 h-12 rounded-lg object-cover border border-gray-200 flex-shrink-0"
+                      />
+                    )}
+                    <input
+                      type="text"
+                      value={getImageUrl(sector.id)}
+                      onChange={e => setImageUrl(sector.id, e.target.value)}
+                      placeholder="/images/mi-imagen.png  ó  https://..."
+                      className="flex-1 px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-gray-400"
+                    />
+                  </div>
                 </div>
 
                 {/* Locale tabs + fields */}

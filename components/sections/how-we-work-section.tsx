@@ -1,7 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { Compass, Maximize2, Shield, BarChart3, Globe, Building2, Scale, Users, AlertTriangle } from 'lucide-react'
+import { Compass, Maximize2, FileSignature, BarChart3, Globe, Building2, Shield, Scale } from 'lucide-react'
+import { MaskIcon } from '@/components/ui/mask-icon'
 
 const WORK_SLUGS = [
   'planeacion-e-inteligencia',
@@ -11,19 +12,33 @@ const WORK_SLUGS = [
 ]
 
 const WORK_ICONS = [
-  <Compass   key="compass"   className="w-8 h-8" />,
-  <Maximize2 key="maximize"  className="w-8 h-8" />,
-  <Shield    key="shield"    className="w-8 h-8" />,
-  <BarChart3 key="barchart"  className="w-8 h-8" />,
+  <Compass       key="compass"   className="w-8 h-8" />,
+  <Maximize2     key="maximize"  className="w-8 h-8" />,
+  <FileSignature key="signature" className="w-8 h-8" />,
+  <BarChart3     key="barchart"  className="w-8 h-8" />,
 ]
 
+/** Person sitting on the ground, head down, crying — victims of a crime. */
+function VictimIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <path d="M3 21h18" />
+      <circle cx="11.3" cy="8.6" r="2.3" />
+      <path d="M6.6 21v-2.3c0-3.6 2.1-6.5 4.7-6.5s4.7 2.9 4.7 6.5V21" />
+      <circle cx="8.6" cy="12.2" r="0.85" fill="currentColor" stroke="none" />
+      <circle cx="7.6" cy="14.5" r="0.7" fill="currentColor" stroke="none" />
+      <circle cx="14.0" cy="12.2" r="0.85" fill="currentColor" stroke="none" />
+    </svg>
+  )
+}
+
 const INTERVENE_ICONS = [
-  <Globe         key="globe"    className="w-6 h-6" />,
-  <Building2     key="building" className="w-6 h-6" />,
-  <Shield        key="shield2"  className="w-6 h-6" />,
-  <Scale         key="scale"    className="w-6 h-6" />,
-  <Users         key="users"    className="w-6 h-6" />,
-  <AlertTriangle key="alert"    className="w-6 h-6" />,
+  <Globe      key="globe"    className="w-full h-full" />,
+  <Building2  key="building" className="w-full h-full" />,
+  <Shield     key="shield2"  className="w-full h-full" />,
+  <Scale      key="scale"    className="w-full h-full" />,
+  <VictimIcon key="victim"   className="w-full h-full" />,
+  <MaskIcon   key="risk"     src="/images/riesgo_reputacional.png" color="var(--color-accent)" className="w-full h-full" />,
 ]
 
 interface HowWeWorkSectionProps {
@@ -58,7 +73,7 @@ export function HowWeWorkSection({ workDict, interveneDict }: HowWeWorkSectionPr
               href={`/como-trabajamos/${WORK_SLUGS[i]}`}
               className="flex flex-col items-center text-center px-6 py-8 group hover:bg-[var(--color-muted)] transition-colors rounded-lg"
             >
-              <div className="w-16 h-16 rounded-full bg-brushed-gold border-2 border-[var(--color-accent)] flex items-center justify-center mb-6 text-[var(--color-accent)] group-hover:shadow-lg group-hover:shadow-[var(--color-accent)]/25 transition-shadow">
+              <div className="w-16 h-16 rounded-full bg-transparent border-2 border-[var(--color-accent)] flex items-center justify-center mb-6 text-[var(--color-accent)] group-hover:bg-[var(--color-accent)]/5 transition-colors">
                 {WORK_ICONS[i] ?? WORK_ICONS[0]}
               </div>
               <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[var(--color-secondary)] mb-4">
@@ -88,11 +103,11 @@ export function HowWeWorkSection({ workDict, interveneDict }: HowWeWorkSectionPr
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8">
           {interveneItems.slice(0, 6).map((label, i) => (
-            <div key={i} className="flex flex-col items-center text-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-brushed-gold border-2 border-[var(--color-accent)] flex items-center justify-center text-[var(--color-accent)]">
+            <div key={i} className="flex flex-col items-center text-center gap-4">
+              <div className="w-20 h-20 p-5 rounded-full bg-transparent border-2 border-[var(--color-accent)] flex items-center justify-center text-[var(--color-accent)]">
                 {INTERVENE_ICONS[i] ?? INTERVENE_ICONS[0]}
               </div>
-              <p className="text-xs text-[var(--color-secondary)] leading-snug">
+              <p className="text-base text-[var(--color-secondary)] leading-snug">
                 {label}
               </p>
             </div>

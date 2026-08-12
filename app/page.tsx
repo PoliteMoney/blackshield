@@ -25,7 +25,7 @@ async function getPageData(locale: Locale) {
 
   const [sectorsRes, faqsRes, postsRes] = await Promise.all([
     supabase.from('sectors').select(`
-      id, slug, icon,
+      id, slug, icon, image_url,
       translations:sectors_translations(title, description, locale)
     `).eq('is_active', true).order('order_index'),
     supabase.from('faqs').select(`
